@@ -1,0 +1,28 @@
+body{
+    background-color: gainsboro;
+}
+#Browse-menu #Ingredients-menu {
+    width: 200px;
+    background-color: darkolivegreen;
+    display: block;
+    color: white;
+}
+
+a {
+    width: 150px;
+    height: 50px;
+    padding-top: 10px;
+    background-color: darkolivegreen;
+    display: block;
+    color: white;
+    border:1px solid white;
+    border-top: 10px;
+    text-align: center;
+    vertical-align: center;
+    text-decoration: none;
+}
+
+a:hover {
+	background-color: beige;
+	color:darkolivegreen;
+}
