@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => res.render('pages/main'))
 
 app.get('/userview', (req, res) => res.render('pages/userview'))
-app.get('/adminview', (req, res) => res.render('pages/adminview'))
+app.get('/userview-a', (req, res) => res.render('pages/userview-a'))
 
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
