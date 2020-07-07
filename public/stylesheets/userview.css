@@ -1,0 +1,9 @@
+.browse-menu .ingredients-menu {
+    width: 200px
+}
+
+.browse-menu .ingredients-menu a {
+    display: block;
+    background-color: darkgreen;
+    color: white;
+}
