@@ -4,32 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        p{
+            text-transform: capitalize;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
 
 
 </head>
 
     <!-- Creating the first iteration of the form -->
     <body>
-        <h1 style="text-align: center;">Register</h1>
+
+        <p class="h1" style="text-align: center;">Sign Up</p>
+        <br>
+        <br>
 
         <form action="/adduser", method="POST">
             <!-- These parameters are for the person database -->
-            <input id = "first_name" type="text" name = "fname" placeholder="First Name">
-            <input id = "last_name" type="text" name = "lname" placeholder="Last Name">
-            <input id = "username" type="text"  name = "username"placeholder="Username">
-            <input id = "email" type="text" name="email" placeholder="Email">
-            <input id = "phone" type="text" name="phone" placeholder="Phone Number">
-            <!-- These parameters are for the account database -->
-             Type of User:
-            <select id="user_type" name="user_type">
-                <option value="general">General User</option>
-                <option value="admin">Admin User</option>
-              </select>
-              
-            <input id = "password" type="text" name="password" value="" placeholder="Password">
-            <br>
-            <br>
-            <input type="submit" name = "sub" value="Register!">
+            <div class="form-row" style="padding-bottom: 120px;">
+                <div class="form-group col-md-6">
+                  <label for="first_name">First Name</label>
+                  <input type="text" class="form-control" name="fname" id="first_name" placeholder="First Name">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="last_name">Last Name</label>
+                  <input type="text" class="form-control" id="last_name" name="lname" placeholder="Last Name">
+                </div>
+            </div>
+
+
+            <div class="form-row" style="padding-bottom: 120px;">
+                <div class="form-group col-md-6">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="phone">Phone Number</label>
+                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number">
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="user_type">Type of User</label>
+                  <select id="user_type" name="user_type" class="form-control">
+                    <option value="general">General User</option>
+                    <option value="admin">Admin User</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="password">Password</label>
+                  <input type="text" class="form-control" name="password" id="password">
+                </div>
+            </div>
+
+            <input style="position: relative; left: 15px; top: 20px;" type="submit" class="btn btn-primary btn-lg" name = "sub" value="Sign Up">
+
+
+
+
 
 
 
@@ -39,9 +80,9 @@
 
 
 
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"> </script>
 
     </body>
-
 
 
 
