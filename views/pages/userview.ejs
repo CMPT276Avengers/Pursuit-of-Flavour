@@ -11,31 +11,33 @@
 </head>
 
 <body>
-    <div id="Header">
-      <h1 style="font-size: 500%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
+
+    <div>
+      <img id="logo" src="../../images/userview/logo.png" width="200" height="200">
+      <h1 id="header" style="font-size: 500%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
     </div>
 
     <div id="Menubar">
-      <form>
-        <button id="searchbarimg"> <img src="../../images/userview-a/search.png" width="50" height="50"></button>
+      <form id="searchmenu">
+        <button id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
         <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
       </form> <br>
   
-      <form id="userbuttons">
-        <img src="../../images/userview-a/profile.png" width="25" height="25">
-        <button id="account">My Account</button>
-        <button id="recipes">My Recipes</button>
-        <button id="ingredients">My Ingredients</button>
+      <form>
+        <img src="../../images/userview/profile.png" width="35" height="35">
+        <button class="userbuttons" id="account">My Account</button>
+        <button class="userbuttons" id="recipes">My Recipes</button>
+        <button class="userbuttons" id="ingredients">My Ingredients</button>
       </form>
 
     </div>
 
-    <nav>
+    <nav id="sidebuttons">
       <div id="Browse-menu">
           <b id="Browse-title" style="font-size: x-large;">Browse</b> 
           <li><a href="#">Cuisine</a></li>
-          <li><a href="#">Breakfast/Lunch/Dinner</a></li>
-          <li><a href="#">Veg/Vegan</a></li>
+          <li><a href="#">Type</a></li>
+          <li><a href="#">Veg / Vegan</a></li>
           <li><a href="#"> Low Calories</a></li>
         </div> 
 
@@ -49,13 +51,17 @@
         </div> 
     </nav>
 
-    <b style="font-size: x-large;">New Recipes</b> <br>
-		<button style="width:1000px;height:250px;border:1px solid">RECIPE API</button>
-
-    <br>
+    <div id="api">
+    <div id="recipe-api">
+      <b style="font-size: x-large;">New Recipes</b> <br>
+  		<button style="width:1500px;height:255px;border:1px solid">RECIPE API</button>
+    </div> <br>
     
-		<b style="font-size: x-large;">Stores Near Me</b> <br>
-		<button style="width:1000px;height:250px;border:1px solid">GOOGLE MAPS API</button>
+    <div id="maps-api">
+  		<b style="font-size: x-large;">Stores Near Me</b> <br>
+  		<button style="width:1500px;height:255px;border:1px solid">GOOGLE MAPS API</button>
+    </div>  
+  </div>
 
 </body>
 

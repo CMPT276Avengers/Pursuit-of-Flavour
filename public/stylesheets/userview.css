@@ -1,10 +1,17 @@
 
 body{
     background-color: gainsboro;
+    font-family: Calibri, sans-serif;
+}
+
+#logo{
+    position: relative;
 }
 
 #header{
-    position: relative;
+    position: absolute;
+    left: 210px;
+    top: 0px;
 }
 
 #Browse-menu #Ingredients-menu {
@@ -15,8 +22,8 @@ body{
 }
 
 a {
-    width: 150px;
-    height: 50px;
+    width: 250px;
+    height: 35px;
     padding-top: 10px;
     background-color: darkolivegreen;
     display: block;
@@ -33,16 +40,44 @@ a:hover {
 	color:darkolivegreen;
 }
 
+#sidebuttons{
+    position: absolute;
+    left: 25px;
+    top: 210px;
+}
+
 #Menubar{
     position: absolute;
-    top: 100px;
-    right: 30px;
+    top: 50px;
+    right: 25px;
+}
+
+#searchbar{
+    width: 756px;
+    height: 20px
 }
 
 #searchbarimg {
-    width: 60px;
-    height:60px;
-    background-color: darkolivegreen;
-    border: 0px;
+    width: 35px;
+    height: 35px;
 }
 
+.userbuttons {
+    width: 252px;
+    height: 35px;
+    background-color: darkolivegreen;
+    color: beige;
+    border: none;
+}
+
+.userbuttons:hover{
+    background-color: beige;
+    color: darkolivegreen;
+    border: none;
+}
+
+#api{
+    position: absolute;
+    right: 25px;
+    top: 210px;
+}
