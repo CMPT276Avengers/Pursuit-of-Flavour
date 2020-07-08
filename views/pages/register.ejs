@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+
+</head>
+
+    <!-- Creating the first iteration of the form -->
+    <body>
+        <h1 style="text-align: center;">Register</h1>
+
+        <form action="/adduser", method="POST">
+            <!-- These parameters are for the person database -->
+            <input id = "first_name" type="text" name = "fname" placeholder="First Name">
+            <input id = "last_name" type="text" name = "lname" placeholder="Last Name">
+            <input id = "username" type="text"  name = "username"placeholder="Username">
+            <input id = "email" type="text" name="email" placeholder="Email">
+            <input id = "phone" type="text" name="phone" placeholder="Phone Number">
+            <!-- These parameters are for the account database -->
+             Type of User:
+            <select id="user_type" name="user_type">
+                <option value="general">General User</option>
+                <option value="admin">Admin User</option>
+              </select>
+              
+            <input id = "password" type="text" name="password" value="" placeholder="Password">
+            <br>
+            <br>
+            <input type="submit" name = "sub" value="Register!">
+
+
+
+
+
+        </form>
+
+
+
+
+    </body>
+
+
+
+
+
+
+
+
+</html>
