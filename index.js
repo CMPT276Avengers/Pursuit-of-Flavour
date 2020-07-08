@@ -17,8 +17,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
+//Default route, should redirect user to home page
 app.get('/', (req, res) => res.render('pages/main'))
+
+//renders the login page
+app.get('/login',(req,res) => {
+  res.render('pages/login');
+})
+
+//post route that handles the login form
+app.post('/login',(req,res) => {
+})
+
 
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
