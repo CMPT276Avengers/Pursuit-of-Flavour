@@ -4,30 +4,33 @@ const PORT = process.env.PORT || 5000;
 const { Pool } = require('pg');
 const { resourceUsage } = require('process');
 const { Console } = require('console');
+const cookieParser = require('cookie-parser');
+
 
 var pool = new Pool({
-  // connectionString: 'postgres://postgres:password@localhost/ass2'
-  connectionString: process.env.DATABASE_URL
+  connectionString: 'postgres://postgres:password@localhost/cmpt276project'
+  // connectionString: process.env.DATABASE_URL
 });
 var app = express();
 app.use(express.json());
-// app.use(express.bodyParser());
 app.use(express.urlencoded({extended:false}));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//Default route, should redirect user to home page
-app.get('/', (req, res) => res.render('pages/main'))
 
-//renders the login page
-app.get('/login',(req,res) => {
-  res.render('pages/login');
-})
+//Defining path for page directing routes: when user requests /blah it will look into the routes pages file
+app.use('/',require('./routes/pages'));
 
-//post route that handles the login form
-app.post('/login',(req,res) => {
-})
+//Defining path for authentication routes: when user requestls /auth/blah it will look into the routes auth file
+app.use('/auth',require('./routes/auth'));
+
+
+// //renders the temperary logged in page
+// app.get('/loggedin',(req,res) => {
+//   res.render('pages/loggedin');
+// })
 
 
 
