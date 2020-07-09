@@ -21,11 +21,16 @@ exports.login = async (req,res) => {
                 res.status(401).render('pages/login', {message: 'Email or Password is incorrect'});
             }
             else{
+                console.log(results.rows[0]);
                 const usern = results.rows[0].username;
+                const type = results.rows[0].type;
 
-                req.session.username = usern;
+                req.session.user = {
+                    username: usern,
+                    usertype: type
+                };
 
-                res.status(200).redirect("/loggedin");
+                res.status(200).redirect("/userview");
             }
         })
 
@@ -35,6 +40,6 @@ exports.login = async (req,res) => {
 }
 
 exports.logout = (req,res) => {
-    req.session.username = null;
+    req.session.user = null;
     res.status(200).redirect("/login");
 }

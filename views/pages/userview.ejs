@@ -5,7 +5,6 @@
     <title>Pusuit of Flavour</title>
     
     <link rel='stylesheet' href='./stylesheets/userview.css'>
-    <script src='userview.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
@@ -25,9 +24,12 @@
   
       <form>
         <img src="../../images/userview/profile.png" width="35" height="35">
-        <button class="userbuttons" id="account">My Account</button>
+        <% if(username){%>
+          <button class="userbuttons" id="account"><%=username%></button>
+        <% } %>
         <button class="userbuttons" id="recipes">My Recipes</button>
         <button class="userbuttons" id="ingredients">My Ingredients</button>
+        <button class="userbuttons" id="logout">logout</button>
       </form>
 
     </div>
@@ -63,7 +65,11 @@
     </div>  
   </div>
 
+  <script language="JavaScript" src='../../scripts/userview.js'></script>
+
 </body>
+
+
 
 
 

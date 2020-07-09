@@ -34,8 +34,4 @@ app.use('/auth',require('./routes/auth'));
 
 
 
-app.get('/userview', (req, res) => res.render('pages/userview'))
-app.get('/userview-a', (req, res) => res.render('pages/userview-a'))
-
-
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
