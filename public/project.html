@@ -11,7 +11,10 @@
     <div class="content">
     <h1>ADD New Users</h1>
 
-
+    <select id="user_type" name="user_type" class="form-control">
+    <option value="general">General User</option>
+    <option value="admin">Admin User</option>
+    </select>
     <form class=""action="/adduser"method="post" id="first">
       <a> fname:</a><input value=""type="text"name="fname"placeholder="Enter First Name"><br><br>
       <a> lname:</a><input value=""type="text"name="lname"placeholder="Enter Last Name"><br><br>
@@ -20,10 +23,7 @@
       <a> phone:</a><input value=""type="text"name="phone"placeholder="Enter phone"><br><br>
       <a> type:</a><input value=""type="text"name="type"placeholder="Enter type"><br><br>
       <a> password:</a><input value=""type="text"name="password"placeholder="Enter password"><br><br>
-      <select id="user_type" name="user_type" class="form-control">
-      <option value="general">General User</option>
-      <option value="admin">Admin User</option>
-      </select>
+
       <input id="last"type ="submit"/><br>
 
       </form>
