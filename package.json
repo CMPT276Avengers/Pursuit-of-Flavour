@@ -8,15 +8,25 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node test.js"
+    "test": "node test.js",
+    "watch": "nodemon ./index.js"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "ejs": "^2.5.6",
     "express": "^4.15.2",
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.6.0",
+    "hbs": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "pg": "^8.2.1"
   },
   "devDependencies": {
     "got": "^11.3.0",
+    "nodemon": "^2.0.4",
     "tape": "^4.7.0"
   },
   "repository": {

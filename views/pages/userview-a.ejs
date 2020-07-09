@@ -25,7 +25,9 @@
   
       <form>
         <img src="../../images/userview/profile.png" width="35" height="35">
-        <button class="userbuttons" id="account">My Account</button>
+        <% if(username){%>
+          <button class="userbuttons" id="account"><%=username%></button>
+        <% } %>
         <button class="userbuttons" id="recipes">My Recipes</button>
         <button class="userbuttons" id="ingredients">My Ingredients</button>
         <button class="userbuttons" id="adminbtn">Admin</button>
