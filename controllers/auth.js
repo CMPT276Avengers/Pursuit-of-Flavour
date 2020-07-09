@@ -3,8 +3,9 @@ var pool = new Pool({
     connectionString: 'postgres://postgres:password@localhost/cmpt276project'
     // connectionString: process.env.DATABASE_URL
 });
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
+// const jwt = require('jsonwebtoken');
+// const passport = require('passport');
+const session = require('express-session');
 
 exports.login = async (req,res) => {
     try{    
@@ -21,20 +22,9 @@ exports.login = async (req,res) => {
             }
             else{
                 const usern = results.rows[0].username;
-                // const token = jwt.sign({id: usern},'secret',{
-                //     expiresIn: '90d'
-                // });
 
-                
+                req.session.username = usern;
 
-                const cookieOptions = {
-                    expires: new Date(
-                        Date.now() + 90 * 24 * 60 *60
-                    ),
-                    httpOnly:true
-                }
-
-                res.cookie('userid', usern, cookieOptions);
                 res.status(200).redirect("/loggedin");
             }
         })
@@ -42,4 +32,9 @@ exports.login = async (req,res) => {
     } catch (error){
         console.log(error);
     }
+}
+
+exports.logout = (req,res) => {
+    req.session.username = null;
+    res.status(200).redirect("/login");
 }
