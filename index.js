@@ -25,5 +25,3 @@ app.get('/userview-a', (req, res) => res.render('pages/userview-a'))
 
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
-
-
