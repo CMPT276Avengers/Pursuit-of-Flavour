@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+</head>
+
+    <body>
+        <style>
+            /* thead.table {
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+            border: 3px solid black;
+            } */
+
+            table{
+            text-align: center;
+            table-layout: fixed;
+            width: 50%;
+            border-collapse: collapse;
+            border: 3px solid black;
+
+            }
+
+            td, th { border: 1px solid black; }
+
+            td{
+                text-align: center;
+            }
+
+            p {
+                text-transform: capitalize;
+                font-family: 'Times New Roman', Times, serif;
+            }
+
+        </style>
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+
+        <div class="container">
+            <h2>My Recipes</h2>
+            <table>
+                <thead class="table">
+                    <th>Recipe ID</th>
+                    <th>  Name</th>
+                    <th>  Type</th>
+                    <th>  Cuisine</th>
+                </thead>
+
+                <tbody>
+                    <% rows.forEach(function(r) { %>
+                        <tr class="data">
+                            <td> <%= r.recipe_id %>   </td>
+                            <td> <%= r.recipe_name %>   </td>  
+                            <td> <%= r.type %>   </td>
+                            <td> <%= r.cuisine %>   </td>
+                        </tr>
+
+                    <% }); %>
+
+
+
+                </tbody>
+            </table>
+        
+        </div>
+        <br>
+        <br>
+        <p class="h1" style="text-align: center;">Add A Recipe</p>
+
+        <form action="/add/adduser_recipe" method="POST">
+            <!-- These parameters are for the person database -->
+            <div class="form-row" style="padding-bottom: 120px;">
+                <div class="form-group col-md-10">
+                  <label for="recipe_id">ID of the Recipe</label>
+                  <input type="text" class="form-control" name="recipe_id" id="recipe_id" placeholder="ID of the recipe">
+                </div>
+            </div>
+
+            <input style="position: relative; left: 15px; top: 20px;" type="submit" class="btn btn-primary btn-lg" name = "sub" value="Add a Recipe!">
+
+
+        </form>
+
+
+        <br>
+        <br>
+        <p class="h1" style="text-align: center;">Delete A Recipe</p>
+
+        <form action="/add/deleteuser_recipe" method="POST">
+          <!-- These parameters are for the person database -->
+          <div class="form-row" style="padding-bottom: 120px;">
+              <div class="form-group col-md-10">
+                <label for="recipe_id_delete">ID of the Recipe</label>
+                <input type="text" class="form-control" name="recipe_id_delete" id="recipe_id_delete" placeholder="ID of the recipe">
+              </div>
+          </div>
+
+          <input style="position: relative; left: 15px; top: 20px;" type="submit" class="btn btn-primary btn-lg" name = "sub" value="Add a Recipe!">
+
+
+      </form>
+
+
+
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"> </script>
+
+    </body>
+
+
+
+
+
+
+
+</html>
