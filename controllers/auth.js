@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 var pool = new Pool({
-    connectionString: 'postgres://postgres:password@localhost/cmpt276project'
+    connectionString: 'postgres://postgres:root@localhost/cmpt276proj'
     // connectionString: process.env.DATABASE_URL
 });
 // const jwt = require('jsonwebtoken');
@@ -21,7 +21,6 @@ exports.login = async (req,res) => {
                 res.status(401).render('pages/login', {message: 'Email or Password is incorrect'});
             }
             else{
-                console.log(results.rows[0]);
                 const usern = results.rows[0].username;
                 const type = results.rows[0].type;
 

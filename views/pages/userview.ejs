@@ -1,76 +1,120 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <title>Pusuit of Flavour</title>
+  <head>
+      <meta charset='utf-8'>
+      <title>Pusuit of Flavour</title>
+      
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link rel='stylesheet' href='./stylesheets/userview.css'>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+
+      <div>
+        <img id="logo" src="../../images/userview/logo.png" width="200" height="200">
+        <h1 id="header" style="font-size: 500%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
+      </div>
+
+      <div id="Menubar">
+        <form id="searchmenu">
+          <button id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
+          <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
+        </form> <br>
     
-    <link rel='stylesheet' href='./stylesheets/userview.css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <nav>
+          <img src="../../images/userview/profile.png" width="35" height="35">
+          <% if(username){%>
+            <button class="userbuttons" id="account"><%=username%></button>
+          <% } %>
+          <button class="userbuttons" id="recipes">My Recipes</button>
+          <button class="userbuttons" id="ingredients">My Ingredients</button>
+          <button class="userbuttons" id="logout">Logout</button>
+        </nav>
+      </div>
 
-</head>
 
-<body>
+    <!-- Left Drop down menu -->
+    <div class="wrapper">
+        <!-- Browsing recipes by category -->
+        <nav id="recipesidebar">
+          <div class="sidebar-header">
+              <h3>Browse Recipes</h3>
+          </div>
+          <ul class="list-unstyled components">
+              <li class="active">
+                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cuisine</a>
+                  <ul class="collapse list-unstyled" id="homeSubmenu">
+                      <li>
+                          <a style="background-color: beige;color: darkolivegreen;" href="#">European</a>
+                      </li>
+                      <li>
+                          <a style="background-color: beige;color: darkolivegreen;"href="#">Chinese</a>
+                      </li>
+                      <li>
+                          <a style="background-color: beige;color: darkolivegreen;"href="#">Japanese</a>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Type</a>
+                  <ul class="collapse list-unstyled" id="pageSubmenu">
+                      <li>
+                          <a style="background-color: beige;color: darkolivegreen;"href="#">Breakfast</a>
+                      </li>
+                      <li>
+                          <a style="background-color: beige;color: darkolivegreen;"href="#">Main Course</a>
+                      </li>
+                      <li>
+                          <a style="background-color: beige;color: darkolivegreen;"href="#">Appetizer</a>
+                      </li>
+                      <li>
+                        <a style="background-color: beige;color: darkolivegreen;"href="#">Dessert</a>
+                    </li>
+                  </ul>
+              </li>
+              <li>
+                  <a style="background-color: darkolivegreen; color: white;" href="#">Veg/Vegan</a>
+              </li>
+              <li>
+                  <a style="background-color: darkolivegreen; color: white;" href="#">Low Calorie</a>
+              </li>
+          </ul>
+      </nav> <br> <br>
 
-    <div>
-      <img id="logo" src="../../images/userview/logo.png" width="200" height="200">
-      <h1 id="header" style="font-size: 500%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
-    </div>
-
-    <div id="Menubar">
-      <form id="searchmenu">
-        <button id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
-        <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
-      </form> <br>
-  
-      <form>
-        <img src="../../images/userview/profile.png" width="35" height="35">
-        <% if(username){%>
-          <button class="userbuttons" id="account"><%=username%></button>
-        <% } %>
-        <button class="userbuttons" id="recipes">My Recipes</button>
-        <button class="userbuttons" id="ingredients">My Ingredients</button>
-        <button class="userbuttons" id="logout">logout</button>
-      </form>
-
-    </div>
-
-    <nav id="sidebuttons">
-      <div id="Browse-menu">
-          <b id="Browse-title" style="font-size: x-large;">Browse</b> 
-          <li><a href="#">Cuisine</a></li>
-          <li><a href="#">Type</a></li>
-          <li><a href="#">Veg / Vegan</a></li>
-          <li><a href="#"> Low Calories</a></li>
+      <!-- Browsing by Ingredient Type -->
+      <nav id="ingredientssidebar">
+        <div class="sidebar-header">
+          <h3>Browse Ingredients</h3>
+        </div>
+          <div>
+            <li><a href="#">Meats</a></li>
+            <li><a href="#">Produce</a></li>
+            <li><a href="#">Grains</a></li>
+            <li><a href="#">Seasonings</a></li>
         </div> 
-
-        <br> <br>
-      <div id="Ingredients-menu">
-        <b id="Ingredients-title" style="font-size: x-large;">Ingredients</b> 
-          <li><a href="#">Meats</a></li>
-          <li><a href="#">Produce</a></li>
-          <li><a href="#">Grains</a></li>
-          <li><a href="#">Seasonings</a></li>
-        </div> 
-    </nav>
+      </nav>
+    </div>
 
     <div id="api">
-    <div id="recipe-api">
-      <b style="font-size: x-large;">New Recipes</b> <br>
-  		<button style="width:1500px;height:255px;border:1px solid">RECIPE API</button>
-    </div> <br>
-    
-    <div id="maps-api">
-  		<b style="font-size: x-large;">Stores Near Me</b> <br>
-  		<button style="width:1500px;height:255px;border:1px solid">GOOGLE MAPS API</button>
-    </div>  
-  </div>
-
-  <script language="JavaScript" src='../../scripts/userview.js'></script>
-
-</body>
+      <div id="recipe-api">
+        <b style="font-size: x-large;">New Recipes</b> <br>
+        <button style="width:1500px;height:255px;border:1px solid">RECIPE API</button>
+      </div> <br>
+      
+      <div id="maps-api">
+        <b style="font-size: x-large;">Stores Near Me</b> <br>
+        <button style="width:1500px;height:255px;border:1px solid">GOOGLE MAPS API</button>
+      </div>  
+    </div>
 
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript" src='userview.js'></script>
 
-
+  </body>
 
 </html>
