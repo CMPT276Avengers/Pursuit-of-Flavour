@@ -3,8 +3,8 @@ const router = express.Router();
 
 //route made for page redirection
 router.get('/', (req, res) => {
-    if(req.session.username){
-        res.redirect('/loggedin');
+    if(req.session.user){
+        res.redirect('/userview');
     }else{
         res.render('pages/landing');
     }
@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 //route made for authentication
 router.get('/login', (req,res) => {
-    if(req.session.username){
+    if(req.session.user){
         res.redirect('/userview');
     }else{
         res.render('pages/login');
@@ -28,9 +28,19 @@ router.get('/login', (req,res) => {
 //     }
 // })
 
+//used for generating registration page
+router.get('/register', (req,res) => {
+    if(req.session.user){
+        res.redirect('/userview');
+    }
+    else{
+        res.render('pages/register')
+    }
+})
+
 //used for generating userview, based on user type
 router.get('/userview', (req,res) => {
-    console.log(req.session.user);
+    // console.log(req.session.user);
     if(req.session.user && req.session.user.usertype == "general"){
         res.render('pages/userview',{username: req.session.user.username});
     }
@@ -41,6 +51,8 @@ router.get('/userview', (req,res) => {
         res.redirect('/login');
     }
 })
+
+
 
 
 

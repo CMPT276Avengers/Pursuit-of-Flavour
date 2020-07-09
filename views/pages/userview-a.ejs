@@ -21,17 +21,19 @@
         <button id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
         <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
       </form> <br>
-  
-      <form>
-        <img src="../../images/userview/profile.png" width="35" height="35">
-        <% if(username){%>
-          <button class="userbuttons" id="account"><%=username%></button>
-        <% } %>
-        <button class="userbuttons" id="recipes">My Recipes</button>
-        <button class="userbuttons" id="ingredients">My Ingredients</button>
-        <button class="userbuttons" id="adminbtn">Admin</button>
-        <button class="userbuttons" id="logout">Logout</button>
+
+      <img src="../../images/userview/profile.png" width="35" height="35">
+      <% if(username){%>
+        <button class="userbuttons" id="account"><%=username%></button>
+      <% } %>
+      <button class="userbuttons" id="recipes">My Recipes</button>
+      <button class="userbuttons" id="ingredients">My Ingredients</button>
+      <button class="userbuttons" id="adminbtn">Admin</button>
+      <form action="/auth/logout" method="POST">
+        <button class="userbuttons" id="logout" type="submit" >Logout</button>
       </form>
+
+
     </div>
 
   <!-- Left Drop down menu -->
