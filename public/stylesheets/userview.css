@@ -1,0 +1,83 @@
+
+body{
+    background-color: gainsboro;
+    font-family: Calibri, sans-serif;
+}
+
+#logo{
+    position: relative;
+}
+
+#header{
+    position: absolute;
+    left: 210px;
+    top: 0px;
+}
+
+#Browse-menu #Ingredients-menu {
+    width: 200px;
+    background-color: darkolivegreen;
+    display: block;
+    color: white;
+}
+
+a {
+    width: 250px;
+    height: 35px;
+    padding-top: 10px;
+    background-color: darkolivegreen;
+    display: block;
+    color: white; 
+    border:1px solid white;
+    border-top: 10px;
+    text-align: center;
+    vertical-align: center;
+    text-decoration: none;
+}
+
+a:hover {
+	background-color: beige;
+	color:darkolivegreen;
+}
+
+#sidebuttons{
+    position: absolute;
+    left: 25px;
+    top: 210px;
+}
+
+#Menubar{
+    position: absolute;
+    top: 50px;
+    right: 25px;
+}
+
+#searchbar{
+    width: 756px;
+    height: 20px
+}
+
+#searchbarimg {
+    width: 35px;
+    height: 35px;
+}
+
+.userbuttons {
+    width: 252px;
+    height: 35px;
+    background-color: darkolivegreen;
+    color: beige;
+    border: none;
+}
+
+.userbuttons:hover{
+    background-color: beige;
+    color: darkolivegreen;
+    border: none;
+}
+
+#api{
+    position: absolute;
+    right: 25px;
+    top: 210px;
+}
