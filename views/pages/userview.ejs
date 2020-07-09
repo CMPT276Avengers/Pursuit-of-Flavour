@@ -6,6 +6,7 @@
     
     <link rel='stylesheet' href='./stylesheets/userview.css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script language="JavaScript" src='userview.js'></script>
 
 </head>
 
@@ -22,15 +23,16 @@
         <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
       </form> <br>
   
-      <form>
-        <img src="../../images/userview/profile.png" width="35" height="35">
-        <% if(username){%>
-          <button class="userbuttons" id="account"><%=username%></button>
-        <% } %>
-        <button class="userbuttons" id="recipes">My Recipes</button>
-        <button class="userbuttons" id="ingredients">My Ingredients</button>
-        <button class="userbuttons" id="logout">logout</button>
+      <img src="../../images/userview/profile.png" width="35" height="35">
+      <% if(username){%>
+        <button class="userbuttons" id="account"><%=username%></button>
+      <% } %>
+      <button class="userbuttons" id="recipes">My Recipes</button>
+      <button class="userbuttons" id="ingredients">My Ingredients</button>
+      <form action="/auth/logout" method="POST">
+        <button class="userbuttons" id="logout" type="submit" >Logout</button>
       </form>
+
 
     </div>
 
@@ -64,8 +66,6 @@
   		<button style="width:1500px;height:255px;border:1px solid">GOOGLE MAPS API</button>
     </div>  
   </div>
-
-  <script language="JavaScript" src='../../scripts/userview.js'></script>
 
 </body>
 

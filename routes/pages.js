@@ -30,7 +30,7 @@ router.get('/login', (req,res) => {
 
 //used for generating userview, based on user type
 router.get('/userview', (req,res) => {
-    console.log(req.session.user);
+    // console.log(req.session.user);
     if(req.session.user && req.session.user.usertype == "general"){
         res.render('pages/userview',{username: req.session.user.username});
     }

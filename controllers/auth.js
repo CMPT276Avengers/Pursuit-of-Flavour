@@ -21,7 +21,7 @@ exports.login = async (req,res) => {
                 res.status(401).render('pages/login', {message: 'Email or Password is incorrect'});
             }
             else{
-                console.log(results.rows[0]);
+                // console.log(results.rows[0]);
                 const usern = results.rows[0].username;
                 const type = results.rows[0].type;
 
