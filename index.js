@@ -70,7 +70,7 @@ pool=new Pool({
 
     app.post('/deleteuser',(req,res)=>{
       var username=req.body.username;
-      var getQuery=`DELETE FROM person,account WHERE username='${username}'`;
+      var getQuery=`DELETE FROM person WHERE username='${username}'`;
       pool.query(getQuery,(error,result)=>{
         if (error){
           throw error;
@@ -82,17 +82,19 @@ pool=new Pool({
     res.render('pages/sd');
     });
 
+
+
     app.post('/viewuser',(req,res)=> {
-      var username=req.body.username;
-      var getUserQuery=`SELECT * FROM person WHERE username='${username}'`;// we are trying to get rows from here
-      pool.query(getUserQuery, (error,result)=>{
-        if(error)
-        res.end(error);
-        var results={'rows':result.rows} //result is an object //'rows' is a parameter
-        // result.rows is an array that contains the rows in the database table
-      res.render('pages/viewuser',results);//  we are sending the results to the db.ejs
-    })
-  });
+    var username=req.body.username;
+    var getUserQuery=`SELECT * FROM person WHERE username='${username}'`;// we are trying to get rows from here
+    pool.query(getUserQuery, (error,result)=>{
+      if(error)
+      res.end(error);
+      var results={'rows':result.rows} //result is an object //'rows' is a parameter
+      // result.rows is an array that contains the rows in the database table
+    res.render('pages/viewuser',results);//  we are sending the results to the db.ejs
+  })
+});
 
   app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
     //It means the port which is being used.

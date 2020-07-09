@@ -3,48 +3,69 @@
   <head>
     <meta charset="utf-8">
     <title>DATABASE</title>
-    <link rel="stylesheet"href="./stylesheets/style.css">
-    <script type="text.javascript"src="index.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"> </script>
+    <link rel="stylesheet" href="./stylesheets/style.css">
+      <script type="text.javascript"src="index.js"></script>
+    <style>
+    p{
+      text-transform:capitalize;
+      font-family:'Times New Roman',Times,serif;
+    }
+    </style>
+
 
   </head>
   <body>
-    <div class="content">
-    <h1>ADD New Users</h1>
+    <header>
+          <h1 align="center"style="font-size:30px;background-color:#F5F5DC;position:float">ADMIN VIEW</h1>
+    </header>
+
+    <div class="form-row">
+    <h2  align="center"style="font-size:30px;background-color:#F5F5DC;position:float" >Add a new user</h2>
 
     <select id="user_type" name="user_type" class="form-control">
     <option value="general">General User</option>
     <option value="admin">Admin User</option>
     </select>
     <form class=""action="/adduser"method="post" id="first">
-      <a> fname:</a><input value=""type="text"name="fname"placeholder="Enter First Name"><br><br>
-      <a> lname:</a><input value=""type="text"name="lname"placeholder="Enter Last Name"><br><br>
-      <a> username:</a><input value=""type="text"name="username"placeholder="Enter Username"><br><br>
-      <a> email:</a><input value=""type="text"name="email"placeholder="Enter email"><br><br>
-      <a> phone:</a><input value=""type="text"name="phone"placeholder="Enter phone"><br><br>
-      <a> type:</a><input value=""type="text"name="type"placeholder="Enter type"><br><br>
-      <a> password:</a><input value=""type="text"name="password"placeholder="Enter password"><br><br>
+      <a> fname:</a><input value=""type="text"name="fname"placeholder="Enter First Name" class="form-control"><br><br>
+      <a> lname:</a><input value=""type="text"name="lname"placeholder="Enter Last Name" class="form-control"><br><br>
+      <a> username:</a><input value=""type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
+      <a> email:</a><input value=""type="text"name="email"placeholder="Enter email" class="form-control"><br><br>
+      <a> phone:</a><input value=""type="text"name="phone"placeholder="Enter phone" class="form-control"><br><br>
+      <a> type:</a><input value=""type="text"name="type"placeholder="Enter type" class="form-control"><br><br>
+      <a> password:</a><input value=""type="text"name="password"placeholder="Enter password" class="form-control"><br><br>
 
-      <input id="last"type ="submit"/><br>
+      <input id="last"type ="submit"class="btn btn-primary btn-block"><br>
 
       </form>
     </div>
     <div>
-      <div class="content">
-        <h1>Delete A User by username</h1>
+      <div class="form-row">
+        <h1  align="center"style="font-size:30px;background-color:#F5F5DC;position:float">Delete an existing user</h1>
         <form class="" action= "/deleteuser" method="post">
-        <a> Username:</a><input type="text"name="username"placeholder="Enter Username"><br><br>
-              <input id="last"type ="submit"/><br>
+        <a> Username:</a><input type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
+              <input id="last"type ="submit"class="btn btn-primary btn-block"><br>
         </form>
     </div>
 
     <div>
-      <div class="content">
-        <h1>View User</h1>
+      <div class="form-row">
+        <h1  align="center"style="font-size:30px;background-color:#F5F5DC;position:float">View an existing user</h1>
         <form class="" action= "/viewuser" method="post">
-        <a> Username:</a><input type="text"name="username"placeholder="Enter Username"><br><br>
-              <input id="last"type ="submit"/><br>
+        <a> Username:</a><input type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
+              <input id="last"type ="submit"class="btn btn-primary btn-block"><br>
         </form>
     </div>
+    <nav >
+
+            <li>
+                  <a class="nav-link" href="/database">View the data</a>
+            </li>
+
+
+    </nav>
 
 
   </body>
