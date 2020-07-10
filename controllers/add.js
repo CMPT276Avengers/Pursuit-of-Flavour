@@ -14,7 +14,7 @@ exports.adduser_recipe = (req,res) =>{
     var addUser_Recipe =  `INSERT INTO exists_in VALUES ($1, $2, DEFAULT);`
 
     pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
-        if (error){ return res.send(error);}
+        if (error){ return console.log(error)}
 
         res.redirect('/my_recipe');
 
@@ -32,7 +32,7 @@ exports.deleteuser_recipe = (req,res) =>{
     var deleteUser_Recipe =  `DELETE FROM exists_in WHERE username = $1 AND recipe_id = $2`
 
     pool.query(deleteUser_Recipe, user_recipe_param,(error, resp)=>{
-        if (error){ return res.send(error);}
+        if (error){ return console.log(error);}
 
         res.redirect('/my_recipe');
 

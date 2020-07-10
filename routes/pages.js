@@ -66,7 +66,7 @@ router.get('/my_recipe', (req,res)=>{
         var user = [username]
         var getUserRecipeQuery = `SELECT recipe_id FROM exists_in WHERE username = $1`;
         pool.query(getUserRecipeQuery,user,(error,resp)=>{
-            if (error){ return res.send(error);}
+            if (error){ return console.log(error);}
             // var results = {'rows':result.rows}
             if(resp.rows.length == 0){
                 res.render('pages/add_new_recipe');
@@ -80,7 +80,7 @@ router.get('/my_recipe', (req,res)=>{
                 var getRecipe = `SELECT * FROM recipes WHERE recipe_id in (${rec_id});`
 
                 pool.query(getRecipe, (error,resp)=>{
-                    if (error){ return res.send(error);}
+                    if (error){ return console.log(error);}
 
                     res.render('pages/my_recipe', resp);
 
