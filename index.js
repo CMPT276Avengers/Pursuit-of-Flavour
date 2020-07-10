@@ -9,8 +9,10 @@ const session = require('express-session');
 
 
 var pool = new Pool({
-  connectionString: 'postgres://postgres:password@localhost/cmpt276project'
-})
+  connectionString: 'postgres://postgres:root@localhost/cmpt276proj'
+  // connectionString: process.env.DATABASE_URL
+});
+
 // var async = require('async');
 
 
@@ -36,6 +38,10 @@ app.use('/',require('./routes/pages'));
 
 //Defining path for authentication routes: when user requestls /auth/blah it will look into the routes auth file
 app.use('/auth',require('./routes/auth'));
+
+// Defining path for browse routes for
+app.use('/browserecipes', require('./routes/browse'));
+
 
 //Definining path for add routes /add/blah
 app.use('/add',require('./routes/add'));

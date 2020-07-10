@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <title>Pusuit of Flavour</title>
-    
-    <link rel='stylesheet' href='./stylesheets/userview-a.css'>
-    <script src='userview.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <head>
+      <meta charset='utf-8'>
+      <title>Pusuit of Flavour</title>
+      
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link rel='stylesheet' href='./stylesheets/userview-a.css'>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-</head>
-
-<body>
+  </head>
+  <body>
 
     <div>
       <img id="logo" src="../../images/userview/logo.png" width="200" height="200">
@@ -32,7 +31,7 @@
       </a> -->
       <a href='/my_recipe' class="userbuttons" id="recipes">My Recipes</a>
       <!-- <button class="userbuttons" id="recipes">My Recipes</button> -->
-      <a href='/myingredients' class="userbuttons" id="ingredients">My Ingredients</button>
+      <a href='/myingredients' class="userbuttons" id="ingredients">My Ingredients</a>
       <button class="userbuttons" id="adminbtn">Admin</button>
       <form action="/auth/logout" method="POST">
         <button class="userbuttons" id="logout" type="submit" style="position: relative; bottom: 40px; left: 400px;" >Logout</button>
@@ -41,100 +40,86 @@
 
     </div>
 
-    <nav id="sidebuttons">
-      <div id="Browse-menu">
-          <b id="Browse-title" style="font-size: x-large;">Browse</b> 
-          <li><a href="#">Cuisine</a></li>
-          <li><a href="#">Type</a></li>
-          <li><a href="#">Veg / Vegan</a></li>
-          <li><a href="#"> Low Calories</a></li>
-        </div> 
+<!-- Left Drop down menu -->
+<div class="wrapper">
+  <!-- Browsing recipes by category -->
+  <nav id="recipesidebar">
+    <div class="sidebar-header">
+        <h3>Browse Recipes</h3>
+    </div>
+    <ul class="list-unstyled components">
+        <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cuisine</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a style="background-color: beige;color: darkolivegreen;" href="/browserecipes/american">American</a>
+                </li>
+                <li>
+                    <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/chinese">Chinese</a>
+                </li>
+                <li>
+                    <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/japanese">Japanese</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Type</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/breakfast">Breakfast</a>
+                </li>
+                <li>
+                    <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/maincourse">Main Course</a>
+                </li>
+                <li>
+                    <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/appetizer">Appetizer</a>
+                </li>
+                <li>
+                  <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/dessert">Dessert</a>
+              </li>
+            </ul>
+        </li>
+        <li>
+            <a style="background-color: darkolivegreen; color: white;" href="/browserecipes/vegan">Veg/Vegan</a>
+        </li>
+        <li>
+            <a style="background-color: darkolivegreen; color: white;" href="/browserecipes/healthy">Low Calorie</a>
+        </li>
+    </ul>
+</nav> <br> <br>
 
-        <br> <br>
-      <div id="Ingredients-menu">
-        <b id="Ingredients-title" style="font-size: x-large;">Ingredients</b> 
+
+    <!-- Browsing by Ingredient Type -->
+    <nav id="ingredientssidebar">
+      <div class="sidebar-header">
+        <h3>Browse Ingredients</h3>
+      </div>
+        <div>
           <li><a href="#">Meats</a></li>
           <li><a href="#">Produce</a></li>
           <li><a href="#">Grains</a></li>
           <li><a href="#">Seasonings</a></li>
-        </div> 
+      </div> 
     </nav>
+    </div>
 
     <div id="api">
-    <div id="recipe-api">
-      <b style="font-size: x-large;">New Recipes</b> <br>
-  		<button style="width:1500px;height:255px;border:1px solid">RECIPE API</button>
-    </div> <br>
-    
-    <div id="maps-api">
-  		<b style="font-size: x-large;">Stores Near Me</b> <br>
-  		<button style="width:1500px;height:255px;border:1px solid">GOOGLE MAPS API</button>
-    </div>  
-  </div>
+      <div id="recipe-api">
+        <b style="font-size: x-large;">New Recipes</b> <br>
+        <button style="width:1500px;height:255px;border:1px solid">RECIPE API</button>
+      </div> <br>
+        
+      <div id="maps-api">
+        <b style="font-size: x-large;">Stores Near Me</b> <br>
+        <button style="width:1500px;height:255px;border:1px solid">GOOGLE MAPS API</button>
+      </div>  
+    </div>
 
-</body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript" src='userview.js'></script>
 
-
+  </body>
 
 </html>
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<meta charset='utf-8'>
-    <title>Pusuit of Flavour</title>
-    <link rel='stylesheet' href='./stylesheets/userview-a.css'>
-    <script src='userview-a.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-</head>
-
-<body>
-	<img id="logo" src="../../images/userview/logo.png" width="200" height="200">
-	<h1 style="font-size: 300%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
-
-    <nav>
-      <div id="Browse-menu">
-          <b id="Browse-title" style="font-size: x-large;">Browse</b> 
-          <li><a href="#">Cuisine</a></li>
-          <li><a href="#">Breakfast/Lunch/Dinner</a></li>
-          <li><a href="#">Veg/Vegan</a></li>
-          <li><a href="#"> Low Calories</a></li>
-        </div> 
-
-        <br> <br>
-      <div id="Ingredients-menu">
-        <b id="Ingredients-title" style="font-size: x-large;">Ingredients</b> 
-          <li><a href="#">Meats</a></li>
-          <li><a href="#">Produce</a></li>
-          <li><a href="#">Grains</a></li>
-          <li><a href="#">Seasonings</a></li>
-        </div> 
-    </nav>
-
-
-	<p>
-		<form class="searchbar">
-			<button><img src="../../images/userview/search.png" width="15" height="15"></button>
-			<input type="text" placeholder="Search Recipes..." name="search">
-		</form>
-	</p>
-
-	<p>
-		<form class="userbuttons">
-			<img src="../../images/userview/profile.png" width="25" height="25">
-			<button id="account">My Account</button>
-			<button id="recipes">My Recipes</button>
-			<button id="ingredients">My Ingredients</button>
-		</form>
-	</p>
-	
-		<b style="font-size: x-large;">New Recipes</b> <br>
-		<button style="width:1000px;height:250px;border:1px solid">RECIPE API</button>
-
-	<br>
-		<b style="font-size: x-large;">Stores Near Me</b> <br>
-		<button style="width:1000px;height:250px;border:1px solid">GOOGLE MAPS API</button>
-
-</body>
-</html> -->

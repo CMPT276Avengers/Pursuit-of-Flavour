@@ -21,3 +21,45 @@ exports.getMyIngredients = (req,res) => {
         }
     })
 }
+
+exports.displayRecipes = (req,res)=>{
+    var i = 0;
+    var rec_id = []
+    if(req.session.user){
+        var username = req.session.user.username;
+        var user = [username]
+        var getUserRecipeQuery = `SELECT recipe_id FROM exists_in WHERE username = $1`;
+        pool.query(getUserRecipeQuery,user,(error,resp)=>{
+            if (error){ return console.log(error);}
+            // var results = {'rows':result.rows}
+            if(resp.rows.length == 0){
+                res.render('pages/add_new_recipe');
+            }else{
+
+                for(i = 0; i < resp.rows.length; i++){
+                    rec_id[i] = resp.rows[i].recipe_id
+
+                }
+
+                var getRecipe = `SELECT * FROM recipes WHERE recipe_id in (${rec_id});`
+
+                pool.query(getRecipe, (error,resp)=>{
+                    if (error){ return console.log(error);}
+
+                    res.render('pages/my_recipe', resp);
+
+                })
+       
+            }
+
+
+
+        })
+    }
+    else{
+        res.render('pages/login')
+    }
+
+
+
+}
