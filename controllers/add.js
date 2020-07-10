@@ -40,3 +40,87 @@ exports.deleteuser_recipe = (req,res) =>{
 
 
 }
+
+exports.addIngredient = (req,res) => {
+    const username = req.session.user.username;
+    const ingredient_id = req.body.ingredient_id;
+
+    var getIngredients = 'SELECT * FROM has WHERE username = $1 AND ingredient_id = $2';
+    pool.query(getIngredients,[username,ingredient_id],(error,results) => {
+        if(error){
+            console.log(error);
+            res.send("401").redirect('/myingredients');
+        }
+        else{
+            if(results.rows.length == 0){
+                var addIngredientQuery = "INSERT INTO has VALUES ($1,$2,1,'things')";
+                pool.query(addIngredientQuery,[username,ingredient_id],(error,results2) => {
+                    if(error){
+                        console.log(error);
+                        res.send("401").redirect('/myingredients');
+                    }
+                    else{
+                        res.redirect('/myingredients');
+                    }
+                })
+            }
+            else{
+                var amount = results.rows[0].amount;
+                amount += 1;
+
+                var updateIngredient = 'UPDATE has SET amount = $1 WHERE username = $2 AND ingredient_id = $3';
+                pool.query(updateIngredient,[amount,username,ingredient_id],(error,results3) => {
+                    if(error){
+                        console.log(error);
+                        res.send('404').redirect('myingredients');
+                    }
+                    else{
+                        res.redirect('/myingredients');
+                    }
+                })
+            }
+        }
+    })
+
+}
+
+exports.deleteIngredient = (req,res) => {
+    const username = req.session.user.username;
+    const ingredient_id = req.body.ingredient_id;
+
+    var getIngredients = 'SELECT * FROM has WHERE username = $1 AND ingredient_id = $2';
+    pool.query(getIngredients,[username,ingredient_id],(error,results) => {
+        if(error){
+            console.log(error);
+            res.send("401").redirect('/myingredients');
+        }
+        else{
+            if(results.rows.length == 0){
+                res.redirect('/myingredients');
+            }
+            else{
+                if(results.rows[0].amount == 1){
+                    var deleteIngredients = 'DELETE FROM has WHERE username = $1 AND ingredient_id = $2';
+                    pool.query(deleteIngredients,[username,ingredient_id],(error,results2) => {
+                        if(error){
+                            res.send('401').redirect('/myingredients');
+                        } else{
+                            res.redirect('/myingredients');
+                        }
+                    })
+                } else{
+                    var amount = results.rows[0].amount;
+                    amount -= 1;
+                    var updateIngredient = "UPDATE has SET amount = $1 WHERE username = $2 AND ingredient_id = $3";
+                    pool.query(updateIngredient,[amount,username,ingredient_id], (error,results3) => {
+                        if(error){
+                            res.send('401').redirect('/myingredients');
+                        } else{
+                            res.redirect('/myingredients');
+                        }
+                    })
+                }
+            }
+        }
+    })
+}

@@ -1,6 +1,7 @@
 const express = require('express');
 const { Pool } = require('pg');
 const router = express.Router();
+const pageController = require('../controllers/page');
 
 var pool = new Pool({
     connectionString: 'postgres://postgres:password@localhost/cmpt276project'
@@ -99,6 +100,8 @@ router.get('/my_recipe', (req,res)=>{
 
 
 })
+
+router.get('/myingredients', pageController.getMyIngredients);
 
 
 
