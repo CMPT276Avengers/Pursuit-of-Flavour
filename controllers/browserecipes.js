@@ -184,3 +184,23 @@ exports.healthy = (req,res) =>{
         res.render('pages/login');
     }
 }
+
+
+exports.addrecipe = (req,res) =>{
+    var recipe_id = req.body.recipe_id
+    console.log(recipe_id)
+    var username = req.session.user.username;
+
+    user_recipe_param = [username,recipe_id]
+
+    var addUser_Recipe =  `INSERT INTO exists_in VALUES ($1, $2, DEFAULT);`
+
+    pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
+        if (error){ return console.log(error)}
+
+        res.redirect('/my_recipe');
+
+    })
+
+
+}
