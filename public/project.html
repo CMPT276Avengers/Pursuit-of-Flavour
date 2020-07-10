@@ -21,41 +21,42 @@
           <h1 align="center"style="font-size:30px;background-color:#F5F5DC;position:float">ADMIN VIEW</h1>
     </header>
 
-    <div class="form-row">
+    <div class="form-inline">
+
     <h2  align="center"style="font-size:30px;background-color:#F5F5DC;position:float" >Add a new user</h2>
 
-    <select id="user_type" name="user_type" class="form-control">
-    <option value="general">General User</option>
-    <option value="admin">Admin User</option>
+    <select id="user_type" name="user_type" class="form-control"align="center">
+    <option value="general" align="center">General User</option>
+    <option value="admin" align="center">Admin User</option>
     </select>
-    <form class=""action="/adduser"method="post" id="first">
-      <a> fname:</a><input value=""type="text"name="fname"placeholder="Enter First Name" class="form-control"><br><br>
-      <a> lname:</a><input value=""type="text"name="lname"placeholder="Enter Last Name" class="form-control"><br><br>
-      <a> username:</a><input value=""type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
-      <a> email:</a><input value=""type="text"name="email"placeholder="Enter email" class="form-control"><br><br>
-      <a> phone:</a><input value=""type="text"name="phone"placeholder="Enter phone" class="form-control"><br><br>
-      <a> type:</a><input value=""type="text"name="type"placeholder="Enter type" class="form-control"><br><br>
-      <a> password:</a><input value=""type="text"name="password"placeholder="Enter password" class="form-control"><br><br>
+    <form class=""action="/adduser"method="post" id="first" >
+      <a> First Name:<br></a><input value=""type="text"name="fname"placeholder="Enter First Name" class="form-control"><br><br>
+      <a> Last Name: <br></a><input value=""type="text"name="lname"placeholder="Enter Last Name" class="form-control"><br><br>
+      <a> Username:  <br></a><input value=""type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
+      <a> email id:  <br></a><input value=""type="text"name="email"placeholder="Enter email" class="form-control"><br><br>
+      <a> Phone:     <br></a><input value=""type="text"name="phone"placeholder="Enter phone" class="form-control"><br><br>
+      <a> Type:      <br></a><input value=""type="text"name="type"placeholder="Enter type" class="form-control"><br><br>
+      <a> Password:  <br></a><input value=""type="text"name="password"placeholder="Enter password" class="form-control"><br><br>
 
-      <input id="last"type ="submit"class="btn btn-primary btn-block"><br>
+      <input id="last"type ="submit"class="btn btn-primary btn-lg"><br>
 
       </form>
     </div>
     <div>
-      <div class="form-row">
-        <h1  align="center"style="font-size:30px;background-color:#F5F5DC;position:float">Delete an existing user</h1>
-        <form class="" action= "/deleteuser" method="post">
-        <a> Username:</a><input type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
-              <input id="last"type ="submit"class="btn btn-primary btn-block"><br>
+      <div class="form-inline">
+        <h1  align="left"style="font-size:30px;background-color:#F5F5DC;position:float">Delete an existing user</h1>
+        <form class="" action= "/deleteuser" method="post" >
+        <a> Username:  <br></a><input type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
+              <input id="last"type ="submit"class="btn btn-primary btn-lg"><br>
         </form>
     </div>
 
     <div>
-      <div class="form-row">
-        <h1  align="center"style="font-size:30px;background-color:#F5F5DC;position:float">View an existing user</h1>
+      <div class="form-inline">
+        <h1  align="left"style="font-size:30px;background-color:#F5F5DC;position:float">View an existing user</h1>
         <form class="" action= "/viewuser" method="post">
-        <a> Username:</a><input type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
-              <input id="last"type ="submit"class="btn btn-primary btn-block"><br>
+        <a> Username:  <br></a><input type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
+              <input id="last"type ="submit"class="btn btn-primary btn-lg"><br>
         </form>
     </div>
     <nav >
