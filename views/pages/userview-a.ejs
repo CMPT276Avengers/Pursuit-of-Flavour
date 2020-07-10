@@ -32,7 +32,7 @@
             <% if(username){%>
               <button class="userbuttons" id="account"><%=username%></button>
             <% } %>
-            <button class="userbuttons" id="recipes">My Recipes</button>
+            <a href='/my_recipe' class="userbuttons" id="recipes">My Recipes</a>
             <button class="userbuttons" id="ingredients">My Ingredients</button>
             <button class="userbuttons" id="adminbtn">Admin</button>
             <button class="userbuttons" id="logout" type="submit" formaction="/auth/logout" formmethod="POST">Logout</button>
@@ -40,7 +40,6 @@
         </div>
       </div>
     </div>
-    
     <!-- Left Drop down menu -->
     <div class="wrapper">
       <div class="container-sd">
@@ -96,11 +95,10 @@
           <h3>Browse Ingredients</h3>
         </div>
         <ul class="list-unstyled components">
-          <li><a href="#">Meats</a></li>
-          <li><a href="#">Produce</a></li>
-          <li><a href="#">Grains</a></li>
-          <li><a href="#">Seasonings</a></li>
-        </ul>
+          <li><a href="/browseingredients/meats">Meats</a></li>
+          <li><a href="/browseingredients/produce">Produce</a></li>
+          <li><a href="/browseingredients/grains">Grains</a></li>
+          <li><a href="/browseingredients/seasonings">Seasonings</a></li>
       </nav>
       </div>
       <div class="col=col-md-auto" id="api">

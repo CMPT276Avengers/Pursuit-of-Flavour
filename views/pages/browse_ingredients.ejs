@@ -20,13 +20,16 @@
 	      <th scope="col">Aisle</th>
 	    </tr>
 	  </thead>
-	  <tbody>
-	    <tr>
-	      <td></td>
-	      <td></td>
-	      <td></td>
-	    </tr>
-	  </tbody>
+		<tbody>
+            <% rows.forEach(function(r) { %>
+            <tr style="border-width: 1px;">
+              <td><%= r.ingredient_id %></td>
+              <td><%= r.ingredient_name %></td>
+              <td><%= r.aisle %></td>
+            </tr>
+            <% }); %>
+
+          </tbody>
 	</table>
 
 </body>

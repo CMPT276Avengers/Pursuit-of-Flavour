@@ -32,13 +32,14 @@
             <% if(username){%>
               <button class="userbuttons" id="account"><%=username%></button>
             <% } %>
-            <button class="userbuttons" id="recipes">My Recipes</button>
+            <a href='/my_recipe' class="userbuttons" id="recipes">My Recipes</a>
             <button class="userbuttons" id="ingredients">My Ingredients</button>
             <button class="userbuttons" id="logout" type="submit" formaction="/auth/logout" formmethod="POST">Logout</button>
           </form> 
         </div>
       </div>
     </div>
+
 
     <!-- Left Drop down menu -->
     <div class="wrapper">
@@ -97,8 +98,8 @@
         <ul class="list-unstyled components">
           <li><a href="/browseingredients/meats">Meats</a></li>
           <li><a href="/browseingredients/produce">Produce</a></li>
-          <li><a href="#">Grains</a></li>
-          <li><a href="#">Seasonings</a></li>
+          <li><a href="/browseingredients/grains">Grains</a></li>
+          <li><a href="/browseingredients/seasonings">Seasonings</a></li>
         </ul>
       </nav>
       </div>

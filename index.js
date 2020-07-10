@@ -41,6 +41,8 @@ app.use('/auth',require('./routes/auth'));
 
 app.use('/browserecipes', require('./routes/browse'));
 
+app.use('/browseingredients', require('./routes/browseingred'));
+
 
 // app.get('/register', (req, res) => res.render('pages/register'))
 
@@ -79,6 +81,10 @@ app.use('/browserecipes', require('./routes/browse'));
 
 
 // })
+
+//Definining path for add routes /add/blah
+app.use('/add',require('./routes/add'));
+
 
 
 
