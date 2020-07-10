@@ -1,0 +1,56 @@
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+.navbar{
+    background-color: black;
+    padding: 1% 0;
+    font-size: 1.2em;
+}
+
+.navbar-brand {
+    min-height: 50px; 
+    padding: 0 15px 5px;
+    color: white;
+}
+
+.navbar-default .navbar-nav li a{
+    color: white;
+}
+
+.navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a.active{
+    color: #d5d5d5;;
+}
+
+#home {
+    background: url(../images/landing/background.jpg) no-repeat center center fixed;
+    display:table;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    background-size: cover;
+}
+
+.landing-text{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.padding {
+    padding: 80px 0;
+}
+
+.padding img{
+    width: 100%;
+}
+
+#fixed{
+    background: url(../images/landing/background.jpg) no-repeat center center fixed;
+    display: table;
+    height: 30%;
+    position: relative;
+    width: 100%;
+    background-size: cover;
+}

@@ -31,7 +31,7 @@
             </tr>
           </thead>
           <tbody>
-            <% rows.forEach(function(r) { %>
+            <% rows.forEach(function(r) { %> 
             <tr style="border-width: 1px;">
               <td><%= r.recipe_id %></td>
               <td><%= r.recipe_name %></td>
@@ -39,6 +39,9 @@
               <td><%= r.cuisine %></td>
               <td><%= r.vegan %></td>
               <td><%= r.healthy %></td>
+              <td>
+                <a href="/my_recipe" type="button" class="btn btn-primary" > Add Recipe</a>
+              </td>
             </tr>
             <% }); %>
 

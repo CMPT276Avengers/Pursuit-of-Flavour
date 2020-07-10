@@ -9,6 +9,7 @@ router.post('/logout',authController.logout)
 
 router.post('/adduser', authController.adduser)
 
+// router.post('/adduser_recipe', authController.adduser_recipe)
 
 
 module.exports = router;

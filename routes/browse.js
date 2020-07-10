@@ -21,4 +21,6 @@ router.get('/vegan', browseController.vegan)
 
 router.get('/healthy', browseController.healthy)
 
+// router.get('/addrecipe', browseController.addrecipe)
+
 module.exports = router;

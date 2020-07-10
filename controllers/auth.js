@@ -75,3 +75,25 @@ exports.adduser = (req,res) => {
   
     });      
 }
+
+// exports.adduser_recipe = (req,res) =>{
+//     var recipe_name = req.body.recipe_name;
+//     var type = req.body.recipe_type;
+//     var cuisine = req.body.cuisine_type;
+//     var veg = req.body.veg_type;
+//     var lowcal = req.body.lowcal_type;
+//     var username = req.session.user.username;
+
+//     user_recipe_param = [recipe_name,type,cuisine,veg,lowcal,username]
+
+//     var addUser_Recipe =  `INSERT INTO recipes(recipe_name,type,cuisine,veg,lowcal,username) VALUES ($1,$2,$3,$4,$5,$6);`
+
+//     pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
+//         if (error){ return res.send(error);}
+
+//         res.send('done');
+
+//     })
+
+
+// }

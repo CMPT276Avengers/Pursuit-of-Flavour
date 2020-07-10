@@ -27,10 +27,16 @@
       <% if(username){%>
         <button class="userbuttons" id="account"><%=username%></button>
       <% } %>
-      <button class="userbuttons" id="recipes">My Recipes</button>
+      <!-- <a href='/my_recipie'> 
+        <button class="userbuttons" id="recepies"> 
+          My Recipes 
+        </button> 
+      </a> -->
+      <a href='/my_recipe' class="userbuttons" id="recipes">My Recipes</a>
+      <!-- <button class="userbuttons" id="recipes">My Recipes</button> -->
       <button class="userbuttons" id="ingredients">My Ingredients</button>
       <form action="/auth/logout" method="POST">
-        <button class="userbuttons" id="logout" type="submit" >Logout</button>
+        <button class="userbuttons" id="logout" type="submit" style="position: relative; bottom: 40px; left: 400px;">Logout</button>
       </form>
 
 
