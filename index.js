@@ -37,6 +37,9 @@ app.use('/',require('./routes/pages'));
 //Defining path for authentication routes: when user requestls /auth/blah it will look into the routes auth file
 app.use('/auth',require('./routes/auth'));
 
+app.get('/landing2',(req,res) => {
+  res.render('pages/landing2');
+})
 
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))

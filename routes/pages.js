@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     if(req.session.user){
         res.redirect('/userview');
     }else{
-        res.render('pages/landing');
+        res.render('pages/landing2');
     }
 })
 

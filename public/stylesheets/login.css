@@ -1,12 +1,30 @@
-body {
-    background-color: #556b2f
+html, body{
+    height: 100%;
+    width: 100%;
+    background: url(../images/landing/mountains.jpeg)
 }
 
-nav {
+.navbar{
+    background-color: black;
+    padding: 1% 0;
+    font-size: 1.2em;
+}
+
+.navbar-brand {
+    min-height: 50px; 
+    padding: 0 15px 5px;
     color: white;
 }
 
-li a{
-    color: white
+.navbar-default .navbar-nav li a{
+    color: white;
+}
+
+.navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a.active{
+    color: #d5d5d5;;
+}
+
+.padding{
+    padding: 80px 0;
 }
 
