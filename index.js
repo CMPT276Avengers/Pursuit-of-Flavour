@@ -39,6 +39,7 @@ app.use('/',require('./routes/pages'));
 //Defining path for authentication routes: when user requestls /auth/blah it will look into the routes auth file
 app.use('/auth',require('./routes/auth'));
 
+app.use('/browserecipes', require('./routes/browse'));
 
 
 // app.get('/register', (req, res) => res.render('pages/register'))

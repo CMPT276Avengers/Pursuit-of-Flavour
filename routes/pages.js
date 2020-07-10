@@ -1,5 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const { Pool } = require('pg');
+var pool = new Pool({
+    connectionString: 'postgres://postgres:root@localhost/project'
+    // connectionString: process.env.DATABASE_URL
+});
 
 //route made for page redirection
 router.get('/', (req, res) => {
