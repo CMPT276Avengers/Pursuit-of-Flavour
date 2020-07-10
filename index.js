@@ -8,15 +8,6 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
 
-var pool = new Pool({
-  connectionString: 'postgres://postgres:root@localhost/cmpt276proj'
-  // connectionString: process.env.DATABASE_URL
-});
-
-// var async = require('async');
-
-
-// var connection =  pool.createConnection( { multipleStatements: true } );
 
 var app = express();
 app.use(express.json());
@@ -39,12 +30,19 @@ app.use('/',require('./routes/pages'));
 //Defining path for authentication routes: when user requestls /auth/blah it will look into the routes auth file
 app.use('/auth',require('./routes/auth'));
 
+
 // Defining path for browse routes for
 app.use('/browserecipes', require('./routes/browse'));
+
+app.use('/browseingredients', require('./routes/browseingred'));
 
 
 //Definining path for add routes /add/blah
 app.use('/add',require('./routes/add'));
+
+//Definining path for add routes /add/blah
+app.use('/add',require('./routes/add'));
+
 
 
 

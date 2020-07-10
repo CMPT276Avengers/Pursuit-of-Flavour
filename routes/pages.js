@@ -4,6 +4,7 @@ const pageController = require('../controllers/page');
 
 
 
+
 //route made for page redirection
 router.get('/', (req, res) => {
     if(req.session.user){

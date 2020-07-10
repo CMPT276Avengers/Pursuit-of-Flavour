@@ -4,38 +4,24 @@ body{
     font-family: Calibri, sans-serif;
 }
 
-#logo{
-    position: relative;
-}
-
-#header{
-    position: absolute;
-    left: 210px;
-    top: 0px;
-}
-
-#Menubar{
-    position: absolute;
-    top: 50px;
-    right: 25px;
-}
-
 #searchbar{
-    width: 756px;
+    width: 780px;
     height: 20px
 }
 
 #searchbarimg {
     width: 35px;
     height: 35px;
+    border: solid 1px;
 }
 
 .userbuttons {
-    width: 152px;
+    width: 191px;
     height: 35px;
     background-color: darkolivegreen;
     color: beige;
     border: none;
+    padding: 0px;
 }
 
 .userbuttons:hover{
@@ -49,7 +35,6 @@ body{
     display: block;
     width: 100%;
     align-items: stretch;
-
 }
 
 a {
@@ -69,10 +54,4 @@ a {
 a:hover {
 	background-color: beige;
 	color:darkolivegreen;
-}
-
-#api{
-    position: absolute;
-    right: 25px;
-    top: 210px;
 }

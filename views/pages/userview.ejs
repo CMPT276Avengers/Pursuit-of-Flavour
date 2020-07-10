@@ -11,109 +11,108 @@
   </head>
 
   <body>
-
-      <div>
-        <img id="logo" src="../../images/userview/logo.png" width="200" height="200">
-        <h1 id="header" style="font-size: 500%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
-      </div>
-
-    <div id="Menubar">
-      <form id="searchmenu">
-        <button id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
-        <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
-      </form> <br>
+    <div class="container-sd">
+      <div class="container-sd">
+        <div class="row">
+          <div class="col-md-auto">
+            <img id="logo" src="../../images/userview/logo.png" width="180" height="180">
+          </div>
+          <div class="col-md-auto">
+            <h1 id="header" style="font-size: 450%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
+          </div>
   
-      <img src="../../images/userview/profile.png" width="35" height="35">
-      <% if(username){%>
-        <button class="userbuttons" id="account"><%=username%></button>
-      <% } %>
-      <!-- <a href='/my_recipie'> 
-        <button class="userbuttons" id="recepies"> 
-          My Recipes 
-        </button> 
-      </a> -->
-      <a href='/my_recipe' class="userbuttons" id="recipes">My Recipes</a>
-      <!-- <button class="userbuttons" id="recipes">My Recipes</button> -->
-      <a href='/myingredients' class="userbuttons" id="ingredients">My Ingredients</button>
-      <form action="/auth/logout" method="POST">
-        <button class="userbuttons" id="logout" type="submit" style="position: relative; bottom: 40px; left: 400px;">Logout</button>
-      </form>
-
-
-    </div>
-
-    <!-- Left Drop down menu -->
-    <div class="wrapper">
-        <!-- Browsing recipes by category -->
-        <nav id="recipesidebar">
+          <div class="col-md-auto" id="Menubar"> 
+            <form id="searchmenu">
+              <button id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
+              <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
+            </form> <br>
+        
+            <form>
+              <img src="../../images/userview/profile.png" width="35" height="35">
+              <% if(username){%>
+                <button class="userbuttons" id="account"><%=username%></button>
+              <% } %>
+              <a href='/my_recipe' class="userbuttons" id="recipes">My Recipes</a>
+              <a href='/myingredients' class="userbuttons" id="ingredients">My Ingredients</a>
+              <button class="userbuttons" id="logout" type="submit" formaction="/auth/logout" formmethod="POST">Logout</button>
+            </form> 
+          </div>
+        </div>
+      </div>
+      <!-- Left Drop down menu -->
+      <div class="wrapper">
+        <div class="container-sd">
+        <div class="row">
+          <!-- Browsing recipes by category -->
+          <div class="col-md-auto">
+          <nav id="recipesidebar">
+            <div class="sidebar-header">
+                <h3>Browse Recipes</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cuisine</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a style="background-color: beige;color: darkolivegreen;" href="/browserecipes/american">American</a>
+                        </li>
+                        <li>
+                            <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/chinese">Chinese</a>
+                        </li>
+                        <li>
+                            <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/japanese">Japanese</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Type</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/breakfast">Breakfast</a>
+                        </li>
+                        <li>
+                            <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/maincourse">Main Course</a>
+                        </li>
+                        <li>
+                            <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/appetizer">Appetizer</a>
+                        </li>
+                        <li>
+                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/dessert">Dessert</a>
+                      </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/browserecipes/vegan">Veg/Vegan</a>
+                </li>
+                <li>
+                    <a href="/browserecipes/healthy">Low Calorie</a>
+                </li>
+            </ul>
+        </nav> 
+        <nav id="ingredientssidebar">
           <div class="sidebar-header">
-              <h3>Browse Recipes</h3>
+            <h3>Browse Ingredients</h3>
           </div>
           <ul class="list-unstyled components">
-              <li class="active">
-                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cuisine</a>
-                  <ul class="collapse list-unstyled" id="homeSubmenu">
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;" href="/browserecipes/american">American</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/chinese">Chinese</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/japanese">Japanese</a>
-                      </li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Type</a>
-                  <ul class="collapse list-unstyled" id="pageSubmenu">
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/breakfast">Breakfast</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/maincourse">Main Course</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/appetizer">Appetizer</a>
-                      </li>
-                      <li>
-                        <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/dessert">Dessert</a>
-                    </li>
-                  </ul>
-              </li>
-              <li>
-                  <a style="background-color: darkolivegreen; color: white;" href="/browserecipes/vegan">Veg/Vegan</a>
-              </li>
-              <li>
-                  <a style="background-color: darkolivegreen; color: white;" href="/browserecipes/healthy">Low Calorie</a>
-              </li>
-          </ul>
-      </nav> <br> <br>
-
-      <!-- Browsing by Ingredient Type -->
-      <nav id="ingredientssidebar">
-        <div class="sidebar-header">
-          <h3>Browse Ingredients</h3>
+            <li><a href="/browseingredients/meats">Meats</a></li>
+            <li><a href="/browseingredients/produce">Produce</a></li>
+            <li><a href="/browseingredients/grains">Grains</a></li>
+            <li><a href="/browseingredients/seasonings">Seasonings</a></li>
+        </nav>
         </div>
-          <div>
-            <li><a href="#">Meats</a></li>
-            <li><a href="#">Produce</a></li>
-            <li><a href="#">Grains</a></li>
-            <li><a href="#">Seasonings</a></li>
+        <div class="col=col-md-auto" id="api">
+        <div id="recipe-api">
+          <b style="font-size: x-large;">New Recipes</b> <br>
+          <button >RECIPE API</button>
+        </div> <br>
+        
+        <div id="maps-api">
+          <b style="font-size: x-large;">Stores Near Me</b> <br>
+          <button>GOOGLE MAPS API</button>
+        </div>  
+      </div>
         </div> 
-      </nav>
-    </div>
-
-    <div id="api">
-      <div id="recipe-api">
-        <b style="font-size: x-large;">New Recipes</b> <br>
-        <button style="width:1500px;height:255px;border:1px solid">RECIPE API</button>
-      </div> <br>
-      
-      <div id="maps-api">
-        <b style="font-size: x-large;">Stores Near Me</b> <br>
-        <button style="width:1500px;height:255px;border:1px solid">GOOGLE MAPS API</button>
-      </div>  
+      </div><br> <br>
     </div>
 
 
