@@ -11,34 +11,41 @@
   </head>
 
   <body>
+    <div class="container-sd">
+    <div class="container-sd">
+      <div class="row">
+        <div class="col-md-auto">
+          <img id="logo" src="../../images/userview/logo.png" width="180" height="180">
+        </div>
+        <div class="col-md-auto">
+          <h1 id="header" style="font-size: 450%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
+        </div>
 
-      <div>
-        <img id="logo" src="../../images/userview/logo.png" width="200" height="200">
-        <h1 id="header" style="font-size: 500%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
+        <div class="col-md-auto" id="Menubar"> 
+          <form id="searchmenu">
+            <button id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
+            <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
+          </form> <br>
+      
+          <form>
+            <img src="../../images/userview/profile.png" width="35" height="35">
+            <% if(username){%>
+              <button class="userbuttons" id="account"><%=username%></button>
+            <% } %>
+            <button class="userbuttons" id="recipes">My Recipes</button>
+            <button class="userbuttons" id="ingredients">My Ingredients</button>
+            <button class="userbuttons" id="logout" type="submit" formaction="/auth/logout" formmethod="POST">Logout</button>
+          </form> 
+        </div>
       </div>
-
-    <div id="Menubar">
-      <form id="searchmenu">
-        <button id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
-        <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
-      </form> <br>
-  
-      <img src="../../images/userview/profile.png" width="35" height="35">
-      <% if(username){%>
-        <button class="userbuttons" id="account"><%=username%></button>
-      <% } %>
-      <button class="userbuttons" id="recipes">My Recipes</button>
-      <button class="userbuttons" id="ingredients">My Ingredients</button>
-      <form action="/auth/logout" method="POST">
-        <button class="userbuttons" id="logout" type="submit" >Logout</button>
-      </form>
-
-
     </div>
 
     <!-- Left Drop down menu -->
     <div class="wrapper">
+      <div class="container-sd">
+      <div class="row">
         <!-- Browsing recipes by category -->
+        <div class="col-md-auto">
         <nav id="recipesidebar">
           <div class="sidebar-header">
               <h3>Browse Recipes</h3>
@@ -76,39 +83,39 @@
                   </ul>
               </li>
               <li>
-                  <a style="background-color: darkolivegreen; color: white;" href="#">Veg/Vegan</a>
+                  <a href="#">Veg/Vegan</a>
               </li>
               <li>
-                  <a style="background-color: darkolivegreen; color: white;" href="#">Low Calorie</a>
+                  <a href="#">Low Calorie</a>
               </li>
           </ul>
-      </nav> <br> <br>
-
-      <!-- Browsing by Ingredient Type -->
+      </nav> 
       <nav id="ingredientssidebar">
         <div class="sidebar-header">
           <h3>Browse Ingredients</h3>
         </div>
-          <div>
-            <li><a href="#">Meats</a></li>
-            <li><a href="#">Produce</a></li>
-            <li><a href="#">Grains</a></li>
-            <li><a href="#">Seasonings</a></li>
-        </div> 
+        <ul class="list-unstyled components">
+          <li><a href="#">Meats</a></li>
+          <li><a href="#">Produce</a></li>
+          <li><a href="#">Grains</a></li>
+          <li><a href="#">Seasonings</a></li>
+        </ul>
       </nav>
-    </div>
-
-    <div id="api">
+      </div>
+      <div class="col=col-md-auto" id="api">
       <div id="recipe-api">
         <b style="font-size: x-large;">New Recipes</b> <br>
-        <button style="width:1500px;height:255px;border:1px solid">RECIPE API</button>
+        <button >RECIPE API</button>
       </div> <br>
       
       <div id="maps-api">
         <b style="font-size: x-large;">Stores Near Me</b> <br>
-        <button style="width:1500px;height:255px;border:1px solid">GOOGLE MAPS API</button>
+        <button>GOOGLE MAPS API</button>
       </div>  
     </div>
+      </div> 
+    </div><br> <br>
+  </div>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

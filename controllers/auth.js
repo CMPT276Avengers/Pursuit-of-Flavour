@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 var pool = new Pool({
-    connectionString: 'postgres://postgres:root@localhost/cmpt276proj'
+    connectionString: 'postgres://postgres:root@localhost/project'
     // connectionString: process.env.DATABASE_URL
 });
 // const jwt = require('jsonwebtoken');
