@@ -2,11 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pageController = require('../controllers/page');
 
-const { Pool } = require('pg');
-var pool = new Pool({
-    // connectionString: 'postgres://postgres:password@localhost/cmpt276project'
-    connectionString: process.env.DATABASE_URL
-});
+
 
 
 
@@ -58,24 +54,8 @@ router.get('/my_recipe', pageController.displayRecipes);
 
 router.get('/myingredients', pageController.getMyIngredients);
 
-router.get('/database',(req,res)=> {
-    if(req.session.user){
-        var getUsersQuery=`SELECT * FROM person,account where person.username=account.username`;
-        // we are trying to get rows from here
-        pool.query(getUsersQuery, (error,result)=>{
-        if(error)
-            res.end(error); // means we are ending the error and sending it as a response
-            // if there is no error:
-            var results={'rows':result.rows} //result is an object //'rows' is a parameter
-            // result.rows is an array that contains the rows in the database table
-                res.render('pages/ad',results);//  we are sending the results to the db.ejs
-         })
-    }
-    else{
-        res.redirect('/login');
-    }
-    
-})
+router.get('/database', pageController.getUserDatabase);
+
 
 
 

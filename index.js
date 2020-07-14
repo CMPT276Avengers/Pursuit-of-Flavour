@@ -40,8 +40,8 @@ app.use('/browseingredients', require('./routes/browseingred'));
 //Definining path for add routes /add/blah
 app.use('/add',require('./routes/add'));
 
-//Definining path for add routes /add/blah
-app.use('/add',require('./routes/add'));
+//Defining path for admin routes
+app.use('/admin',require('./routes/admin'));
 
 
 
