@@ -14,7 +14,7 @@
             border: 3px solid black;
             } */
 
-            table{
+            /* table{
             text-align: center;
             table-layout: fixed;
             width: 50%;
@@ -27,7 +27,7 @@
 
             td{
                 text-align: center;
-            }
+            } */
 
             p {
                 text-transform: capitalize;
@@ -41,12 +41,15 @@
 
         <div class="container">
             <h2>My Recipes</h2>
-            <table>
-                <thead class="table">
-                    <th>Recipe ID</th>
-                    <th>  Name</th>
-                    <th>  Type</th>
-                    <th>  Cuisine</th>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Recipe ID</th>
+                        <th scope="col">  Name</th>
+                        <th scope="col">  Type</th>
+                        <th scope="col">  Cuisine</th>
+
+                    </tr>
                 </thead>
 
                 <tbody>
@@ -66,12 +69,12 @@
             </table>
         
         </div>
+        <!-- <br>
         <br>
-        <br>
-        <p class="h1" style="text-align: center;">Add A Recipe</p>
+        <p class="h1" style="text-align: center;">Add A Recipe</p> -->
 
-        <form action="/add/adduser_recipe" method="POST">
-            <!-- These parameters are for the person database -->
+        <!-- These parameters are for the person database -->
+        <!-- <form action="/add/adduser_recipe" method="POST">
             <div class="form-row" style="padding-bottom: 120px;">
                 <div class="form-group col-md-10">
                   <label for="recipe_id">ID of the Recipe</label>
@@ -82,7 +85,7 @@
             <input style="position: relative; left: 15px; top: 20px;" type="submit" class="btn btn-primary btn-lg" name = "sub" value="Add a Recipe!">
 
 
-        </form>
+        </form> -->
 
 
         <br>
