@@ -6,7 +6,7 @@
       
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       <link rel='stylesheet' href='./stylesheets/userview.css'>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
   </head>
 
@@ -39,6 +39,7 @@
           </div>
         </div>
       </div>
+      
       <!-- Left Drop down menu -->
       <div class="wrapper">
         <div class="container-sd">
@@ -54,13 +55,13 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cuisine</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a style="background-color: beige;color: darkolivegreen;" href="/browserecipes/american">American</a>
+                            <a href="/browserecipes/browse?id=American" id="American" style="background-color: beige;color: darkolivegreen;">American</a>
                         </li>
                         <li>
-                            <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/chinese">Chinese</a>
+                            <a id= "Chinese" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Chinese" >Chinese</a>
                         </li>
                         <li>
-                            <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/japanese">Japanese</a>
+                            <a id="Japanese" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Japanese" >Japanese</a>
                         </li>
                     </ul>
                 </li>
@@ -68,24 +69,24 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Type</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/breakfast">Breakfast</a>
+                            <a id= "Breakfast" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Breakfast" >Breakfast</a>
                         </li>
                         <li>
-                            <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/maincourse">Main Course</a>
+                            <a id = "Main Course" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Main%20Course" >Main Course</a>
                         </li>
                         <li>
-                            <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/appetizer">Appetizer</a>
+                            <a id= "Appetizer" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Appetizer" >Appetizer</a>
                         </li>
                         <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/dessert">Dessert</a>
+                          <a id= "Dessert" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Dessert" >Dessert</a>
                       </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="/browserecipes/vegan">Veg/Vegan</a>
+                    <a id="Vegan" href="/browserecipes/browse?id=Vegan" >Veg/Vegan</a>
                 </li>
                 <li>
-                    <a href="/browserecipes/healthy">Low Calorie</a>
+                    <a id="Healthy" href="/browserecipes/browse?id=Healthy" >Low Calorie</a>
                 </li>
             </ul>
         </nav> 
@@ -94,12 +95,19 @@
             <h3>Browse Ingredients</h3>
           </div>
           <ul class="list-unstyled components">
-            <li><a href="/browseingredients/meats">Meats</a></li>
-            <li><a href="/browseingredients/produce">Produce</a></li>
-            <li><a href="/browseingredients/grains">Grains</a></li>
-            <li><a href="/browseingredients/seasonings">Seasonings</a></li>
+            <li><a id="Meats" href="/browseingredients/meats?id=Meats" >Meats</a></li>
+            <li><a id="Produce" href="/browseingredients/produce?id=Produce" >Produce</a></li>
+            <li><a id="Grains" href="/browseingredients/grains?id=Grains" >Grains</a></li>
+            <li><a id="Seasonings" href="/browseingredients/seasonings?id=Seasonings" >Seasonings</a></li>
         </nav>
         </div>
+        <!-- <script>
+
+        $('.nav').attr('href', function(i, href) {
+          return href + '#ID';
+        });
+        </script> -->
+
         <div class="col=col-md-auto" id="api">
         <div id="recipe-api">
           <b style="font-size: x-large;">New Recipes</b> <br>

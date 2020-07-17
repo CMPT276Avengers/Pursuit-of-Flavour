@@ -40,81 +40,91 @@
         </div>
       </div>
     </div>
-    <!-- Left Drop down menu -->
-    <div class="wrapper">
-      <div class="container-sd">
-      <div class="row">
-        <!-- Browsing recipes by category -->
-        <div class="col-md-auto">
-        <nav id="recipesidebar">
+    
+      <!-- Left Drop down menu -->
+      <div class="wrapper">
+        <div class="container-sd">
+        <div class="row">
+          <!-- Browsing recipes by category -->
+          <div class="col-md-auto">
+          <nav id="recipesidebar">
+            <div class="sidebar-header">
+                <h3>Browse Recipes</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cuisine</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/browserecipes/browse?id=American" id="American" style="background-color: beige;color: darkolivegreen;">American</a>
+                        </li>
+                        <li>
+                            <a id= "Chinese" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Chinese" >Chinese</a>
+                        </li>
+                        <li>
+                            <a id="Japanese" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Japanese" >Japanese</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Type</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a id= "Breakfast" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Breakfast" >Breakfast</a>
+                        </li>
+                        <li>
+                            <a id = "Main Course" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Main%20Course" >Main Course</a>
+                        </li>
+                        <li>
+                            <a id= "Appetizer" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Appetizer" >Appetizer</a>
+                        </li>
+                        <li>
+                          <a id= "Dessert" style="background-color: beige;color: darkolivegreen;"href="/browserecipes/browse?id=Dessert" >Dessert</a>
+                      </li>
+                    </ul>
+                </li>
+                <li>
+                    <a id="Vegan" href="/browserecipes/browse?id=Vegan" >Veg/Vegan</a>
+                </li>
+                <li>
+                    <a id="Healthy" href="/browserecipes/browse?id=Healthy" >Low Calorie</a>
+                </li>
+            </ul>
+        </nav> 
+        <nav id="ingredientssidebar">
           <div class="sidebar-header">
-              <h3>Browse Recipes</h3>
+            <h3>Browse Ingredients</h3>
           </div>
           <ul class="list-unstyled components">
-              <li class="active">
-                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cuisine</a>
-                  <ul class="collapse list-unstyled" id="homeSubmenu">
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;" href="/browserecipes/american">American</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/chinese">Chinese</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/japanese">Japanese</a>
-                      </li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Type</a>
-                  <ul class="collapse list-unstyled" id="pageSubmenu">
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/breakfast">Breakfast</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/maincourse">Main Course</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/appetizer">Appetizer</a>
-                      </li>
-                      <li>
-                        <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/dessert">Dessert</a>
-                    </li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="/browserecipes/vegan">Veg/Vegan</a>
-              </li>
-              <li>
-                  <a href="/browserecipes/healthy">Low Calorie</a>
-              </li>
-          </ul>
-      </nav> 
-      <nav id="ingredientssidebar">
-        <div class="sidebar-header">
-          <h3>Browse Ingredients</h3>
+            <li><a id="Meats" href="/browseingredients/meats?id=Meats" >Meats</a></li>
+            <li><a id="Produce" href="/browseingredients/produce?id=Produce" >Produce</a></li>
+            <li><a id="Grains" href="/browseingredients/grains?id=Grains" >Grains</a></li>
+            <li><a id="Seasonings" href="/browseingredients/seasonings?id=Seasonings" >Seasonings</a></li>
+        </nav>
         </div>
-        <ul class="list-unstyled components">
-          <li><a href="/browseingredients/meats">Meats</a></li>
-          <li><a href="/browseingredients/produce">Produce</a></li>
-          <li><a href="/browseingredients/grains">Grains</a></li>
-          <li><a href="/browseingredients/seasonings">Seasonings</a></li>
-      </nav>
+        <!-- <script>
+
+        $('.nav').attr('href', function(i, href) {
+          return href + '#ID';
+        });
+        </script> -->
+
+        <div class="col=col-md-auto" id="api">
+        <div id="recipe-api">
+          <b style="font-size: x-large;">New Recipes</b> <br>
+          <button >RECIPE API</button>
+        </div> <br>
+        
+        <div id="maps-api">
+          <b style="font-size: x-large;">Stores Near Me</b> <br>
+          <button>GOOGLE MAPS API</button>
+        </div>  
       </div>
-      <div class="col=col-md-auto" id="api">
-      <div id="recipe-api">
-        <b style="font-size: x-large;">New Recipes</b> <br>
-        <button >RECIPE API</button>
-      </div> <br>
-      
-      <div id="maps-api">
-        <b style="font-size: x-large;">Stores Near Me</b> <br>
-        <button>GOOGLE MAPS API</button>
-      </div>  
+        </div> 
+      </div><br> <br>
     </div>
-      </div> 
-    </div><br> <br>
-  </div>
+  
+
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
