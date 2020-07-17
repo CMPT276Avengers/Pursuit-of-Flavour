@@ -35,7 +35,7 @@
     <br><br>
     
     <div id="tablecontainer">
-      <table class="table table-bordered">
+      <table class="table table-bordered" > 
           <thead style="border-width: 3px;">
             <tr>
               <th scope="col">Recipe Id</th>
@@ -55,14 +55,6 @@
               <td><%= r.cuisine %></td>
               <td><%= r.vegan %></td>
               <td><%= r.healthy %></td>
-              <!-- <td>
-                <form action="/browserecipes/addrecipe" method="POST">
-                  <fieldset>
-                    <input type="text" name = "recipe_id" placeholder="Recipe Id">
-                    <input type="submit" value= "ADD" style="background-color: darkolivegreen;"> 
-                  </fieldset>
-                </form>
-              </td> -->
               <td>
                 <button onclick="add_rec(id)" id = <%= r.recipe_id %> type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
               </td>

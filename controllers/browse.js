@@ -8,7 +8,7 @@ var pool = new Pool({
 
 const session = require('express-session');
 
-exports.browse = (req,res) =>{
+exports.browserecipes = (req,res) =>{
 
     if(req.session.user){
         var recipe_id = req.query.id
@@ -20,6 +20,28 @@ exports.browse = (req,res) =>{
             };
             var data = {"rows": result.rows, "title": recipe_id}
             res.render('pages/browserecipes', data);
+        })
+    }
+
+    else{
+        res.render('pages/login');
+    }
+}
+
+exports.browseingredients = (req,res) =>{
+
+    if(req.session.user){
+        var ingredient_id = req.query.id
+        console.log(ingredient_id)
+        var ingredientsQuery = `SELECT * FROM ingredients WHERE aisle = $1`
+
+        pool.query(ingredientsQuery, [ingredient_id], (error, result) =>{
+            if (error){ 
+             res.send(error)
+            };
+
+            var data = {"rows": result.rows, "title": ingredient_id}
+            res.render('pages/browse_ingredients', data);
         })
     }
 
