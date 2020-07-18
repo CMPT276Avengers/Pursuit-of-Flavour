@@ -43,6 +43,15 @@ app.use('/add',require('./routes/add'));
 //Defining path for admin routes
 app.use('/admin',require('./routes/admin'));
 
+//Defining path for temperary recipe Details page
+app.get('/testRecipeDetails', (req,res) => {
+  res.render('pages/testRecipeDetails');
+})
+
+//Defining path for temperary recipe Details page
+app.use('/recipes', require('./routes/recipes'));
+
+
 
 
 

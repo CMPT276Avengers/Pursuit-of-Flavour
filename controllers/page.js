@@ -57,7 +57,7 @@ exports.displayRecipes = (req,res)=>{
         })
     }
     else{
-        res.render('pages/login')
+        res.redirect('pages/login')
     }
 
 
