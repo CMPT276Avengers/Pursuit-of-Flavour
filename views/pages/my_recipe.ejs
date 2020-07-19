@@ -7,27 +7,6 @@
 
     <body>
         <style>
-            /* thead.table {
-            table-layout: fixed;
-            width: 100%;
-            border-collapse: collapse;
-            border: 3px solid black;
-            } */
-
-            /* table{
-            text-align: center;
-            table-layout: fixed;
-            width: 50%;
-            border-collapse: collapse;
-            border: 3px solid black;
-
-            }
-
-            td, th { border: 1px solid black; }
-
-            td{
-                text-align: center;
-            } */
 
             p {
                 text-transform: capitalize;
@@ -37,6 +16,8 @@
         </style>
 
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
 
 
         <div class="container">
@@ -59,6 +40,11 @@
                             <td> <%= r.recipe_name %>   </td>  
                             <td> <%= r.type %>   </td>
                             <td> <%= r.cuisine %>   </td>
+                            <td>
+                                <!-- <a href="/make"> -->
+                                <button onclick="get_info(id)" id = <%= r.recipe_id %> type="button" class="btn btn-primary">Details</button>
+                                <!-- </a> -->
+                            </td>
                         </tr>
 
                     <% }); %>
@@ -109,10 +95,17 @@
       <br>
       <br>
       <a href="/userview" class="btn btn-success btn-lg" style="position: relative; left: 12px;">Go Back Home</a>
+      <div id="output"></div>
+      <a href="" id = "sourceLink"></a>
 
 
 
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"> </script>
+    <div class="container">
+        <div id = "req_ingredients">
+    </div>
+
+
 
     </body>
 

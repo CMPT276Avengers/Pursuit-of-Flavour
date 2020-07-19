@@ -58,6 +58,8 @@ router.get('/my_recipe', pageController.displayRecipes);
 
 router.get('/myingredients', pageController.getMyIngredients);
 
+router.get('/compare_my_ingredients', pageController.compare_my_ingredients);
+
 router.get('/database',(req,res)=> {
     if(req.session.user){
         var getUsersQuery=`SELECT * FROM person,account where person.username=account.username`;
@@ -76,6 +78,15 @@ router.get('/database',(req,res)=> {
     }
     
 })
+
+router.get('/make', (req,res)=>{
+    if(req.session.user){
+        res.render('pages/make');
+    }else{
+        res.render('pages/login')
+    }
+})
+
 
 
 
