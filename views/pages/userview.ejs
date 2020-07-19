@@ -57,31 +57,40 @@
 
                       <div class="dropdown">
                         <li><button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        onclick="searchRecipesbyCuisine(id)"id= "american" style="background-color: beige;color: darkolivegreen; width:250px">
+                        onclick="searchRecipesbyCuisine(id); loadbar(1)"id= "american" style="background-color: beige;color: darkolivegreen; width:250px">
                           American
                         </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                            <a class="dropdown-item" href="/browse/browserecipesbyCuisine?id=american" style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Wait ~4s)</a>
+                            <a onclick="resetbar(1)" class="dropdown-item" href="/browse/browserecipesbyCuisine?id=american" style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
+                              <div class="progress-bar progress-bar-striped active" id="progress-bar1" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
+                            </div>
+                          </a>
                           </div>
                         </li>
 
                         <li>
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        onclick="searchRecipesbyCuisine(id)"id= "chinese" style="background-color: beige;color: darkolivegreen; width: 250px;" >
+                        onclick="searchRecipesbyCuisine(id); loadbar(2)"id= "chinese" style="background-color: beige;color: darkolivegreen; width: 250px;" >
                           Chinese
                         </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                            <a class="dropdown-item" href="/browse/browserecipesbyCuisine?id=chinese"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Wait ~4s)</a>
+                            <a onclick="resetbar(2)"class="dropdown-item" href="/browse/browserecipesbyCuisine?id=chinese"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br>                                 
+                              <div class="progress-bar progress-bar-striped active" id="progress-bar2" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
+
+                            </div></a>
                           </div>
                         </li>
                         
                        <li>
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        onclick="searchRecipesbyCuisine(id)"id= "japanese" style="background-color: beige;color: darkolivegreen; width: 250px;">
+                        onclick="searchRecipesbyCuisine(id); loadbar(3)"id= "japanese" style="background-color: beige;color: darkolivegreen; width: 250px;">
                           Japanese
                         </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                            <a class="dropdown-item" href="/browse/browserecipesbyCuisine?id=japanese"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Wait ~4s)</a>
+                            <a onclick="resetbar(3)"class="dropdown-item" href="/browse/browserecipesbyCuisine?id=japanese"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br>  
+                              <div class="progress-bar progress-bar-striped active" id="progress-bar3" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
+
+                            </div></a>
                           </div>
                         </li>
 
@@ -95,41 +104,53 @@
                       <div class="dropdown">
                         <li>
                           <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                          onclick="searchRecipesbyType(id)"id= "morning meal" style="background-color: beige;color: darkolivegreen; width: 250px;">
+                          onclick="searchRecipesbyType(id); loadbar(4)"id= "morning meal" style="background-color: beige;color: darkolivegreen; width: 250px;">
                             Breakfast
                           </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                              <a class="dropdown-item" href="/browse/browserecipesbyType?id=morning%20meal"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Wait ~4s)</a>
+                              <a onclick="resetbar(4)"class="dropdown-item" href="/browse/browserecipesbyType?id=morning%20meal"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
+                                <div class="progress-bar progress-bar-striped active" id="progress-bar4" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
+
+                                </div></a>
                             </div>
                           </li>
 
                         <li>
                           <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                          onclick="searchRecipesbyType(id)"id= "dinner" style="background-color: beige;color: darkolivegreen; width: 250px;">
+                          onclick="searchRecipesbyType(id); loadbar(5)"id= "dinner" style="background-color: beige;color: darkolivegreen; width: 250px;">
                             Dinner
                           </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                              <a class="dropdown-item" href="/browse/browserecipesbyType?id=dinner"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Wait ~4s)</a>
+                              <a onclick="resetbar(5)"class="dropdown-item" href="/browse/browserecipesbyType?id=dinner"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
+                                <div class="progress-bar progress-bar-striped active" id="progress-bar5" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
+
+                                </div></a>
                             </div>
                           </li>
 
                         <li>
                           <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                          onclick="searchRecipesbyType(id)"id= "appetizer" style="background-color: beige;color: darkolivegreen; width: 250px;">
+                          onclick="searchRecipesbyType(id); loadbar(6)"id= "appetizer" style="background-color: beige;color: darkolivegreen; width: 250px;">
                             Appetizer
                           </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                              <a class="dropdown-item" href="/browse/browserecipesbyType?id=appetizer"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Wait ~4s)</a>
+                              <a onclick="resetbar(6)"class="dropdown-item" href="/browse/browserecipesbyType?id=appetizer"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
+                                <div class="progress-bar progress-bar-striped active" id="progress-bar6" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
+
+                                </div></a>
                             </div>
                           </li>
 
                         <li>
                           <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                          onclick="searchRecipesbyType(id)"id= "dessert" style="background-color: beige;color: darkolivegreen; width: 250px;">
+                          onclick="searchRecipesbyType(id); loadbar(7)"id= "dessert" style="background-color: beige;color: darkolivegreen; width: 250px;">
                             Dessert
                           </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                              <a class="dropdown-item" href="/browse/browserecipesbyType?id=dessert"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Wait ~4s)</a>
+                              <a onclick="resetbar(7)"class="dropdown-item" href="/browse/browserecipesbyType?id=dessert"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
+                                <div class="progress-bar progress-bar-striped active" id="progress-bar7" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
+
+                                </div></a>
                             </div>
                           </li>
                     </div>
@@ -138,11 +159,14 @@
 
                 <li>
                   <a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  onclick="searchRecipesbyVegan(id)"id= "vegan" style=" width: 250px; background-color: darkolivegreen; color: beige;" onMouseover="this.style.background ='beige'; this.style.color= 'darkolivegreen';" onMouseout="this.style.background = 'darkolivegreen'; this.style.color = 'beige';">
+                  onclick="searchRecipesbyVegan(id); loadbar(8)"id= "vegan" style=" width: 250px; background-color: darkolivegreen; color: beige;" onMouseover="this.style.background ='beige'; this.style.color= 'darkolivegreen';" onMouseout="this.style.background = 'darkolivegreen'; this.style.color = 'beige';">
                     Vegan
                   </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                      <a class="dropdown-item" href="/browse/browserecipesbyVegan?id=Vegan"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Wait ~4s)</a>
+                      <a onclick="resetbar(8)"class="dropdown-item" href="/browse/browserecipesbyVegan?id=Vegan"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
+                        <div class="progress-bar progress-bar-striped active" id="progress-bar8" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
+
+                        </div></a>
                     </div>
                   </li>
             </ul>
@@ -175,7 +199,17 @@
     </div>
 
     <script>
-      
+     function loadbar(number){
+        $('#progress-bar' + number.toString()).animate({
+            width: "100%"
+        }, 5000);
+        }
+
+
+      function resetbar(number){
+        $('#progress-bar' + number.toString()).css('width', '0%').attr('aria-valuenow', 0); 
+      }
+            
       function searchRecipesbyCuisine(id){
 
         console.log("starting function")
@@ -478,7 +512,6 @@
   
 
     <script src="https://www.promisejs.org/polyfills/promise-6.1.0.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script type="text/javascript" src='userview.js'></script>
