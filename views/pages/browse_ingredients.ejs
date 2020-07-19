@@ -11,7 +11,7 @@
 
 <body>
 
-    <div class="modal fade" id="add_recipe">
+    <div class="modal fade" id="add_ingred">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -20,7 +20,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>Succesfully Added To My Recipes!</p>
+					<p>Succesfully Added To My Ingredients!</p>
 				</div>
 			</div>
 		</div>
@@ -44,7 +44,13 @@
 				<td><%= r.ingredient_name %></td>
 				<td><%= r.aisle %></td>
 				<td>
-					<button onclick="add_ingredients(id)" id = <%= r.ingredient_id %> type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
+					<div class="input-group mb-3">
+						<input id="UserAmount" type="text" class="form-control" placeholder="Amount" aria-label="Amount" aria-describedby="basic-addon2" value="">
+						<div class="input-group-append">
+						  <button class="btn btn-outline-secondary" type="button" onclick="add_ingredients(id)" id = <%= r.ingredient_id %> data-toggle="modal" data-target="#add_ingred">ADD</button>
+						</div>
+					</div>
+					<!-- <button onclick="add_ingredients(id)" id = <%= r.ingredient_id %> type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button> -->
 				</td>
 				</tr>
 				<% }); %>
@@ -53,19 +59,37 @@
 		</table>
 	</div>
 
-	<a href = "/userview" type="button" class="btn btn-primary"> Return Home</a>
+	<button onclick="scrollTop()" id="top" >Back to Top</button> 
+	
+	<div class= "col text-center">
+		<a href = "/userview" type="button" class="btn btn-primary" style="top:50px"> Return Home</a>
+	  </div>
 
-	<script>
+	  <script>
+		  //Fetch to add ingredient to My Ingredients based on user inputted amount and output table
 		function add_ingredients(id){
-			var data = {id}
-			fetch("/browserecipes/addingredients")
+			var variable = document.getElementById('UserAmount').value;
+		  var data = {'id':id, 'amount':variable};
+		  fetch("/browse/addingredients", {
+			method: 'post',
+			headers: {'Content-Type': 'application/json'}, 
+			body: JSON.stringify(data)
+	  
+		  })
+		  .then(function(res){
+			return res.json()
+	  
+		  })
+	  
+	  
 		}
-	</script>
+		  
+	  </script>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src='/browserecipes.js'></script>
 
 
 </body>
