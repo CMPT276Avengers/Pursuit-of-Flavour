@@ -2,3 +2,8 @@
     border: 1px solid lightgrey;
     border-radius: 5%;
 }
+
+.ingredients-container{
+    /* border: 1px solid lightgrey; */
+    border-radius: 5%;    
+}
