@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    connectionString: 'postgres://postgres:password@localhost/cmpt276project'
+    connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
 
     // connectionString: process.env.DATABASE_URL
 });
@@ -13,7 +13,7 @@ exports.american = (req,res) =>{
         var recipeQuery = "SELECT * FROM recipes WHERE cuisine = 'American'"
 
         pool.query(recipeQuery, (error, result) =>{
-            if (error){ 
+            if (error){
              res.send(error)
             };
 
@@ -32,7 +32,7 @@ exports.chinese = (req,res) =>{
         var recipeQuery = "SELECT * FROM recipes WHERE cuisine = 'Chinese'"
 
         pool.query(recipeQuery, (error, result) =>{
-            if (error){ 
+            if (error){
              res.send(error)
             };
 
@@ -51,7 +51,7 @@ exports.japanese = (req,res) =>{
         var recipeQuery = "SELECT * FROM recipes WHERE cuisine = 'Japanese'"
 
         pool.query(recipeQuery, (error, result) =>{
-            if (error){ 
+            if (error){
              res.send(error)
             };
 
@@ -70,7 +70,7 @@ exports.breakfast = (req,res) =>{
         var recipeQuery = "SELECT * FROM recipes WHERE type = 'Breakfast'"
 
         pool.query(recipeQuery, (error, result) =>{
-            if (error){ 
+            if (error){
              res.send(error)
             };
 
@@ -89,12 +89,12 @@ exports.maincourse = (req,res) =>{
         var recipeQuery = "SELECT * FROM recipes WHERE type = 'Main Course'"
 
         pool.query(recipeQuery, (error, result) =>{
-            if (error){ 
+            if (error){
              res.send(error)
             };
 
             var data = {"rows": result.rows, "title": "Main Course"}
-       
+
             res.render('pages/browserecipes', data);
         })
     }
@@ -109,12 +109,12 @@ exports.appetizer = (req,res) =>{
         var recipeQuery = "SELECT * FROM recipes WHERE type = 'Appetizer'"
 
         pool.query(recipeQuery, (error, result) =>{
-            if (error){ 
+            if (error){
              res.send(error)
             };
 
             var data = {"rows": result.rows, "title": "Appetizer"}
-        
+
             res.render('pages/browserecipes', data);
         })
     }
@@ -129,12 +129,12 @@ exports.dessert = (req,res) =>{
         var recipeQuery = "SELECT * FROM recipes WHERE type = 'Dessert'"
 
         pool.query(recipeQuery, (error, result) =>{
-            if (error){ 
+            if (error){
              res.send(error)
             };
 
             var data = {"rows": result.rows, "title": "Dessert"}
-          
+
             res.render('pages/browserecipes', data);
         })
     }
@@ -149,12 +149,12 @@ exports.vegan = (req,res) =>{
         var recipeQuery = "SELECT * FROM recipes WHERE vegan = 'Yes'"
 
         pool.query(recipeQuery, (error, result) =>{
-            if (error){ 
+            if (error){
              res.send(error)
             };
 
             var data = {"rows": result.rows, "title": "Vegan"}
-        
+
             res.render('pages/browserecipes', data);
         })
     }
@@ -169,7 +169,7 @@ exports.healthy = (req,res) =>{
         var recipeQuery = "SELECT * FROM recipes WHERE healthy = 'Yes'"
 
         pool.query(recipeQuery, (error, result) =>{
-            if (error){ 
+            if (error){
              res.send(error)
             };
 

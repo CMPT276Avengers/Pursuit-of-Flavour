@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 var pool = new Pool({
-    connectionString: 'postgres://postgres:password@localhost/cmpt276project'
+    connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
     // connectionString: process.env.DATABASE_URL
 });
 const session = require('express-session');
@@ -49,7 +49,7 @@ exports.displayRecipes = (req,res)=>{
                     res.render('pages/my_recipe', resp);
 
                 })
-       
+
             }
 
 
@@ -67,7 +67,6 @@ exports.displayRecipes = (req,res)=>{
 exports.getUserDatabase = (req,res)=> {
     if(req.session.user){
         var getUsersQuery=`SELECT * FROM person,account where person.username=account.username`;
-        // we are trying to get rows from here
         pool.query(getUsersQuery, (error,result)=>{
         if(error)
             res.end(error); // means we are ending the error and sending it as a response
