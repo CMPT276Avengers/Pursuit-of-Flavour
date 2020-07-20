@@ -12,6 +12,7 @@
     "watch": "nodemon ./index.js"
   },
   "dependencies": {
+    "async": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "ejs": "^2.5.6",
     "express": "^4.15.2",
@@ -20,10 +21,10 @@
     "express-validator": "^6.6.0",
     "hbs": "^4.1.1",
     "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "pg": "^8.2.1",
-    "async": "^3.2.0"
+    "pg": "^8.2.1"
   },
   "devDependencies": {
     "got": "^11.3.0",

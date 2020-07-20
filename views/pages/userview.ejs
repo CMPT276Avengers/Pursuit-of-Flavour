@@ -40,6 +40,7 @@
         </div>
       </div>
 
+
       <!-- Left Drop down menu -->
       <div class="wrapper">
         <div class="container-sd">
@@ -56,43 +57,27 @@
                     <ul class="collapse list-unstyled" id="homeSubmenu">
 
                       <div class="dropdown">
-                        <li><button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        onclick="searchRecipesbyCuisine(id); loadbar(1)"id= "american" style="background-color: beige;color: darkolivegreen; width:250px">
-                          American
-                        </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                            <a onclick="resetbar(1)" class="dropdown-item" href="/browse/browserecipesbyCuisine?id=american" style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
-                              <div class="progress-bar progress-bar-striped active" id="progress-bar1" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
-                            </div>
-                          </a>
-                          </div>
-                        </li>
 
                         <li>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        onclick="searchRecipesbyCuisine(id); loadbar(2)"id= "chinese" style="background-color: beige;color: darkolivegreen; width: 250px;" >
-                          Chinese
-                        </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                            <a onclick="resetbar(2)"class="dropdown-item" href="/browse/browserecipesbyCuisine?id=chinese"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br>                                 
-                              <div class="progress-bar progress-bar-striped active" id="progress-bar2" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
+                          <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                          <input type="hidden" value="american" name="cuisine">
+                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">American
+                          </button>
+                        </form></li>
 
-                            </div></a>
-                          </div>
-                        </li>
+                        <li>
+                          <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                          <input type="hidden" value="chinese" name="cuisine">
+                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Chinese
+                          </button>
+                        </form></li>
                         
-                       <li>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        onclick="searchRecipesbyCuisine(id); loadbar(3)"id= "japanese" style="background-color: beige;color: darkolivegreen; width: 250px;">
-                          Japanese
-                        </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                            <a onclick="resetbar(3)"class="dropdown-item" href="/browse/browserecipesbyCuisine?id=japanese"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br>  
-                              <div class="progress-bar progress-bar-striped active" id="progress-bar3" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
-
-                            </div></a>
-                          </div>
-                        </li>
+                        <li>
+                          <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                          <input type="hidden" value="japanese" name="cuisine">
+                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Japanese
+                          </button>
+                        </form></li>
 
                       </div>
                     </ul>
@@ -103,84 +88,43 @@
 
                       <div class="dropdown">
                         <li>
-                          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                          onclick="searchRecipesbyType(id); loadbar(4)"id= "morning meal" style="background-color: beige;color: darkolivegreen; width: 250px;">
-                            Breakfast
+                          <form action="/browse/browserecipesbyType" method="POST"> 
+                          <input type="hidden" value="morning%20meal" name="type">
+                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Breakfast
                           </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                              <a onclick="resetbar(4)"class="dropdown-item" href="/browse/browserecipesbyType?id=morning%20meal"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
-                                <div class="progress-bar progress-bar-striped active" id="progress-bar4" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
-
-                                </div></a>
-                            </div>
-                          </li>
+                        </form></li>
 
                         <li>
-                          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                          onclick="searchRecipesbyType(id); loadbar(5)"id= "dinner" style="background-color: beige;color: darkolivegreen; width: 250px;">
-                            Dinner
+                          <form action="/browse/browserecipesbyType" method="POST"> 
+                          <input type="hidden" value="dinner" name="type">
+                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dinner
                           </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                              <a onclick="resetbar(5)"class="dropdown-item" href="/browse/browserecipesbyType?id=dinner"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
-                                <div class="progress-bar progress-bar-striped active" id="progress-bar5" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
-
-                                </div></a>
-                            </div>
-                          </li>
+                        </form></li>
 
                         <li>
-                          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                          onclick="searchRecipesbyType(id); loadbar(6)"id= "appetizer" style="background-color: beige;color: darkolivegreen; width: 250px;">
-                            Appetizer
+                          <form action="/browse/browserecipesbyType" method="POST"> 
+                          <input type="hidden" value="appetizer" name="type">
+                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Appetizer
                           </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                              <a onclick="resetbar(6)"class="dropdown-item" href="/browse/browserecipesbyType?id=appetizer"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
-                                <div class="progress-bar progress-bar-striped active" id="progress-bar6" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
-
-                                </div></a>
-                            </div>
-                          </li>
+                        </form></li>
 
                         <li>
-                          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                          onclick="searchRecipesbyType(id); loadbar(7)"id= "dessert" style="background-color: beige;color: darkolivegreen; width: 250px;">
-                            Dessert
+                          <form action="/browse/browserecipesbyType" method="POST"> 
+                          <input type="hidden" value="dessert" name="type">
+                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dessert
                           </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                              <a onclick="resetbar(7)"class="dropdown-item" href="/browse/browserecipesbyType?id=dessert"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
-                                <div class="progress-bar progress-bar-striped active" id="progress-bar7" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
-
-                                </div></a>
-                            </div>
-                          </li>
+                        </form></li>
                     </div>
                     </ul>
                 </li>
-
                 <li>
-                  <a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  onclick="searchRecipesbyVegan(id); loadbar(8)"id= "vegan" style=" width: 250px; background-color: darkolivegreen; color: beige;" onMouseover="this.style.background ='beige'; this.style.color= 'darkolivegreen';" onMouseout="this.style.background = 'darkolivegreen'; this.style.color = 'beige';">
-                    Vegan
-                  </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="height:12px; width:30px">
-                      <a onclick="resetbar(8)"class="dropdown-item" href="/browse/browserecipesbyVegan?id=Vegan"style="background-color: beige;color: darkolivegreen; font-size: x-small;">View All <br> (Click once done loading) <br> 
-                        <div class="progress-bar progress-bar-striped active" id="progress-bar8" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"> Loading
-
-                        </div></a>
-                    </div>
-                  </li>
+                  <form action="/browse/browserecipesbyVegan" method="POST"> 
+                  <input type="hidden" value="vegan" name="diet">
+                  <button id= "vegan" class="btn btn-secondary" type="submit" style="width: 250px; height: 50px;">Vegan
+                  </button>
+                </form></li>
             </ul>
         </nav> 
-        <nav id="ingredientssidebar">
-          <div class="sidebar-header">
-            <h3>Browse Ingredients</h3>
-          </div>
-          <ul class="list-unstyled components">
-            <li><a id="Meats" href="/browse/browseingredients?id=Meats" >Meats</a></li>
-            <li><a id="Produce" href="/browse/browseingredients?id=Produce" >Produce</a></li>
-            <li><a id="Milk,Eggs,OtherDairy" href="/browse/browseingredients?id=Milk%2C%20Eggs%2C%20Other%20Dairy" >Milk, Eggs, Other Dairy </a></li>
-            <li><a id="SpicesandSeasonings" href="/browse/browseingredients?id=Spices%20and%20Seasonings" >Spices and Seasonings</a></li>
-        </nav>
         </div>
 
         <div class="col=col-md-auto" id="api">
@@ -198,317 +142,6 @@
       </div><br> <br>
     </div>
 
-    <script>
-     function loadbar(number){
-        $('#progress-bar' + number.toString()).animate({
-            width: "100%"
-        }, 5000);
-        }
-
-
-      function resetbar(number){
-        $('#progress-bar' + number.toString()).css('width', '0%').attr('aria-valuenow', 0); 
-      }
-            
-      function searchRecipesbyCuisine(id){
-
-        console.log("starting function")
-        var attr = id
-        var recipearrayID =[]
-        fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine="+attr+"&number=25&instructionsRequired=true&query=", {
-          "method": "GET",
-          "headers": {
-            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-          }
-        })
-        .then(function(response) {
-          console.log("recieve recipe list")
-          console.log(response);
-          return response.json()
-        })
-
-        .then(function (data){
-          console.log("Manipulate recipes")
-          console.log(data)
-
-
-          for(const recipe of data.results){
-            console.log("Loop through each recipeID")
-            var uniqueID = recipe.id
-            console.log(uniqueID)
-            recipearrayID.push(uniqueID)
-          }
-
-          let requests = recipearrayID.map(url => fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${url}/information`, {
-              "method": "GET",
-              "headers": {
-                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-                "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-                }
-          }));
-
-          Promise.all(requests).then(function(response){
-            console.log("recipe info")
-            console.log(response);
-            return Promise.all(response.map(response => response.json()))
-          }) 
-
-          .then(function(data){
-            console.log("use data in my controller")
-            console.log(data)
-
-
-            let queries = data.map(item => fetch("/browse/populaterecipesCuisine", {
-              method: 'post',
-              headers: {'Content-Type': 'application/json'}, 
-              body: JSON.stringify({'data':item, 'identifier':attr})
-            }))
-
-            
-            var allingredients = [];
-            for (var i = 0; i < data.length; i++) {
-                allingredients.push(data[i].extendedIngredients);
-            }
-
-            console.log(allingredients)
-
-            var ingredientlist = [];
-            for (var i = 0; i < allingredients.length; i++) {
-              for(var j=0; j<allingredients[i].length;j++){
-                ingredientlist.push(allingredients[i][j]);
-              }
-            }
-
-
-            console.log(ingredientlist)
-
-
-            let ingredients = ingredientlist.map(products => 
-              fetch("/browse/populateIngredients", {
-                  method: 'post',
-                  headers: {'Content-Type': 'application/json'}, 
-                  body: JSON.stringify({'data':products})
-                }))
-
-            Promise.all(queries).then(function (response){
-              console.log("successfully finish")
-              console.log(response)
-            }) 
-          
-            Promise.all(ingredients).then(function(response){
-              console.log("ingredietns added")
-            })    
-
-            .catch(err => {
-              console.log(err
-              );
-            });
-          })
-
-        })
-      }
-
-      function searchRecipesbyType(id){
-
-        console.log("starting function")
-        var attr = id
-        var recipearrayID =[]
-        fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?type="+attr+"&number=25&instructionsRequired=true&query=", {
-          "method": "GET",
-          "headers": {
-            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-          }
-        })
-        .then(function(response) {
-          console.log("recieve recipe list")
-          console.log(response);
-          return response.json()
-        })
-
-        .then(function (data){
-          console.log("Manipulate recipes")
-          console.log(data)
-
-
-          for(const recipe of data.results){
-            console.log("Loop through each recipeID")
-            var uniqueID = recipe.id
-            console.log(uniqueID)
-            recipearrayID.push(uniqueID)
-          }
-
-          let requests = recipearrayID.map(url => fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${url}/information`, {
-              "method": "GET",
-              "headers": {
-                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-                "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-                }
-          }));
-
-          Promise.all(requests).then(function(response){
-            console.log("recipe info")
-            console.log(response);
-            return Promise.all(response.map(response => response.json()))
-          }) 
-
-          .then(function(data){
-            console.log("use data in my controller")
-            console.log(data)
-
-
-            let queries = data.map(item => fetch("/browse/populaterecipesType", {
-              method: 'post',
-              headers: {'Content-Type': 'application/json'}, 
-              body: JSON.stringify({'data':item, 'identifier':attr})
-            }))
-
-            
-            var allingredients = [];
-            for (var i = 0; i < data.length; i++) {
-                allingredients.push(data[i].extendedIngredients);
-            }
-
-            console.log(allingredients)
-
-            var ingredientlist = [];
-            for (var i = 0; i < allingredients.length; i++) {
-              for(var j=0; j<allingredients[i].length;j++){
-                ingredientlist.push(allingredients[i][j]);
-              }
-            }
-
-
-            console.log(ingredientlist)
-
-
-            let ingredients = ingredientlist.map(products => 
-              fetch("/browse/populateIngredients", {
-                  method: 'post',
-                  headers: {'Content-Type': 'application/json'}, 
-                  body: JSON.stringify({'data':products})
-                }))
-
-            Promise.all(queries).then(function (response){
-              console.log("successfully finish")
-              console.log(response)
-            }) 
-          
-            Promise.all(ingredients).then(function(response){
-              console.log("ingredietns added")
-            })    
-
-            .catch(err => {
-              console.log(err
-              );
-            });
-          })
-
-        })
-      }
-
-      function searchRecipesbyVegan(id){
-
-        console.log("starting function")
-        var attr = id
-        var recipearrayID =[]
-        fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?diet="+attr+"&number=25&instructionsRequired=true&query=", {
-          "method": "GET",
-          "headers": {
-            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-          }
-        })
-        .then(function(response) {
-          console.log("recieve recipe list")
-          console.log(response);
-          return response.json()
-        })
-
-        .then(function (data){
-          console.log("Manipulate recipes")
-          console.log(data)
-
-
-          for(const recipe of data.results){
-            console.log("Loop through each recipeID")
-            var uniqueID = recipe.id
-            console.log(uniqueID)
-            recipearrayID.push(uniqueID)
-          }
-
-          let requests = recipearrayID.map(url => fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${url}/information`, {
-              "method": "GET",
-              "headers": {
-                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-                "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-                }
-          }));
-
-          Promise.all(requests).then(function(response){
-            console.log("recipe info")
-            console.log(response);
-            return Promise.all(response.map(response => response.json()))
-          }) 
-
-          .then(function(data){
-            console.log("use data in my controller")
-            console.log(data)
-
-
-            let queries = data.map(item => fetch("/browse/populaterecipesVegan", {
-              method: 'post',
-              headers: {'Content-Type': 'application/json'}, 
-              body: JSON.stringify({'data':item, 'identifier':attr})
-            }))
-
-            
-            var allingredients = [];
-            for (var i = 0; i < data.length; i++) {
-                allingredients.push(data[i].extendedIngredients);
-            }
-
-            console.log(allingredients)
-
-            var ingredientlist = [];
-            for (var i = 0; i < allingredients.length; i++) {
-              for(var j=0; j<allingredients[i].length;j++){
-                ingredientlist.push(allingredients[i][j]);
-              }
-            }
-
-
-            console.log(ingredientlist)
-
-
-            let ingredients = ingredientlist.map(products => 
-              fetch("/browse/populateIngredients", {
-                  method: 'post',
-                  headers: {'Content-Type': 'application/json'}, 
-                  body: JSON.stringify({'data':products})
-                }))
-
-            Promise.all(queries).then(function (response){
-              console.log("successfully finish")
-              console.log(response)
-            }) 
-          
-            Promise.all(ingredients).then(function(response){
-              console.log("ingredietns added")
-            })    
-
-            .catch(err => {
-              console.log(err
-              );
-            });
-          })
-
-        })
-        }
-
-      
-   </script> 
   
 
     <script src="https://www.promisejs.org/polyfills/promise-6.1.0.js"></script>

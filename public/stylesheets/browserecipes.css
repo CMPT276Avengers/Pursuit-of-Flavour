@@ -15,3 +15,15 @@ table {
 #tablecontainer{
     margin: auto;
 }
+
+img{
+    float: right;
+}
+
+td {
+    text-align: center;
+}
+
+button {
+    background-color: darkolivegreen;
+}

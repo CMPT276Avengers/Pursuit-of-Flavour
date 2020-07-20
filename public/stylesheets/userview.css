@@ -65,7 +65,21 @@ a:hover {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);
 }
 
-/* #progress-bar {
-    -webkit-transition: none !important;
-    transition: none !important;
-} */
+button[title~="navbar"]{
+    background-color: beige;
+    color: darkolivegreen;
+}
+
+button[title~="navbar"]:hover {
+    background-color: silver;
+}
+
+#vegan {
+    background-color: darkolivegreen;
+    color: beige;
+}
+#vegan:hover {
+    background-color: beige;
+    color: darkolivegreen;
+
+}

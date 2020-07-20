@@ -7,20 +7,42 @@ var pool = new Pool({
 });
 
 const session = require('express-session');
+const fetch = require('node-fetch');
 
 exports.browserecipesbyCuisine = (req,res) =>{
 
     if(req.session.user){
-        var recipe_id = req.query.id
-        var recipeQuery = "SELECT * FROM recipes WHERE cuisine = $1"
+        var cuisine = req.body.cuisine
 
-        pool.query(recipeQuery, [recipe_id], (error, result) =>{
-            if (error){ 
-             res.send(error)
-            };
-            var data = {"rows": result.rows, "title": recipe_id}
-            res.render('pages/browserecipes', data);
+        // var recipearrayID =[]
+
+        fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine="+cuisine+"&number=5&instructionsRequired=true&query=", {
+          "method": "GET",
+          "headers": {
+            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            "x-rapidapi-key": "3f877306famsh1566e89fabab361p1a6625jsne9186e9a0905"
+          }
         })
+        .then(function(response) {
+          return response.json()
+        })
+
+        .then(function (data){
+          var results ={"reciperesults": data.results, "title": cuisine}
+          res.render('pages/browserecipes', results)
+        })
+
+
+
+        // var recipe_id = req.query.id
+        // var recipeQuery = "SELECT * FROM recipes WHERE cuisine = $1"
+
+        // pool.query(recipeQuery, [recipe_id], (error, result) =>{
+        //     if (error){ 
+        //      res.send(error)
+        //     };
+        //     var data = {"rows": result.rows, "title": recipe_id}
+        //     res.render('pages/browserecipes', data);
     }
 
     else{
@@ -31,17 +53,30 @@ exports.browserecipesbyCuisine = (req,res) =>{
 exports.browserecipesbyType = (req,res) =>{
 
     if(req.session.user){
-        var recipe_id = req.query.id
-        console.log(recipe_id)
-        var recipeQuery = "SELECT * FROM recipes WHERE type = $1"
+        var type = req.body.type
 
-        pool.query(recipeQuery, [recipe_id], (error, result) =>{
-            if (error){ 
-             res.send(error)
-            };
-            var data = {"rows": result.rows, "title": recipe_id}
-            res.render('pages/browserecipes', data);
+
+        fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?type="+type+"&number=5&instructionsRequired=true&query=", {
+          "method": "GET",
+          "headers": {
+            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            "x-rapidapi-key": "3f877306famsh1566e89fabab361p1a6625jsne9186e9a0905"
+          }
         })
+        .then(function(response) {
+          return response.json()
+        })
+
+        .then(function (data){
+
+        if(type = "morning%20meal"){
+            type = "Breakfast"
+        }
+        
+          var results ={"reciperesults": data.results, "title": type}
+          res.render('pages/browserecipes', results)
+        })
+
     }
 
     else{
@@ -52,16 +87,26 @@ exports.browserecipesbyType = (req,res) =>{
 exports.browserecipesbyVegan = (req,res) =>{
 
     if(req.session.user){
-        var recipe_id = req.query.id
-        var recipeQuery = "SELECT * FROM recipes WHERE vegan = 'true'"
+        var diet = req.body.diet
 
-        pool.query(recipeQuery, (error, result) =>{
-            if (error){ 
-             res.send(error)
-            };
-            var data = {"rows": result.rows, "title": recipe_id}
-            res.render('pages/browserecipes', data);
+        // var recipearrayID =[]
+
+        fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?diet="+diet+"&number=5&instructionsRequired=true&query=", {
+          "method": "GET",
+          "headers": {
+            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            "x-rapidapi-key": "3f877306famsh1566e89fabab361p1a6625jsne9186e9a0905"
+          }
         })
+        .then(function(response) {
+          return response.json()
+        })
+
+        .then(function (data){
+          var results ={"reciperesults": data.results, "title": diet}
+          res.render('pages/browserecipes', results)
+        })
+
     }
 
     else{
@@ -92,16 +137,61 @@ exports.browseingredients = (req,res) =>{
     }
 }
 
+// Adds a single recipe to recipe table
 exports.addrecipe = (req,res) =>{
 
     if(req.session.user){
-        var recipe_id = JSON.parse(JSON.stringify(req.body.id));
+        var recipe_id = JSON.parse(JSON.stringify(req.body.data.id));
+        var recipe_name = JSON.parse(JSON.stringify(req.body.data.title));
+        var recipe_type =JSON.parse(JSON.stringify(req.body.data.dishTypes));
+        recipe_type = recipe_type.join()
+        console.log(recipe_type)
+
+        var recipe_cuisine= JSON.parse(JSON.stringify(req.body.data.cuisines));
+        recipe_cuisine = recipe_cuisine.join()
+        console.log(recipe_cuisine)
+
+        if(JSON.parse(JSON.stringify(req.body.data.vegan)) == 'true'){
+            var recipe_vegan = 'Yes'
+        }
+        else{
+            var recipe_vegan ='No'
+        }
+        
+        if(JSON.parse(JSON.stringify(req.body.data.veryHealthy)) == 'true'){
+            var recipe_healthy = 'Yes'
+        }
+        else{
+            var recipe_healthy = 'No'
+        }
+
+
+        recipe_param = [recipe_id, recipe_name, recipe_type, recipe_cuisine, recipe_vegan, recipe_healthy];
+
+        var add_Recipe = 'INSERT INTO recipes VALUES ($1, $2, $3, $4, $5, $6);'
+
+
+        pool.query(add_Recipe, recipe_param,(error, resp)=>{
+            if (error){ return console.log("There was a duplicate key!")}
+
+            res.send(resp);
+
+        })
+    }
+}
+
+// Adds a single recipe to Exists in table
+exports.addUserRecipe = (req,res) => {
+    if(req.session.user){
+
+        var recipe_id = JSON.parse(JSON.stringify(req.body.data.id));
+
         var username = req.session.user.username;
 
         user_recipe_param = [username,recipe_id]
 
         var addUser_Recipe =  `INSERT INTO exists_in VALUES ($1, $2, DEFAULT);`
-
+        
         pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
             if (error){ return console.log("There was a duplicate key!")}
 
@@ -109,20 +199,22 @@ exports.addrecipe = (req,res) =>{
 
         })
     }
+
 }
 
-// Add to HAS table (null unit for now *not sure if we need*)
+// Add to HAS table 
 exports.addingredients = (req,res) =>{
 
     if(req.session.user){
-        var ingre_id = JSON.parse(JSON.stringify(req.body.id));
-        var amount = JSON.parse(JSON.stringify(req.body.amount));
+        var ingre_id = JSON.parse(JSON.stringify(req.body.data.id));
+        var ingre_name = JSON.parse(JSON.stringify(req.body.data.name));
+        var amount = 0
         var username = req.session.user.username;
-        var unit = "unit"
+        var unit = JSON.parse(JSON.stringify(req.body.data.unit));
 
-        user_recipe_param = [username,ingre_id,amount, unit]
+        user_recipe_param = [username,ingre_id,amount, unit,ingre_name]
 
-        var addUser_Recipe =  `INSERT INTO has VALUES ($1, $2, $3, $4);`
+        var addUser_Recipe =  `INSERT INTO has VALUES ($1, $2, $3, $4, $5);`
 
         pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
             if (error){ return console.log("There was a duplicate key!")}
@@ -133,163 +225,163 @@ exports.addingredients = (req,res) =>{
     }
 }
 
-// Browse Recipes based on Different types of Cuisines.
-exports.populaterecipesCuisine = (req,res) => {
+// // Browse Recipes based on Different types of Cuisines.
+// exports.populaterecipesCuisine = (req,res) => {
 
-    if(req.session.user){
-        // Grabbing recipe info
-        var recipe_id = JSON.parse(JSON.stringify(req.body.data.id));
+//     if(req.session.user){
+//         // Grabbing recipe info
+//         var recipe_id = JSON.parse(JSON.stringify(req.body.data.id));
 
-        var recipe_name = JSON.parse(JSON.stringify(req.body.data.title));
-        if(req.body.data.dishTypes.length != 0){
-            var type = JSON.parse(JSON.stringify(req.body.data.dishTypes[0]));
-        }
-        else{
-            var type = ""
-        }
+//         var recipe_name = JSON.parse(JSON.stringify(req.body.data.title));
+//         if(req.body.data.dishTypes.length != 0){
+//             var type = JSON.parse(JSON.stringify(req.body.data.dishTypes[0]));
+//         }
+//         else{
+//             var type = ""
+//         }
 
-        var cuisine = JSON.parse(JSON.stringify(req.body.identifier));
+//         var cuisine = JSON.parse(JSON.stringify(req.body.identifier));
 
-        var vegan = JSON.parse(JSON.stringify(req.body.data.vegan));
-        var healthy = JSON.parse(JSON.stringify(req.body.data.veryHealthy));
-        // var numIngredients = JSON.parse(JSON.stringify(req.body.data.extendedIngredients.length));
-        // console.log(numIngredients)
+//         var vegan = JSON.parse(JSON.stringify(req.body.data.vegan));
+//         var healthy = JSON.parse(JSON.stringify(req.body.data.veryHealthy));
+//         // var numIngredients = JSON.parse(JSON.stringify(req.body.data.extendedIngredients.length));
+//         // console.log(numIngredients)
         
-        recipe_param = [recipe_id, recipe_name, type, cuisine, vegan, healthy]
+//         recipe_param = [recipe_id, recipe_name, type, cuisine, vegan, healthy]
 
-        var addRecipe = 'INSERT INTO recipes VALUES ($1,$2,$3,$4,$5,$6);'
+//         var addRecipe = 'INSERT INTO recipes VALUES ($1,$2,$3,$4,$5,$6);'
 
-        pool.query(addRecipe, recipe_param, (error, result) =>{
+//         pool.query(addRecipe, recipe_param, (error, result) =>{
 
 
             
-            if(error){
-                return console.log("There was a duplicate key")
-            }
-        })
-    }
-}
+//             if(error){
+//                 return console.log("There was a duplicate key")
+//             }
+//         })
+//     }
+// }
 
 
 
-// Browse recipes based off of different meal types
-exports.populaterecipesType = (req,res) => {
+// // Browse recipes based off of different meal types
+// exports.populaterecipesType = (req,res) => {
 
-    if(req.session.user){
-        console.log("querying inside my own function")
-        var recipe_id = JSON.parse(JSON.stringify(req.body.data.id));
-        var recipe_name = JSON.parse(JSON.stringify(req.body.data.title));
-        var type = JSON.parse(JSON.stringify(req.body.identifier));
+//     if(req.session.user){
+//         console.log("querying inside my own function")
+//         var recipe_id = JSON.parse(JSON.stringify(req.body.data.id));
+//         var recipe_name = JSON.parse(JSON.stringify(req.body.data.title));
+//         var type = JSON.parse(JSON.stringify(req.body.identifier));
 
-        if(req.body.data.cuisines.length != 0){
-            var cuisine = JSON.parse(JSON.stringify(req.body.data.cuisines[0]));
-        }
-        else{
-            var cuisine = ""
-        }
-        var vegan = JSON.parse(JSON.stringify(req.body.data.vegan));
-        var healthy = JSON.parse(JSON.stringify(req.body.data.veryHealthy));
+//         if(req.body.data.cuisines.length != 0){
+//             var cuisine = JSON.parse(JSON.stringify(req.body.data.cuisines[0]));
+//         }
+//         else{
+//             var cuisine = ""
+//         }
+//         var vegan = JSON.parse(JSON.stringify(req.body.data.vegan));
+//         var healthy = JSON.parse(JSON.stringify(req.body.data.veryHealthy));
 
-        recipe_param = [recipe_id, recipe_name, type, cuisine, vegan, healthy]
+//         recipe_param = [recipe_id, recipe_name, type, cuisine, vegan, healthy]
 
-        console.log(recipe_param)
+//         console.log(recipe_param)
 
-        var addRecipe = 'INSERT INTO recipes VALUES ($1,$2,$3,$4,$5,$6);'
+//         var addRecipe = 'INSERT INTO recipes VALUES ($1,$2,$3,$4,$5,$6);'
 
-        pool.query(addRecipe, recipe_param, (error, result) =>{
-            console.log("What row am I adding")
-            console.log(result)
+//         pool.query(addRecipe, recipe_param, (error, result) =>{
+//             console.log("What row am I adding")
+//             console.log(result)
 
-            if(error){
-                return console.log("There was a duplicate key")
-            }
+//             if(error){
+//                 return console.log("There was a duplicate key")
+//             }
 
-            res.send(result);
-        })
+//             res.send(result);
+//         })
 
-    }
+//     }
 
 
-}
+// }
 
-// Browse all vegan diet recipes (of any meal type and cuisine)
-exports.populaterecipesVegan = (req,res) => {
+// // Browse all vegan diet recipes (of any meal type and cuisine)
+// exports.populaterecipesVegan = (req,res) => {
 
-    if(req.session.user){
-        console.log("querying inside my own function")
-        var recipe_id = JSON.parse(JSON.stringify(req.body.data.id));
-        var recipe_name = JSON.parse(JSON.stringify(req.body.data.title));
+//     if(req.session.user){
+//         console.log("querying inside my own function")
+//         var recipe_id = JSON.parse(JSON.stringify(req.body.data.id));
+//         var recipe_name = JSON.parse(JSON.stringify(req.body.data.title));
 
-        if(req.body.data.dishTypes.length != 0){
-            var type = JSON.parse(JSON.stringify(req.body.data.dishTypes[0]));
-        }
-        else{
-            var type = ""
-        }
+//         if(req.body.data.dishTypes.length != 0){
+//             var type = JSON.parse(JSON.stringify(req.body.data.dishTypes[0]));
+//         }
+//         else{
+//             var type = ""
+//         }
 
-        if(req.body.data.cuisines.length != 0){
-            var cuisine = JSON.parse(JSON.stringify(req.body.data.cuisines[0]));
-        }
-        else{
-            var cuisine = ""
-        }
+//         if(req.body.data.cuisines.length != 0){
+//             var cuisine = JSON.parse(JSON.stringify(req.body.data.cuisines[0]));
+//         }
+//         else{
+//             var cuisine = ""
+//         }
 
-        var vegan = JSON.parse(JSON.stringify(req.body.data.vegan));
-        var healthy = JSON.parse(JSON.stringify(req.body.data.veryHealthy));
+//         var vegan = JSON.parse(JSON.stringify(req.body.data.vegan));
+//         var healthy = JSON.parse(JSON.stringify(req.body.data.veryHealthy));
         
-        recipe_param = [recipe_id, recipe_name, type, cuisine, vegan, healthy]
+//         recipe_param = [recipe_id, recipe_name, type, cuisine, vegan, healthy]
 
-        console.log(recipe_param)
+//         console.log(recipe_param)
 
-        var addRecipe = 'INSERT INTO recipes VALUES ($1,$2,$3,$4,$5,$6);'
+//         var addRecipe = 'INSERT INTO recipes VALUES ($1,$2,$3,$4,$5,$6);'
 
-        pool.query(addRecipe, recipe_param, (error, result) =>{
-            console.log("What row am I adding")
-            console.log(result)
+//         pool.query(addRecipe, recipe_param, (error, result) =>{
+//             console.log("What row am I adding")
+//             console.log(result)
 
-            if(error){
-                return console.log("There was a duplicate key")
-            }
+//             if(error){
+//                 return console.log("There was a duplicate key")
+//             }
 
-            res.send(result);
-        })
+//             res.send(result);
+//         })
 
-    }
-}
-
-
-exports.populateingredients = (req,res) => {
-
-    if(req.session.user){
-        console.log("populating ingredients table")
-
-        // grabbing ingredients info
-        var ingredient_id =JSON.parse(JSON.stringify(req.body.data.id));
-        console.log(ingredient_id)
-        var ingredientname = JSON.parse(JSON.stringify(req.body.data.name));
-        console.log(ingredientname)
+//     }
+// }
 
 
-            var aisle = JSON.parse(JSON.stringify(req.body.data.aisle));
+// exports.populateingredients = (req,res) => {
 
-        ingredientparam = [ingredient_id,ingredientname,aisle]
-        console.log(ingredientparam)
+//     if(req.session.user){
+//         console.log("populating ingredients table")
 
-        var insertIngredient = 'INSERT INTO ingredients VALUES ($1,$2,$3);'
-
-        pool.query(insertIngredient, ingredientparam, (error,result) =>{
-            console.log("add into ingredient")
-            console.log(result)
-
-            if(error){
-                return console.log("Duplicate key")
-            }
-
-            res.send(result)
-        })
-
-    }
+//         // grabbing ingredients info
+//         var ingredient_id =JSON.parse(JSON.stringify(req.body.data.id));
+//         console.log(ingredient_id)
+//         var ingredientname = JSON.parse(JSON.stringify(req.body.data.name));
+//         console.log(ingredientname)
 
 
+//         var aisle = JSON.parse(JSON.stringify(req.body.data.aisle));
 
-}
+//         ingredientparam = [ingredient_id,ingredientname,aisle]
+//         console.log(ingredientparam)
+
+//         var insertIngredient = 'INSERT INTO ingredients VALUES ($1,$2,$3);'
+
+//         pool.query(insertIngredient, ingredientparam, (error,result) =>{
+//             console.log("add into ingredient")
+//             console.log(result)
+
+//             if(error){
+//                 return console.log("Duplicate key")
+//             }
+
+//             res.send(result)
+//         })
+
+//     }
+
+
+
+// }
