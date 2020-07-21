@@ -126,10 +126,15 @@
 
     // Checks whether the user has the required ingridients or not 
     // and renders a modal based off it 
-    function check(my_ingredients){
+    function check(my_ingredients,req_ingredients){
         my_ingredients_arr = [];
         req_ingredients_arr = [];
         delete_arr = [];
+
+        if(my_ingredients.length == 0){
+        mod_ingre.innerHTML = "You have no Ingredients!";
+        return 0;
+        }
 
         for(var i = 0; i < my_ingredients.length; i++){
             my_ingredients_arr[i] = my_ingredients[i].ingredient_name;
@@ -163,9 +168,9 @@
         }
 
         if(delete_arr.length == 0){
-            mod_ingre.innerHTML = "You have all the Required Ingridients to make the Recipe!";
+            mod_ingre.innerHTML = "You have all the Required Ingredients to make the Recipe!";
         }else{
-            mod_ingre.innerHTML = `You have are missing the following Ingridients:
+            mod_ingre.innerHTML = `You have are missing the following Ingredients:
              `;
             for(var c = 0; c < delete_arr.length; c++){
                 mod_ingre.innerHTML = mod_ingre.innerHTML +`${delete_arr[c]} | `;
