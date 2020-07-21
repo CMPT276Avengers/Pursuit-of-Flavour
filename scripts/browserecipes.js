@@ -18,32 +18,43 @@ function add_rec(id){
     })
 
     .then(function(data){
+        $table = modal.find('p').$('<table>')
+        // var $table = $('<table>');
+        $table.append('<thead>').children('thead')
+        .append('<tr />').children('tr').append('<th></th><th></th><th></th><th></th>');
+
+        var $tbody = $table.append('<tbody />').children('tbody');
 
         for(var j=0; j<data.extendedIngredients.length; j++){
-            // var table = document.getElementsByTagName('list')[0]
 
-            var row = table.insertRow();
+            $tbody.append('<tr />').children('tr:last')
+            .append("<td>data.extendedIngredients[j].name</td>")
+            .append("<td>val</td>")
+            .append("<td>val</td>")
+            .append("<td>val</td>");
+
+            // var row = table.insertRow();
             // row.id = j.toString()
 
-            var cell1 = row.insertCell()
+            // var cell1 = row.insertCell()
             // cell1.id = 'cell1'
 
-            cell1.innerHTML = data.extendedIngredients[j].name
+            // cell1.innerHTML = data.extendedIngredients[j].name
 
-            var cell2 = row.insertCell()
+            // var cell2 = row.insertCell()
 
-            var img = new Image(100,100); // width, height values are optional params 
-            img.src = data.extendedIngredients[j].image
-            cell2.appendChild(img)
+            // var img = new Image(100,100); // width, height values are optional params 
+            // img.src = data.extendedIngredients[j].image
+            // cell2.appendChild(img)
 
-            var cell3 = row.insertCell()
-            cell3.innerHTML = data.extendedIngredients[j].aisle
+            // var cell3 = row.insertCell()
+            // cell3.innerHTML = data.extendedIngredients[j].aisle
 
-            var cell4 = row.insertCell()
-            cell4.innerHTML = "<button type='button' class='btn btn-dark'>Buy Ingredient</button>"
+            // var cell4 = row.insertCell()
+            // cell4.innerHTML = "<button type='button' class='btn btn-dark'>Buy Ingredient</button>"
 
-        $('#myModal').modal('show')
-        // }
+        // $('#myModal').modal('show')
+        }
 
         fetch("/browse/addrecipe", {
         method: 'post',
@@ -79,7 +90,7 @@ function add_rec(id){
                 }))
 
                 Promise.all(ingredients).then(function(response){
-                    return response.json()
+                    return Promise.all(response.map(response => response.json()))
                 })
             })
 

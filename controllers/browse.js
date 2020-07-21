@@ -13,6 +13,7 @@ exports.browserecipesbyCuisine = (req,res) =>{
 
     if(req.session.user){
         var cuisine = req.body.cuisine
+        console.log("browse recipes")
 
         // var recipearrayID =[]
 
@@ -29,6 +30,7 @@ exports.browserecipesbyCuisine = (req,res) =>{
 
         .then(function (data){
           var results ={"reciperesults": data.results, "title": cuisine}
+          console.log(results)
           res.render('pages/browserecipes', results)
         })
 
