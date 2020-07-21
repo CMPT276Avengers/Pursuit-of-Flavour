@@ -18,43 +18,38 @@ function add_rec(id){
     })
 
     .then(function(data){
-        $table = modal.find('p').$('<table>')
-        // var $table = $('<table>');
-        $table.append('<thead>').children('thead')
-        .append('<tr />').children('tr').append('<th></th><th></th><th></th><th></th>');
 
-        var $tbody = $table.append('<tbody />').children('tbody');
+                console.log("opening modal")
 
-        for(var j=0; j<data.extendedIngredients.length; j++){
+                $("#add_recipe").modal("show");
 
-            $tbody.append('<tr />').children('tr:last')
-            .append("<td>data.extendedIngredients[j].name</td>")
-            .append("<td>val</td>")
-            .append("<td>val</td>")
-            .append("<td>val</td>");
 
-            // var row = table.insertRow();
-            // row.id = j.toString()
+                var $table = $('<table>');
+                $table.attr('id', 'mytable')
+                $table.addClass("table table-bordered")
+                $table.append('<thead>').children('thead')
+                .append('<tr />').children('tr').append('<th>Name</th><th></th><th>Aisle</th><th></th>');
+                var $tbody = $table.append('<tbody />').children('tbody');
 
-            // var cell1 = row.insertCell()
-            // cell1.id = 'cell1'
+                for(var j=0; j<data.extendedIngredients.length; j++){
+                    name = data.extendedIngredients[j].name
+                    // var img = new Image(100,100)
+                    var img = "https://spoonacular.com/cdn/ingredients_100x100/"+data.extendedIngredients[j].image
+                    console.log(img)
 
-            // cell1.innerHTML = data.extendedIngredients[j].name
+                    aisle = data.extendedIngredients[j].aisle
+                    var $tr = $('<tr>').append(
+                        $('<td>').text(name),
+                        $('<td>').append("<img src='"+ img + "' width='75' height ='75'></img>"),
+                        $('<td>').text(aisle),
+                        $('<td>').append('<button>').addClass("btn btn-secondary").text("Buy")
+                    );
 
-            // var cell2 = row.insertCell()
+                    $tbody.append($tr)
+                }
 
-            // var img = new Image(100,100); // width, height values are optional params 
-            // img.src = data.extendedIngredients[j].image
-            // cell2.appendChild(img)
+                $('p').append($table)
 
-            // var cell3 = row.insertCell()
-            // cell3.innerHTML = data.extendedIngredients[j].aisle
-
-            // var cell4 = row.insertCell()
-            // cell4.innerHTML = "<button type='button' class='btn btn-dark'>Buy Ingredient</button>"
-
-        // $('#myModal').modal('show')
-        }
 
         fetch("/browse/addrecipe", {
         method: 'post',
@@ -100,6 +95,13 @@ function add_rec(id){
     })
 
   }
+
+  $(document).ready(function () {
+    $('#closemodal').click(function (){
+        $("#mytable tr").remove()
+    })
+
+  })
 
   $(document).ready(function () {
 
