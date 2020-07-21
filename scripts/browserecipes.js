@@ -21,7 +21,7 @@ function add_rec(id){
 
                 console.log("opening modal")
 
-                $("#add_recipe").modal("show");
+                // $("#add_recipe").modal("show");
 
 
                 var $table = $('<table>');
@@ -48,7 +48,7 @@ function add_rec(id){
                     $tbody.append($tr)
                 }
 
-                $('p').append($table)
+                $('#modalcontents').append($table)
 
 
         fetch("/browse/addrecipe", {
@@ -112,4 +112,12 @@ function add_rec(id){
         return false;
     });
 
+});
+
+$(document).ready(function () {
+
+    $('#topmodal').click(function () {
+        $('#add_recipe').animate({ scrollTop: 0 }, 'slow');
+
+    })
 });
