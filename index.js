@@ -6,6 +6,7 @@ const { resourceUsage } = require('process');
 const { Console } = require('console');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+var cors = require('cors');
 
 
 
@@ -22,6 +23,8 @@ app.use(session({
   saveUninitialized: false,
   resave: false
 }))
+
+app.use(cors());
 
 
 //Defining path for page directing routes: when user requests /blah it will look into the routes pages file

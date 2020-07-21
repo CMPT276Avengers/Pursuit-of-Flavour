@@ -186,7 +186,7 @@ exports.healthy = (req,res) =>{
 
 
 exports.addrecipe = (req,res) =>{
-    var recipe_id = req.body.recipe_id
+    var recipe_id = JSON.parse(JSON.stringify(req.body.id));
     var username = req.session.user.username;
 
     user_recipe_param = [username,recipe_id]
@@ -194,9 +194,9 @@ exports.addrecipe = (req,res) =>{
     var addUser_Recipe =  `INSERT INTO exists_in VALUES ($1, $2, DEFAULT);`
 
     pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
-        if (error){ return console.log(error)}
+        if (error){ return console.log("There was a duplicate key!")}
 
-        res.redirect('/my_recipe');
+        res.send(resp);
 
     })
 

@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const pageController = require('../controllers/page');
 
+const { Pool } = require('pg');
+var pool = new Pool({
+    connectionString: 'postgres://postgres:password@localhost/cmpt276project'
+    // connectionString: process.env.DATABASE_URL
+});
 
 
 
@@ -54,8 +59,18 @@ router.get('/my_recipe', pageController.displayRecipes);
 
 router.get('/myingredients', pageController.getMyIngredients);
 
+
 router.get('/database', pageController.getUserDatabase);
 
+
+
+router.get('/make', (req,res)=>{
+    if(req.session.user){
+        res.render('pages/make');
+    }else{
+        res.render('pages/login')
+    }
+})
 
 
 

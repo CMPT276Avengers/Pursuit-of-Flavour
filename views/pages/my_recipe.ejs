@@ -6,28 +6,8 @@
 </head>
 
     <body>
+
         <style>
-            /* thead.table {
-            table-layout: fixed;
-            width: 100%;
-            border-collapse: collapse;
-            border: 3px solid black;
-            } */
-
-            table{
-            text-align: center;
-            table-layout: fixed;
-            width: 50%;
-            border-collapse: collapse;
-            border: 3px solid black;
-
-            }
-
-            td, th { border: 1px solid black; }
-
-            td{
-                text-align: center;
-            }
 
             p {
                 text-transform: capitalize;
@@ -36,17 +16,22 @@
 
         </style>
 
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        
 
+        <%- include('../partials/recipeDetails.ejs')%>
 
         <div class="container">
             <h2>My Recipes</h2>
-            <table>
-                <thead class="table">
-                    <th>Recipe ID</th>
-                    <th>  Name</th>
-                    <th>  Type</th>
-                    <th>  Cuisine</th>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Recipe ID</th>
+                        <th scope="col">  Name</th>
+                        <th scope="col">  Type</th>
+                        <th scope="col">  Cuisine</th>
+
+                    </tr>
                 </thead>
 
                 <tbody>
@@ -56,6 +41,11 @@
                             <td> <%= r.recipe_name %>   </td>  
                             <td> <%= r.type %>   </td>
                             <td> <%= r.cuisine %>   </td>
+                            <td>
+                                <!-- <a href="/make"> -->
+                                <button data-recipeId = <%= r.recipe_id %> type="button" class="btn btn-primary recipe-details-button mrdb">Details</button>
+                                <!-- </a> -->
+                            </td>
                         </tr>
 
                     <% }); %>
@@ -66,23 +56,6 @@
             </table>
         
         </div>
-        <br>
-        <br>
-        <p class="h1" style="text-align: center;">Add A Recipe</p>
-
-        <form action="/add/adduser_recipe" method="POST">
-            <!-- These parameters are for the person database -->
-            <div class="form-row" style="padding-bottom: 120px;">
-                <div class="form-group col-md-10">
-                  <label for="recipe_id">ID of the Recipe</label>
-                  <input type="text" class="form-control" name="recipe_id" id="recipe_id" placeholder="ID of the recipe">
-                </div>
-            </div>
-
-            <input style="position: relative; left: 15px; top: 20px;" type="submit" class="btn btn-primary btn-lg" name = "sub" value="Add a Recipe!">
-
-
-        </form>
 
 
         <br>
@@ -106,10 +79,20 @@
       <br>
       <br>
       <a href="/userview" class="btn btn-success btn-lg" style="position: relative; left: 12px;">Go Back Home</a>
+      <div id="output"></div>
+      <a href="" id = "sourceLink"></a>
 
 
 
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"> </script>
+    <div class="container">
+        <div id = "req_ingredients">
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="recipeDetails.js"></script>
 
     </body>
 

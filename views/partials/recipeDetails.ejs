@@ -5,8 +5,8 @@
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title"></h4>
+            <div class="modal-header" style="background-color: darkolivegreen;">
+                <h2 class="modal-title" style="font-weight: bold; color: white;"></h2>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -30,10 +30,7 @@
                             <div style="text-decoration: underline; font-weight: bold;">
                                 Additional Information
                             </div>
-                            <div class="additional-info justify-content-center">
-                                <div>Vegetarian </div>
-                                <div>Gluten Free </div>
-                                <div>Dairy Free </div>
+                            <div class="additional-info justify-content-center overflow-auto">
                             </div>
 
                         </div>
@@ -42,18 +39,11 @@
 
                     <!--beginning of ingredeints container-->
                     <div class="row justify-content-center mb-5">
-                        <div class="col-11 justify-content-center text-center ingredients-container">
+                        <div class="col-11 justify-content-center text-center ingredeints-col">
                             <div class="text-center mb-5"style="text-decoration: underline; font-weight: bold; font-size: xx-large;">
                                 Ingredients
                             </div>
-                            <ul class="list-group">
-                                <li class="list-group-item disabled">1 1/2 teaspoons chipotle chile powder or ancho chile powder</li>
-                                <li class="list-group-item">1 3 1/2-pound beef tenderloin</li>
-                                <li class="list-group-item">1 1/2 teaspoons chipotle chile powder or ancho chile powder</li>
-                                <li class="list-group-item">1 3 1/2-pound beef tenderloin</li>
-                                <li class="list-group-item">1 1/2 teaspoons chipotle chile powder or ancho chile powder</li>
-                                <li class="list-group-item">1 3 1/2-pound beef tenderloin</li>
-                                <li class="list-group-item">1 1/2 teaspoons chipotle chile powder or ancho chile powder</li>
+                            <ul class="list-group ingredients-container">
                             </ul> 
                         </div>
                     </div>
@@ -61,58 +51,36 @@
 
                     <!--beginning of instructions container-->
                     <div class="row justify-content-center">
-                        <div class="col-11 justify-content-center text-center instructions-container">
+                        <div class="col-11 justify-content-center text-center">
                             <div class="text-center mb-5"style="text-decoration: underline; font-weight: bold; font-size: xx-large;">
                                 Instructions
                             </div>
 
-                            <h4>Vourbon Molasses Butter</h4>
-                            <div class="list-group">
-                                <button type="button" class="list-group-item list-group-item-action">
-                                    <div style="text-decoration: underline;">Step 1</div>
-                                    Cut the florets off the stems and and then chop them into tiny florets. You can also chop up the stems into tiny pieces if you want. You should have about 6 cups of chopped cauliflower. In a large skillet heat 2 tablespoons of olive oil over medium-high heat. Add the cauliflower, 1 teaspoon of salt, rosemary, and sumac. Sauté until cauliflower is tender and starts to brown a bit, stirring as necessary, about 15 minutes. You can also add a bit of olive oil if the pan starts to get too dry or the cauliflower is starting to stick. Meanwhile, in a small skillet, toast the pinenuts over medium heat until golden brown. Set aside. Heat the remaining 2 tablespoons of olive oil in the same pan. Once oil is shimmering, toss in the breadcrumbs and stir, toasting the breadcrumbs. Season with a pinch of kosher salt and a few turns of freshly ground black pepper. Remove from the heat and toss in half of the chopped parsley. When cauliflower is done, remove from the heat and season to taste with freshly ground black pepper and a pinch or so of salt if necessary. Toss in the toasted pine nuts, the chopped raisins, and the remaining parsley. When ready to serve, sprinkle the top with the toasted breadcrumbs and some pecorino."
-                                </button>
-                                <button type="button" class="list-group-item list-group-item-action">
-                                    <div style="text-decoration: underline;">Step 2</div>
-                                    Put the butter, molasses, salt and cooled bourbon mixture in a food processor and process until smooth.
-                                </button>
-                                <button type="button" class="list-group-item list-group-item-action">
-                                    <div style="text-decoration: underline;">Step 3</div>
-                                    Scrape into a bowl, cover with plastic wrap and refrigerate for at least 1 hour to allow the flavors to meld.
-                                </button>
-                                <button type="button" class="list-group-item list-group-item-action" style="color: black;">
-                                    <div style="text-decoration: underline;">Step 4</div>
-                                    Remove from the refrigerator about 30 minutes before using to soften
-                                </button>
-                            </div>                            
-                            <!-- <ul class="list-group">
-                                <li class="list-group-item">
-                                    <div style="text-decoration: underline;">Step 1</div>
-                                    Combine the bourbon and sugar in a small saucepan and cook over high heat until reduced to 3 tablespoons, remove and let cool
-                                </li>
-                                <li class="list-group-item">
-                                    <div style="text-decoration: underline;">Step 2</div>
-                                    Put the butter, molasses, salt and cooled bourbon mixture in a food processor and process until smooth.
-                                </li>
-                                <li class="list-group-item">
-                                    <div style="text-decoration: underline;">Step 3</div>
-                                    Scrape into a bowl, cover with plastic wrap and refrigerate for at least 1 hour to allow the flavors to meld.
-                                </li>
-                                <li class="list-group-item">
-                                    <div style="text-decoration: underline;">Step 4</div>
-                                    Remove from the refrigerator about 30 minutes before using to soften
-                                </li>
-                            </ul>
-
+                            <div class="instructions-container">
+                            </div>
                         </div>
-                    </div> -->
+                    </div> 
                     <!--end of instructions container-->
 
 
                 </div>
-                  
+
+                <div class="alert alert-success" role = "alert" id="added-alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <strong>Success! </strong> You have added this recipe to your collection.
+                </div>
+
+                
+                <div class="alert alert-danger" role = "alert" id="failed-alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <strong>Oh no! </strong> It seems like you already have this recipe in your collection.
+                </div>
             </div>
-            <div class="modal-footer">
+
+
+
+            <div class="modal-footer" style="background-color: darkolivegreen;">
+                <button type="button" class="btn btn-success save-recipe-button" data-recipeId = "">Save to my recipes</button>
                 <button type="button" class="btn btn-success">Make!</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
@@ -120,7 +88,7 @@
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-<script type="text/javascript" src="recipeDetails.js"></script>
+<script type="text/javascript" src="recipeDetails.js"></script> -->
