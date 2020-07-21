@@ -6,18 +6,24 @@
 </head>
 
     <body>
-        <style>
-
-            p {
-                text-transform: capitalize;
-                font-family: 'Times New Roman', Times, serif;
-            }
-
-        </style>
 
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+
+        <div class="modal fade" id="ha_ingred">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="req_ingred"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <div class="container">
@@ -41,10 +47,16 @@
                             <td> <%= r.type %>   </td>
                             <td> <%= r.cuisine %>   </td>
                             <td>
-                                <!-- <a href="/make"> -->
-                                <button onclick="get_info(id)" id = <%= r.recipe_id %> type="button" class="btn btn-primary">Details</button>
-                                <!-- </a> -->
+                                <button type="button" class="btn btn-primary">Details</button>
+                                
                             </td>
+                            <td>
+                                <button onclick="get_info(id)" id = <%= r.recipe_id %> type="button" class="btn btn-success" data-toggle="modal" data-target="#ha_ingred">Make</button>
+                            </td>
+                            <td>
+                                <button onclick="delete_rec(id)" id = <%= r.recipe_id %> type="button" class="btn btn-danger">Delete</button>
+                            </td>
+
                         </tr>
 
                     <% }); %>
@@ -74,13 +86,13 @@
         </form> -->
 
 
-        <br>
+        <!-- <br>
         <br>
         <p class="h1" style="text-align: center;">Delete A Recipe</p>
 
-        <form action="/add/deleteuser_recipe" method="POST">
+        <form action="/add/deleteuser_recipe" method="POST"> -->
           <!-- These parameters are for the person database -->
-          <div class="form-row" style="padding-bottom: 120px;">
+          <!-- <div class="form-row" style="padding-bottom: 120px;">
               <div class="form-group col-md-10">
                 <label for="recipe_id_delete">ID of the Recipe</label>
                 <input type="text" class="form-control" name="recipe_id_delete" id="recipe_id_delete" placeholder="ID of the recipe">
@@ -90,7 +102,7 @@
           <input style="background-color: red; position: relative; left: 15px; top: 20px;" type="submit" class="btn btn-primary btn-lg" name = "sub" value="Delete a Recipe!">
 
 
-      </form>
+      </form> -->
 
       <br>
       <br>
@@ -106,6 +118,144 @@
     </div>
 
 
+    <script>
+
+    var my_ingredients;
+    var req_ingredients;
+    var mod_ingre = document.getElementById(id="req_ingred");
+
+    // Checks whether the user has the required ingridients or not 
+    // and renders a modal based off it 
+    function check(my_ingredients){
+        my_ingredients_arr = [];
+        req_ingredients_arr = [];
+        delete_arr = [];
+
+        for(var i = 0; i < my_ingredients.length; i++){
+            my_ingredients_arr[i] = my_ingredients[i].ingredient_name;
+
+        }
+
+        for(var j = 0; j < req_ingredients.length; j++)
+        {
+            req_ingredients_arr[j] = req_ingredients[j].name;
+        }
+
+
+        var toggle  = 0;
+        for(var a = 0; a < req_ingredients_arr.length; a++){
+            var temp_req_ing = req_ingredients_arr[a]
+            toggle = 0;
+            for(var b = 0; b < my_ingredients_arr.length; b++){
+
+                if(temp_req_ing == my_ingredients_arr[b]){
+                    toggle +=1;
+                    break;
+                    
+                }
+
+
+            }
+            if(toggle == 0){
+                delete_arr.push(temp_req_ing);   
+            }
+
+        }
+
+        if(delete_arr.length == 0){
+            mod_ingre.innerHTML = "You have all the Required Ingridients to make the Recipe!";
+        }else{
+            mod_ingre.innerHTML = `You have are missing the following Ingridients:
+             `;
+            for(var c = 0; c < delete_arr.length; c++){
+                mod_ingre.innerHTML = mod_ingre.innerHTML +`${delete_arr[c]} | `;
+
+            }
+        }
+
+     }
+
+
+
+
+    function get_info(id)
+    {
+        fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+id+"/information", {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            "x-rapidapi-key": "7614eb0dadmshe2cdf1ed4594440p1a34f6jsn4cf7afdca4e7"
+        }
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(function(data){
+            req_ingredients = data.extendedIngredients;
+
+            fetch('/compare_my_ingredients',{
+            "method":"GET",
+            "headers": {
+                "Content-Type": "application/json"
+                
+            }
+            })
+            .then(response => {
+                    return response.json();
+                })
+            .then((data)=>{
+                // console.log(data.ingredients);
+                check(data.ingredients,req_ingredients);
+
+
+                
+                
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+
+
+
+
+            
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+
+     }
+
+    function delete_rec(id){
+        var data = {id};
+        fetch("/add/deleteuser_recipe", {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(data)
+
+        })
+        .then(function(res){
+        return res.json()
+
+        })
+        .then(function(data){
+            location.reload();
+        })
+
+
+        
+
+
+  }
+
+
+    
+
+
+
+    </script>
 
     </body>
 
