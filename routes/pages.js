@@ -4,7 +4,8 @@ const pageController = require('../controllers/page');
 
 const { Pool } = require('pg');
 var pool = new Pool({
-    connectionString: 'postgres://postgres:password@localhost/cmpt276project'
+
+    connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
     // connectionString: process.env.DATABASE_URL
 });
 
@@ -60,7 +61,6 @@ router.get('/myingredients', pageController.getMyIngredients);
 
 
 router.get('/database', pageController.getUserDatabase);
-
 
 
 router.get('/make', (req,res)=>{

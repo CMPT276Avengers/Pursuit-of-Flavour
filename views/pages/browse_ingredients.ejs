@@ -62,7 +62,7 @@
 		</table>
 	</div>
 
-	<button class="btn btn-primary" id="top" style="background-color: darkolivegreen;bottom: 15px;left: 15px;">Back to Top</button> 
+	<button class="btn btn-primary" id="top" style="background-color: darkolivegreen;bottom: 15px;left: 15px;">Back to Top</button>
 
 	  <script>
 		  //Fetch to add ingredient to My Ingredients based on user inputted amount and output table
@@ -71,29 +71,26 @@
 		  var data = {'id':id, 'amount':variable};
 		  fetch("/browse/addingredients", {
 			method: 'post',
-			headers: {'Content-Type': 'application/json'}, 
+			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify(data)
-	  
+
 		  })
 		  .then(function(res){
 			return res.json()
-	  
-		  })
-	  
-	  
-		}
-		  
-		$(document).ready(function () {
 
+		  })
+
+
+		}
+
+		$(document).ready(function () {
 			$('#top').click(function () {
 			$("html, body").animate({
 				scrollTop: 0
 			}, 100);
 				return false;
 			});
-
 			});
-
 	  </script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

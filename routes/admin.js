@@ -8,5 +8,12 @@ const router = express.Router();
 
 router.get('/viewUpdateUsers', adminController.viewUpdateUsers)
 
-module.exports = router
+router.post('/addUsers', adminController.addUsers)
 
+router.post('/deleteUsers', adminController.deleteUsers)
+
+router.post('/viewUsers', adminController.viewUsers)
+
+
+
+module.exports = router

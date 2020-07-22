@@ -3,7 +3,7 @@
   <head>
       <meta charset='utf-8'>
       <title>Pusuit of Flavour</title>
-      
+
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       <link rel='stylesheet' href='./stylesheets/userview.css'>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,12 +21,12 @@
           <h1 id="header" style="font-size: 450%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
         </div>
 
-        <div class="col-md-auto" id="Menubar"> 
+        <div class="col-md-auto" id="Menubar">
           <form id="searchmenu">
-            <button id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
-            <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
+            <button type="submit" formaction="search/searchrecipe" formmethod="GET" id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
+            <input id="searchbar" type="text" placeholder="Search Recipes..." name="searchterm">
           </form> <br>
-      
+
           <form>
             <img src="../../images/userview/profile.png" width="35" height="35">
             <% if(username){%>
@@ -36,7 +36,7 @@
             <a href='/myingredients' class="userbuttons" id="ingredients">My Ingredients</a>
             <button class="userbuttons" id="logout" type="submit" formaction="/database" formmethod="GET">Admin</button>
             <button class="userbuttons" id="logout" type="submit" formaction="/auth/logout" formmethod="POST">Logout</button>
-          </form> 
+          </form>
         </div>
       </div>
     </div>
@@ -59,21 +59,21 @@
                       <div class="dropdown">
 
                         <li>
-                          <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                          <form action="/browse/browserecipesbyCuisine" method="POST">
                           <input type="hidden" value="american" name="cuisine">
                           <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">American
                           </button>
                         </form></li>
 
                         <li>
-                          <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                          <form action="/browse/browserecipesbyCuisine" method="POST">
                           <input type="hidden" value="chinese" name="cuisine">
                           <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Chinese
                           </button>
                         </form></li>
-                        
+
                         <li>
-                          <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                          <form action="/browse/browserecipesbyCuisine" method="POST">
                           <input type="hidden" value="japanese" name="cuisine">
                           <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Japanese
                           </button>
@@ -88,28 +88,28 @@
 
                       <div class="dropdown">
                         <li>
-                          <form action="/browse/browserecipesbyType" method="POST"> 
+                          <form action="/browse/browserecipesbyType" method="POST">
                           <input type="hidden" value="morning%20meal" name="type">
                           <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Breakfast
                           </button>
                         </form></li>
 
                         <li>
-                          <form action="/browse/browserecipesbyType" method="POST"> 
+                          <form action="/browse/browserecipesbyType" method="POST">
                           <input type="hidden" value="dinner" name="type">
                           <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dinner
                           </button>
                         </form></li>
 
                         <li>
-                          <form action="/browse/browserecipesbyType" method="POST"> 
+                          <form action="/browse/browserecipesbyType" method="POST">
                           <input type="hidden" value="appetizer" name="type">
                           <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Appetizer
                           </button>
                         </form></li>
 
                         <li>
-                          <form action="/browse/browserecipesbyType" method="POST"> 
+                          <form action="/browse/browserecipesbyType" method="POST">
                           <input type="hidden" value="dessert" name="type">
                           <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dessert
                           </button>
@@ -118,13 +118,13 @@
                     </ul>
                 </li>
                 <li>
-                  <form action="/browse/browserecipesbyVegan" method="POST"> 
+                  <form action="/browse/browserecipesbyVegan" method="POST">
                   <input type="hidden" value="vegan" name="diet">
                   <button id= "vegan" class="btn btn-secondary" type="submit" style="width: 250px; height: 50px;">Vegan
                   </button>
                 </form></li>
             </ul>
-        </nav> 
+        </nav>
         </div>
 
         <div class="col=col-md-auto" id="api">
@@ -132,12 +132,12 @@
           <b style="font-size: x-large;">New Recipes</b> <br>
           <button >RECIPE API</button>
         </div> <br>
-         
-      
+
+
       <!-- MAPS API -->
       <b style="font-size: x-large;">Grocery Stores Near Me</b> <br>
       <div id="render_map"></div>
-    
+
       <script>
         ren_store = document.getElementById("render_map");
         const on_succ = (position)=>{
@@ -148,9 +148,9 @@
           frameborder="0" style="border:0"
           src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDx6KEuTSZstpQ3w5TtqeCgC7E7KXT3Z3o&q=grocery+store+near+me/@${position.coords.latitude},${position.coords.longitude}" allowfullscreen>
           </iframe>`
-          
+
         };
-    
+
         const on_error = (error)=>{
           console.log(error);
           ren_store.innerHTML = `<iframe
@@ -160,10 +160,10 @@
           src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDx6KEuTSZstpQ3w5TtqeCgC7E7KXT3Z3o&q=grocery+store+in+vancouver+/@49.2578629,-123.1424164,13z/data=!3m1!4b1" allowfullscreen>
           </iframe>`
         };
-        
-        
+
+
         navigator.geolocation.getCurrentPosition(on_succ,on_error);
-    
+
       </script>
       <!-- MAPS API finished -->
 

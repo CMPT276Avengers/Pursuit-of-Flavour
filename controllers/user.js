@@ -1,8 +1,10 @@
 const { Pool } = require('pg');
 var pool = new Pool({
-  connectionString: 'postgres://postgres:password@localhost/cmpt276project'
+
+    connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
     // connectionString: process.env.DATABASE_URL
 });
+
 const session = require('express-session');
 
 exports.update_user = (res,req) => {
@@ -74,4 +76,3 @@ exports.update_user = (res,req) => {
     }
   res.render('pages/success');
 }
-
