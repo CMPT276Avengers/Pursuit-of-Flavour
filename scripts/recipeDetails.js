@@ -2,6 +2,7 @@
 
 
 $(document).ready(function(){
+    $('#recipeModal').modal({show:false});
     $('.recipe-details-button').on('click',function(){
         // console.log("clicked!!");
         $(".alert").hide();
