@@ -6,9 +6,24 @@ body {
 table {
     background-color: white;
     max-width: 60%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
 #tablecontainer{
     margin: auto;
+}
+
+#recipeImg{
+    float: right;
+}
+
+td {
+    text-align: center;
+}
+
+button {
+    background-color: darkolivegreen;
 }

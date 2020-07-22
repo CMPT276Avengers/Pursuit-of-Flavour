@@ -34,10 +34,8 @@ app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth'));
 
 
-// Defining path for browse routes for
-app.use('/browserecipes', require('./routes/browse'));
-
-app.use('/browseingredients', require('./routes/browseingred'));
+// Defining path for browse routes for recipes and ingredients
+app.use('/browse', require('./routes/browse'));
 
 
 //Definining path for add routes /add/blah

@@ -3,10 +3,13 @@
 
 $(document).ready(function(){
     $('.recipe-details-button').on('click',function(){
+        // console.log("clicked!!");
         $(".alert").hide();
         var recipeId = $(this).attr("data-recipeId");
         // var recipeId = '166666';
         $.get("/recipes/details?recipeId="+recipeId, function(data){
+
+            console.log(data);
             //for title
             $('.modal-title').empty().append(data.recipeInfo.title);
 

@@ -2,6 +2,7 @@ const session = require('express-session');
 const axios = require("axios");
 exports.getRecipeDetails = (req,res) => {
 
+        console.log("in route now");
         var recipeId = req.query.recipeId;
 
         axios({
