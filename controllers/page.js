@@ -8,7 +8,7 @@ const session = require('express-session');
 exports.getMyIngredients = (req,res) => {
     if(req.session.user){
         var username = req.session.user.username;
-        var ingredientQuery = 'SELECT * FROM has,ingredients WHERE has.ingredient_id = ingredients.ingredient_id AND has.username = $1';
+        var ingredientQuery = 'SELECT * FROM has WHERE has.username = $1 AND has.amount > 0';
         pool.query(ingredientQuery,[username], (error,results) => {
             if (error){
                 console.log(error);

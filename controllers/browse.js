@@ -214,10 +214,11 @@ exports.addingredients = (req,res) =>{
         var username = req.session.user.username;
         var unit = JSON.parse(JSON.stringify(req.body.data.unit));
         var image = JSON.parse(JSON.stringify(req.body.data.image));
+        var aisle = JSON.parse(JSON.stringify(req.body.data.aisle));
 
-        user_recipe_param = [username,ingre_id,amount, unit,ingre_name,image];
+        user_recipe_param = [username,ingre_id,amount, unit,ingre_name,image,aisle];
 
-        var addUser_Recipe =  `INSERT INTO has VALUES ($1, $2, $3, $4, $5, $6);`
+        var addUser_Recipe =  `INSERT INTO has VALUES ($1, $2, $3, $4, $5, $6, $7);`
 
         pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
             if (error){ return console.log("There was a duplicate key!")}

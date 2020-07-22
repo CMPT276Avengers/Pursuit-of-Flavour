@@ -12,7 +12,7 @@ var cors = require('cors');
 
 var app = express();
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'scripts')));
@@ -45,12 +45,14 @@ app.use('/add',require('./routes/add'));
 app.use('/admin',require('./routes/admin'));
 
 //Defining path for temperary recipe Details page
-app.get('/testRecipeDetails', (req,res) => {
-  res.render('pages/testRecipeDetails');
-})
+// app.get('/testRecipeDetails', (req,res) => {
+//   res.render('pages/testRecipeDetails');
+// })
 
 //Defining path for temperary recipe Details page
 app.use('/recipes', require('./routes/recipes'));
+
+app.use('/ingredients', require('./routes/ingredients'));
 
 
 
