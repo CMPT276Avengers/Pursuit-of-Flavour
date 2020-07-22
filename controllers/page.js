@@ -25,17 +25,14 @@ exports.getMyIngredients = (req,res) => {
 
 exports.compare_my_ingredients = (req,res) => {
     var username = req.session.user.username;
-    var ingredientQuery = 'SELECT * FROM has,ingredients WHERE has.ingredient_id = ingredients.ingredient_id AND has.username = $1';
+    var ingredientQuery = 'SELECT * FROM has WHERE username = $1';
     pool.query(ingredientQuery,[username], (error,results) => {
         if (error){
             console.log(error);
             res.send('401').redirect('/userview');
         }
         else{
-            var data = {
-                ingredients: results.rows
-            };
-            res.send(data);
+            res.send(results);
 
         }
     })
