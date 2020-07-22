@@ -6,135 +6,197 @@
       
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       <link rel='stylesheet' href='./stylesheets/userview.css'>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   </head>
 
   <body>
-    <div class="container-sd">
-    <div class="container-sd">
-      <div class="row">
-        <div class="col-md-auto">
-          <img id="logo" src="../../images/userview/logo.png" width="180" height="180">
-        </div>
-        <div class="col-md-auto">
-          <h1 id="header" style="font-size: 450%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
-        </div>
 
-        <div class="col-md-auto" id="Menubar"> 
-          <form id="searchmenu">
-            <button id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
-            <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
-          </form> <br>
-      
-          <form>
-            <img src="../../images/userview/profile.png" width="35" height="35">
+    <!-- Navigation bar -->
+
+    <!-- Logo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/userview">
+        <img src="../../images/userview/logosmall.png" width="75" height="75" class="d-inline-block align-top" alt="Logo">
+        <span>Pursuit of Flavour</span>
+      </a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Search bar -->
+      <div class="collapse navbar-collapse flex-column" id="navbarToggler">
+        <ul class="navbar-nav ml-auto mt-1 mb-1">
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" style="width: 400px" type="search" placeholder="Search Recipes..." aria-label="Search">
+              <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </ul>
+
+        <!-- User buttons -->
+        <ul class="navbar-nav flex-row ml-auto mt-1">
+          <li class="nav-item mr-auto">
+            <button class="btn btn-danger my-2 my-sm-0" type="submit" formaction="/database" formmethod="GET">Admin</button>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/userview">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
             <% if(username){%>
-              <button class="userbuttons" id="account"><%=username%></button>
+              <a class="nav-link" href="#"><%=username%></a>
             <% } %>
-            <a href='/my_recipe' class="userbuttons" id="recipes">My Recipes</a>
-            <a href='/myingredients' class="userbuttons" id="ingredients">My Ingredients</a>
-            <button class="userbuttons" id="logout" type="submit" formaction="/database" formmethod="GET">Admin</button>
-            <button class="userbuttons" id="logout" type="submit" formaction="/auth/logout" formmethod="POST">Logout</button>
-          </form> 
-        </div>
+          </li>
+          <li class="nav-item">
+            <a href='/my_recipe' class="nav-link" id="recipes">My Recipes</a>
+          </li>
+          <li class="nav-item">
+            <a href='/myingredients' class="nav-link" id="ingredients">My Ingredients</a>
+          </li>
+          <li class="nav-item logout">
+            <form class="in-line" action="/auth/logout" method="POST">
+              <button class="btn btn-outline-danger my-2 my-sm-0" id="logout" type="submit" >Logout</button>
+            </form>
+          </li>
+        </ul>
       </div>
-    </div>
 
-      <!-- Left Drop down menu -->
-      <div class="wrapper">
-        <div class="container-sd">
-        <div class="row">
-          <!-- Browsing recipes by category -->
-          <div class="col-md-auto">
-          <nav id="recipesidebar">
-            <div class="sidebar-header">
-                <h3>Browse Recipes</h3>
-            </div>
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cuisine</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
 
-                      <div class="dropdown">
 
-                        <li>
-                          <form action="/browse/browserecipesbyCuisine" method="POST"> 
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="wrapper">
+      <div class="sidebar">
+        <div class="sidebar-header mx-auto">
+            <h3>Browse Recipes</h3>
+        </div>
+        <hr>
+        <ul class="list-unstyled components">
+            <li class="nav-item">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Cuisine</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li class="nav-item"> 
+                        <form action="/browse/browserecipesbyCuisine" method="POST"> 
                           <input type="hidden" value="american" name="cuisine">
                           <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">American
                           </button>
-                        </form></li>
-
-                        <li>
-                          <form action="/browse/browserecipesbyCuisine" method="POST"> 
-                          <input type="hidden" value="chinese" name="cuisine">
-                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Chinese
-                          </button>
-                        </form></li>
-                        
-                        <li>
-                          <form action="/browse/browserecipesbyCuisine" method="POST"> 
-                          <input type="hidden" value="japanese" name="cuisine">
-                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Japanese
-                          </button>
-                        </form></li>
-
-                      </div>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Type</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-
-                      <div class="dropdown">
-                        <li>
-                          <form action="/browse/browserecipesbyType" method="POST"> 
-                          <input type="hidden" value="morning%20meal" name="type">
-                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Breakfast
-                          </button>
-                        </form></li>
-
-                        <li>
-                          <form action="/browse/browserecipesbyType" method="POST"> 
-                          <input type="hidden" value="dinner" name="type">
-                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dinner
-                          </button>
-                        </form></li>
-
-                        <li>
-                          <form action="/browse/browserecipesbyType" method="POST"> 
-                          <input type="hidden" value="appetizer" name="type">
-                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Appetizer
-                          </button>
-                        </form></li>
-
-                        <li>
-                          <form action="/browse/browserecipesbyType" method="POST"> 
-                          <input type="hidden" value="dessert" name="type">
-                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dessert
-                          </button>
-                        </form></li>
-                    </div>
-                    </ul>
-                </li>
-                <li>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                      <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                        <input type="hidden" value="chinese" name="cuisine">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Chinese
+                        </button>
+                      </form>
+                    </li>
+                    <li class="nav-item">
+                      <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                        <input type="hidden" value="japanese" name="cuisine">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Japanese
+                        </button>
+                      </form>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Type</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li class="nav-item">
+                      <form action="/browse/browserecipesbyType" method="POST"> 
+                        <input type="hidden" value="morning%20meal" name="type">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Breakfast
+                        </button>
+                      </form>
+                    </li>
+                    <li class="nav-item">
+                      <form action="/browse/browserecipesbyType" method="POST"> 
+                        <input type="hidden" value="dinner" name="type">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dinner
+                        </button>
+                      </form>
+                    </li>
+                    <li class="nav-item">
+                      <form action="/browse/browserecipesbyType" method="POST"> 
+                        <input type="hidden" value="appetizer" name="type">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Appetizer
+                        </button>
+                      </form>
+                    </li>
+                    <li class="nav-item">
+                      <form action="/browse/browserecipesbyType" method="POST"> 
+                        <input type="hidden" value="dessert" name="type">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dessert
+                        </button>
+                      </form>
+                  </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#dietSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Diet</a>
+              <ul class="collapse list-unstyled" id="dietSubmenu">
+                <li class="nav-item">
                   <form action="/browse/browserecipesbyVegan" method="POST"> 
-                  <input type="hidden" value="vegan" name="diet">
-                  <button id= "vegan" class="btn btn-secondary" type="submit" style="width: 250px; height: 50px;">Vegan
-                  </button>
-                </form></li>
-            </ul>
-        </nav> 
-        </div>
+                    <input type="hidden" value="vegan" name="diet">
+                    <button id= "vegan" title="navbar" class="btn btn-secondary" type="submit" style="width: 250px; height: 50px;">Vegan
+                    </button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+        </ul>
+    </div> 
 
-        <div class="col=col-md-auto" id="api">
-        <div id="recipe-api">
-          <b style="font-size: x-large;">New Recipes</b> <br>
-          <button >RECIPE API</button>
-        </div> <br>
-         
-      
-      <!-- MAPS API -->
+
+    <!-- APIS -->
+    <div class="container-fluid padding apis">
+
+        <!-- Recipe API -->
+    <div class="recipe-api">
+      <h3>Recommended Recipes</h3>
+      <hr>
+      <div class="row padding">
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="card">
+            <img class="card-img-top" id="img1" src="" alt="">
+            <div class="card-body">
+              <h4 class="card-title" id="title1"></h4>
+              <a href="#" id="button1" class="btn btn-outline-secondary recipe-details-button" data-recipeId = >Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="card">
+            <img class="card-img-top" id="img2" src="" alt="">
+            <div class="card-body">
+              <h4 class="card-title" id="title2"></h4>
+              <a href="#" id="button2" class="btn btn-outline-secondary recipe-details-button">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="card">
+            <img class="card-img-top" id="img3" src="" alt="">
+            <div class="card-body">
+              <h4 class="card-title" id="title3"></h4>
+              <a href="#" id="button3" class="btn btn-outline-secondary recipe-details-button">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="card">
+            <img class="card-img-top" id="img4" src="" alt="">
+            <div class="card-body">
+              <h4 class="card-title" id="title4"></h4>
+              <a href="#" id="button4" class="btn btn-outline-secondary recipe-details-button">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+      <div class="maps-api">
+        <!-- MAPS API -->
       <b style="font-size: x-large;">Grocery Stores Near Me</b> <br>
       <div id="render_map"></div>
     
@@ -166,14 +228,57 @@
     
       </script>
       <!-- MAPS API finished -->
+      </div>  
+    </div>
+  </div>
 
+  <%- include('../partials/recipeDetails.ejs')%>
 
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script type="text/javascript" src='userview.js'></script>
+    <script type="text/javascript" src="recipeDetails.js"></script>
+
+
+    <script>
+      fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=4", {
+        "method": "GET",
+        "headers": {
+        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        "x-rapidapi-key": "bffc1f9da3msh5395e6eda5e41aep1fbc6fjsn5a9e415e3423"
+        }
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        for (var i=1; i<5; i++){
+
+          var img = data.recipes[i-1].image;
+          var title = data.recipes[i-1].title;
+          var id = data.recipes[i-1].id;
+
+
+          if (img) {
+            $('#img'+i.toString()).attr('src', img);
+            $('#title'+i.toString()).text(title);
+          }
+          else {
+            $('#img'+i.toString()).attr('alt', 'Image Not Found');
+            $('#title'+i.toString()).text(title);
+          }
+
+          $('#button'+i).attr('data-recipeId',id);
+        }
+      }) 
+      .catch(err => {
+        console.log(err);
+      });
+    </script>
 
   </body>
 
 </html>
+
+
