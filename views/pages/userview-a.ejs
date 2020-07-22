@@ -5,115 +5,166 @@
       <title>Pusuit of Flavour</title>
       
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-      <link rel='stylesheet' href='./stylesheets/userview-a.css'>
+      <link rel='stylesheet' href='./stylesheets/userview.css'>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   </head>
 
   <body>
-    <div class="container-sd">
-    <div class="container-sd">
-      <div class="row">
-        <div class="col-md-auto">
-          <img id="logo" src="../../images/userview/logo.png" width="180" height="180">
-        </div>
-        <div class="col-md-auto">
-          <h1 id="header" style="font-size: 450%; color: darkolivegreen;">Pursuit of Flavour</h1><br><br><br><br>
-        </div>
 
-        <div class="col-md-auto" id="Menubar"> 
-          <form id="searchmenu">
-            <button id="searchbarimg"> <img src="../../images/userview/search.png" width="25" height="25"></button>
-            <input id="searchbar" type="text" placeholder="Search Recipes..." name="search">
-          </form> <br>
-      
-          <form>
-            <img src="../../images/userview/profile.png" width="35" height="35">
+    <!-- Navigation bar -->
+
+    <!-- Logo -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/userview">
+        <img src="../../images/userview/logosmall.png" width="75" height="75" class="d-inline-block align-top" alt="Logo">
+        <span>Pursuit of Flavour</span>
+      </a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Search bar -->
+      <div class="collapse navbar-collapse flex-column" id="navbarToggler">
+        <ul class="navbar-nav ml-auto mt-1 mb-1">
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" style="width: 400px" type="search" placeholder="Search Recipes..." aria-label="Search">
+              <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </ul>
+
+        <!-- User buttons -->
+        <ul class="navbar-nav flex-row ml-auto mt-1">
+          <li class="nav-item mr-auto">
+            <button class="btn btn-danger my-2 my-sm-0" type="submit" formaction="/database" formmethod="GET">Admin</button>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/userview">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
             <% if(username){%>
-              <button class="userbuttons" id="account"><%=username%></button>
+              <a class="nav-link" href="#"><%=username%></a>
             <% } %>
-            <a href='/my_recipe' class="userbuttons" id="recipes">My Recipes</a>
-            <a href='/myingredients' class="userbuttons" id="ingredients">My Ingredients</a>
-            <button class="userbuttons" id="logout" type="submit" formaction="/database" formmethod="GET">Admin</button>
-            <button class="userbuttons" id="logout" type="submit" formaction="/auth/logout" formmethod="POST">Logout</button>
-          </form> 
+          </li>
+          <li class="nav-item">
+            <a href='/my_recipe' class="nav-link" id="recipes">My Recipes</a>
+          </li>
+          <li class="nav-item">
+            <a href='/myingredients' class="nav-link" id="ingredients">My Ingredients</a>
+          </li>
+          <li class="nav-item logout">
+            <form class="in-line" action="/auth/logout" method="POST">
+              <button class="btn btn-outline-danger my-2 my-sm-0" id="logout" type="submit" >Logout</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="wrapper">
+      <div class="sidebar">
+        <div class="sidebar-header mx-auto">
+            <h3>Browse Recipes</h3>
+        </div>
+        <hr>
+        <ul class="list-unstyled components">
+            <li class="nav-item">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Cuisine</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li class="nav-item"> 
+                        <a class="nav-link"  href="/browserecipes/american">American</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/browserecipes/chinese">Chinese</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/browserecipes/japanese">Japanese</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Type</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/browserecipes/breakfast">Breakfast</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/browserecipes/maincourse">Main Course</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/browserecipes/appetizer">Appetizer</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/browserecipes/dessert">Dessert</a>
+                  </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/browserecipes/vegan">Veg/Vegan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/browserecipes/healthy">Low Calorie</a>
+            </li>
+        </ul>
+    </div> 
+
+
+    <!-- APIS -->
+    <div class="container-fluid padding apis">
+
+        <!-- Recipe API -->
+    <div class="recipe-api">
+      <h3>Recommended Recipes</h3>
+      <hr>
+      <div class="row padding">
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="card">
+            <img class="card-img-top" id="img1" src="" alt="">
+            <div class="card-body">
+              <h4 class="card-title" id="title1">Title</h4>
+              <a href="#" class="btn btn-outline-secondary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="card">
+            <img class="card-img-top" id="img2" src="" alt="">
+            <div class="card-body">
+              <h4 class="card-title" id="title2">Title</h4>
+              <a href="#" class="btn btn-outline-secondary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="card">
+            <img class="card-img-top" id="img3" src="" alt="">
+            <div class="card-body">
+              <h4 class="card-title" id="title3">Title</h4>
+              <a href="#" class="btn btn-outline-secondary">Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="card">
+            <img class="card-img-top" id="img4" src="" alt="">
+            <div class="card-body">
+              <h4 class="card-title" id="title4">Title</h4>
+              <a href="#" class="btn btn-outline-secondary">Details</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!-- Left Drop down menu -->
-    <div class="wrapper">
-      <div class="container-sd">
-      <div class="row">
-        <!-- Browsing recipes by category -->
-        <div class="col-md-auto">
-        <nav id="recipesidebar">
-          <div class="sidebar-header">
-              <h3>Browse Recipes</h3>
-          </div>
-          <ul class="list-unstyled components">
-              <li class="active">
-                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cuisine</a>
-                  <ul class="collapse list-unstyled" id="homeSubmenu">
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;" href="/browserecipes/american">American</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/chinese">Chinese</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/japanese">Japanese</a>
-                      </li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Type</a>
-                  <ul class="collapse list-unstyled" id="pageSubmenu">
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/breakfast">Breakfast</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/maincourse">Main Course</a>
-                      </li>
-                      <li>
-                          <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/appetizer">Appetizer</a>
-                      </li>
-                      <li>
-                        <a style="background-color: beige;color: darkolivegreen;"href="/browserecipes/dessert">Dessert</a>
-                    </li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="/browserecipes/vegan">Veg/Vegan</a>
-              </li>
-              <li>
-                  <a href="/browserecipes/healthy">Low Calorie</a>
-              </li>
-          </ul>
-      </nav> 
-      <nav id="ingredientssidebar">
-        <div class="sidebar-header">
-          <h3>Browse Ingredients</h3>
-        </div>
-        <ul class="list-unstyled components">
-          <li><a href="/browseingredients/meats">Meats</a></li>
-          <li><a href="/browseingredients/produce">Produce</a></li>
-          <li><a href="/browseingredients/grains">Grains</a></li>
-          <li><a href="/browseingredients/seasonings">Seasonings</a></li>
-      </nav>
-      </div>
-      <div class="col=col-md-auto" id="api">
-      <div id="recipe-api">
-        <b style="font-size: x-large;">New Recipes</b> <br>
-        <button >RECIPE API</button>
-      </div> <br>
-      
-      <div id="maps-api">
-        <b style="font-size: x-large;">Stores Near Me</b> <br>
+        
+      <div class="maps-api">
+        <h3>Stores Near Me</b> <br>
+        <hr>
         <button>GOOGLE MAPS API</button>
       </div>  
     </div>
-      </div> 
-    </div><br> <br>
   </div>
 
 
@@ -122,6 +173,43 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script type="text/javascript" src='userview.js'></script>
 
+
+    <script>
+      fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=4", {
+        "method": "GET",
+        "headers": {
+        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        "x-rapidapi-key": "00b52d5f6dmsh0b593edd8c00e17p100848jsn6b6dadc41877"
+        }
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        for (var i=1; i<5; i++){
+          var img = data.recipes[i-1].image;
+          var title = data.recipes[i-1].title;
+          if (img) {
+            $('#img'+i.toString()).attr('src', img);
+            $('#title'+i.toString()).text(title);
+          }
+          else {
+            $('#img'+i.toString()).attr('alt', 'Image Not Found');
+            $('#title'+i.toString()).text(title);
+          }
+        }
+      }) 
+      .catch(err => {
+        console.log(err);
+      });
+    </script>
+
   </body>
 
 </html>
+
+
+
+
+
+<button class="userbuttons" id="logout" type="submit" formaction="/database" formmethod="GET">Admin</button>
