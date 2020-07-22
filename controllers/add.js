@@ -1,9 +1,10 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    connectionString: 'postgres://postgres:root@localhost/cmpt276project'
+    connectionString: 'postgres://postgres:password@localhost/cmpt276project'
     // connectionString: process.env.DATABASE_URL
 });
+const axios = require("axios");
 
 
 exports.adduser_recipe = (req,res) =>{
@@ -25,7 +26,7 @@ exports.adduser_recipe = (req,res) =>{
 }
 
 exports.deleteuser_recipe = (req,res) =>{
-    var recipe_id = req.body.recipe_id_delete;
+    var recipe_id = JSON.parse(JSON.stringify(req.body.id));
     var username = req.session.user.username;
 
     user_recipe_param = [username,recipe_id]
@@ -35,7 +36,7 @@ exports.deleteuser_recipe = (req,res) =>{
     pool.query(deleteUser_Recipe, user_recipe_param,(error, resp)=>{
         if (error){ return console.log(error);}
 
-        res.redirect('/my_recipe');
+        res.send(resp);
 
     })
 
@@ -124,4 +125,47 @@ exports.deleteIngredient = (req,res) => {
             }
         }
     })
+}
+
+exports.add_recipe_to_db_add_recipe_to_user = (req,res) => {
+    var recipeId = req.body.recipeId;
+    var username = req.session.user.username;
+
+    //make api information call
+    axios({
+        "method":"GET",
+        "url":"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+recipeId+"/information",
+        "headers":{
+        "content-type":"application/octet-stream",
+        "x-rapidapi-host":"spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        "x-rapidapi-key":"bffc1f9da3msh5395e6eda5e41aep1fbc6fjsn5a9e415e3423",
+        "useQueryString":true
+        }
+    })
+    .then((response1)=>{
+        var recipeInfo = response1.data;                        
+        var insertRecipe = 'INSERT INTO recipes values($1,$2,$3,$4,$5,$6);';
+        var cuisine;
+        if(recipeInfo.cuisines.length == 0){
+            cuisine = "Universal"
+        }else{
+            cuisine = recipeInfo.cuisines[0];
+        }
+        pool.query(insertRecipe,[recipeInfo.id,recipeInfo.title,recipeInfo.dishTypes[0],cuisine,recipeInfo.vegan,recipeInfo.veryHealthy],(error,result) => {
+            if(error){
+            } 
+
+            var insertUserRecipe = 'INSERT INTO exists_in values ($1,$2, DEFAULT);';
+            pool.query(insertUserRecipe,[username,recipeId],(error,resu) => {
+                if(error){              
+                    res.send({status:"failed"});
+                } else{
+                    res.send({status:"passed"});
+                }
+            })
+
+            
+        })
+
+    })   
 }

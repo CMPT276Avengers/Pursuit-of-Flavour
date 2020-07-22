@@ -132,327 +132,40 @@
           <b style="font-size: x-large;">New Recipes</b> <br>
           <button >RECIPE API</button>
         </div> <br>
-        
-        <div id="maps-api">
-          <b style="font-size: x-large;">Stores Near Me</b> <br>
-          <button>GOOGLE MAPS API</button>
-        </div>  
-      </div>
-        </div> 
-      </div><br> <br>
-    </div>
-
-  <!-- <script>
-    function loadbar(number){
-      $('#progress-bar' + number.toString()).animate({
-          width: "100%"
-      }, 5000);
-      }
-
-
-    function resetbar(number){
-      $('#progress-bar' + number.toString()).css('width', '0%').attr('aria-valuenow', 0); 
-    }
-          
-    function searchRecipesbyCuisine(id){
-
-      console.log("starting function")
-      var attr = id
-      var recipearrayID =[]
-      fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine="+attr+"&number=25&instructionsRequired=true&query=", {
-        "method": "GET",
-        "headers": {
-          "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-          "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-        }
-      })
-      .then(function(response) {
-        console.log("recieve recipe list")
-        console.log(response);
-        return response.json()
-      })
-
-      .then(function (data){
-        console.log("Manipulate recipes")
-        console.log(data)
-
-
-        for(const recipe of data.results){
-          console.log("Loop through each recipeID")
-          var uniqueID = recipe.id
-          console.log(uniqueID)
-          recipearrayID.push(uniqueID)
-        }
-
-        let requests = recipearrayID.map(url => fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${url}/information`, {
-            "method": "GET",
-            "headers": {
-              "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-              "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-              }
-        }));
-
-        Promise.all(requests).then(function(response){
-          console.log("recipe info")
-          console.log(response);
-          return Promise.all(response.map(response => response.json()))
-        }) 
-
-        .then(function(data){
-          console.log("use data in my controller")
-          console.log(data)
-
-
-          let queries = data.map(item => fetch("/browse/populaterecipesCuisine", {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'}, 
-            body: JSON.stringify({'data':item, 'identifier':attr})
-          }))
-
-          
-          var allingredients = [];
-          for (var i = 0; i < data.length; i++) {
-              allingredients.push(data[i].extendedIngredients);
-          }
-
-          console.log(allingredients)
-
-          var ingredientlist = [];
-          for (var i = 0; i < allingredients.length; i++) {
-            for(var j=0; j<allingredients[i].length;j++){
-              ingredientlist.push(allingredients[i][j]);
-            }
-          }
-
-
-          console.log(ingredientlist)
-
-
-          let ingredients = ingredientlist.map(products => 
-            fetch("/browse/populateIngredients", {
-                method: 'post',
-                headers: {'Content-Type': 'application/json'}, 
-                body: JSON.stringify({'data':products})
-              }))
-
-          Promise.all(queries).then(function (response){
-            console.log("successfully finish")
-            console.log(response)
-          }) 
-        
-          Promise.all(ingredients).then(function(response){
-            console.log("ingredietns added")
-          })    
-
-          .catch(err => {
-            console.log(err
-            );
-          });
-        })
-
-      })
-    }
-
-    function searchRecipesbyType(id){
-
-      console.log("starting function")
-      var attr = id
-      var recipearrayID =[]
-      fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?type="+attr+"&number=25&instructionsRequired=true&query=", {
-        "method": "GET",
-        "headers": {
-          "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-          "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-        }
-      })
-      .then(function(response) {
-        console.log("recieve recipe list")
-        console.log(response);
-        return response.json()
-      })
-
-      .then(function (data){
-        console.log("Manipulate recipes")
-        console.log(data)
-
-
-        for(const recipe of data.results){
-          console.log("Loop through each recipeID")
-          var uniqueID = recipe.id
-          console.log(uniqueID)
-          recipearrayID.push(uniqueID)
-        }
-
-        let requests = recipearrayID.map(url => fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${url}/information`, {
-            "method": "GET",
-            "headers": {
-              "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-              "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-              }
-        }));
-
-        Promise.all(requests).then(function(response){
-          console.log("recipe info")
-          console.log(response);
-          return Promise.all(response.map(response => response.json()))
-        }) 
-
-        .then(function(data){
-          console.log("use data in my controller")
-          console.log(data)
-
-
-          let queries = data.map(item => fetch("/browse/populaterecipesType", {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'}, 
-            body: JSON.stringify({'data':item, 'identifier':attr})
-          }))
-
-          
-          var allingredients = [];
-          for (var i = 0; i < data.length; i++) {
-              allingredients.push(data[i].extendedIngredients);
-          }
-
-          console.log(allingredients)
-
-          var ingredientlist = [];
-          for (var i = 0; i < allingredients.length; i++) {
-            for(var j=0; j<allingredients[i].length;j++){
-              ingredientlist.push(allingredients[i][j]);
-            }
-          }
-
-
-          console.log(ingredientlist)
-
-
-          let ingredients = ingredientlist.map(products => 
-            fetch("/browse/populateIngredients", {
-                method: 'post',
-                headers: {'Content-Type': 'application/json'}, 
-                body: JSON.stringify({'data':products})
-              }))
-
-          Promise.all(queries).then(function (response){
-            console.log("successfully finish")
-            console.log(response)
-          }) 
-        
-          Promise.all(ingredients).then(function(response){
-            console.log("ingredietns added")
-          })    
-
-          .catch(err => {
-            console.log(err
-            );
-          });
-        })
-
-      })
-    }
-
-    function searchRecipesbyVegan(id){
-
-      console.log("starting function")
-      var attr = id
-      var recipearrayID =[]
-      fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?diet="+attr+"&number=25&instructionsRequired=true&query=", {
-        "method": "GET",
-        "headers": {
-          "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-          "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-        }
-      })
-      .then(function(response) {
-        console.log("recieve recipe list")
-        console.log(response);
-        return response.json()
-      })
-
-      .then(function (data){
-        console.log("Manipulate recipes")
-        console.log(data)
-
-
-        for(const recipe of data.results){
-          console.log("Loop through each recipeID")
-          var uniqueID = recipe.id
-          console.log(uniqueID)
-          recipearrayID.push(uniqueID)
-        }
-
-        let requests = recipearrayID.map(url => fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${url}/information`, {
-            "method": "GET",
-            "headers": {
-              "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-              "x-rapidapi-key": "3abda60afemshe5e54c423604b5dp18615ejsn98cd66e95e47"
-              }
-        }));
-
-        Promise.all(requests).then(function(response){
-          console.log("recipe info")
-          console.log(response);
-          return Promise.all(response.map(response => response.json()))
-        }) 
-
-        .then(function(data){
-          console.log("use data in my controller")
-          console.log(data)
-
-
-          let queries = data.map(item => fetch("/browse/populaterecipesVegan", {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'}, 
-            body: JSON.stringify({'data':item, 'identifier':attr})
-          }))
-
-          
-          var allingredients = [];
-          for (var i = 0; i < data.length; i++) {
-              allingredients.push(data[i].extendedIngredients);
-          }
-
-          console.log(allingredients)
-
-          var ingredientlist = [];
-          for (var i = 0; i < allingredients.length; i++) {
-            for(var j=0; j<allingredients[i].length;j++){
-              ingredientlist.push(allingredients[i][j]);
-            }
-          }
-
-
-          console.log(ingredientlist)
-
-
-          let ingredients = ingredientlist.map(products => 
-            fetch("/browse/populateIngredients", {
-                method: 'post',
-                headers: {'Content-Type': 'application/json'}, 
-                body: JSON.stringify({'data':products})
-              }))
-
-          Promise.all(queries).then(function (response){
-            console.log("successfully finish")
-            console.log(response)
-          }) 
-        
-          Promise.all(ingredients).then(function(response){
-            console.log("ingredietns added")
-          })    
-
-          .catch(err => {
-            console.log(err
-            );
-          });
-        })
-
-      })
-      }
-
+         
+      
+      <!-- MAPS API -->
+      <b style="font-size: x-large;">Grocery Stores Near Me</b> <br>
+      <div id="render_map"></div>
     
-  </script>  -->
+      <script>
+        ren_store = document.getElementById("render_map");
+        const on_succ = (position)=>{
+          console.log(position);
+          ren_store.innerHTML = `<iframe
+          width="600"
+          height="350"
+          frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDx6KEuTSZstpQ3w5TtqeCgC7E7KXT3Z3o&q=grocery+store+near+me/@${position.coords.latitude},${position.coords.longitude}" allowfullscreen>
+          </iframe>`
+          
+        };
+    
+        const on_error = (error)=>{
+          console.log(error);
+          ren_store.innerHTML = `<iframe
+          width="600"
+          height="350"
+          frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDx6KEuTSZstpQ3w5TtqeCgC7E7KXT3Z3o&q=grocery+store+in+vancouver+/@49.2578629,-123.1424164,13z/data=!3m1!4b1" allowfullscreen>
+          </iframe>`
+        };
+        
+        
+        navigator.geolocation.getCurrentPosition(on_succ,on_error);
+    
+      </script>
+      <!-- MAPS API finished -->
 
 
 

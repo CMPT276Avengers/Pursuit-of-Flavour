@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    connectionString: 'postgres://postgres:root@localhost/cmpt276project'
+    connectionString: 'postgres://postgres:password@localhost/cmpt276project'
 
     // connectionString: process.env.DATABASE_URL
 });
@@ -13,15 +13,15 @@ exports.browserecipesbyCuisine = (req,res) =>{
 
     if(req.session.user){
         var cuisine = req.body.cuisine
-        console.log("browse recipes")
+        // console.log("browse recipes")
 
         // var recipearrayID =[]
 
-        fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine="+cuisine+"&number=5&instructionsRequired=true&query=", {
+        fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine="+cuisine+"&number=20&instructionsRequired=true&query=", {
           "method": "GET",
           "headers": {
             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "x-rapidapi-key": "3f877306famsh1566e89fabab361p1a6625jsne9186e9a0905"
+            "x-rapidapi-key": "bffc1f9da3msh5395e6eda5e41aep1fbc6fjsn5a9e415e3423"
           }
         })
         .then(function(response) {
@@ -30,7 +30,7 @@ exports.browserecipesbyCuisine = (req,res) =>{
 
         .then(function (data){
           var results ={"reciperesults": data.results, "title": cuisine}
-          console.log(results)
+        //   console.log(results)
           res.render('pages/browserecipes', results)
         })
 
@@ -62,7 +62,7 @@ exports.browserecipesbyType = (req,res) =>{
           "method": "GET",
           "headers": {
             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "x-rapidapi-key": "3f877306famsh1566e89fabab361p1a6625jsne9186e9a0905"
+            "x-rapidapi-key": "bffc1f9da3msh5395e6eda5e41aep1fbc6fjsn5a9e415e3423"
           }
         })
         .then(function(response) {
@@ -97,7 +97,7 @@ exports.browserecipesbyVegan = (req,res) =>{
           "method": "GET",
           "headers": {
             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "x-rapidapi-key": "3f877306famsh1566e89fabab361p1a6625jsne9186e9a0905"
+            "x-rapidapi-key": "bffc1f9da3msh5395e6eda5e41aep1fbc6fjsn5a9e415e3423"
           }
         })
         .then(function(response) {
@@ -147,11 +147,11 @@ exports.addrecipe = (req,res) =>{
         var recipe_name = JSON.parse(JSON.stringify(req.body.data.title));
         var recipe_type =JSON.parse(JSON.stringify(req.body.data.dishTypes));
         recipe_type = recipe_type.join()
-        console.log(recipe_type)
+        // console.log(recipe_type)
 
         var recipe_cuisine= JSON.parse(JSON.stringify(req.body.data.cuisines));
         recipe_cuisine = recipe_cuisine.join()
-        console.log(recipe_cuisine)
+        // console.log(recipe_cuisine)
 
         if(JSON.parse(JSON.stringify(req.body.data.vegan)) == 'true'){
             var recipe_vegan = 'Yes'
@@ -213,10 +213,11 @@ exports.addingredients = (req,res) =>{
         var amount = 0
         var username = req.session.user.username;
         var unit = JSON.parse(JSON.stringify(req.body.data.unit));
+        var image = JSON.parse(JSON.stringify(req.body.data.image));
 
-        user_recipe_param = [username,ingre_id,amount, unit,ingre_name]
+        user_recipe_param = [username,ingre_id,amount, unit,ingre_name,image];
 
-        var addUser_Recipe =  `INSERT INTO has VALUES ($1, $2, $3, $4, $5);`
+        var addUser_Recipe =  `INSERT INTO has VALUES ($1, $2, $3, $4, $5, $6);`
 
         pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
             if (error){ return console.log("There was a duplicate key!")}

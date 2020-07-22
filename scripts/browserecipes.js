@@ -9,7 +9,7 @@ function add_rec(id){
           "method": "GET",
           "headers": {
             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "x-rapidapi-key": "3f877306famsh1566e89fabab361p1a6625jsne9186e9a0905"
+            "x-rapidapi-key": "bffc1f9da3msh5395e6eda5e41aep1fbc6fjsn5a9e415e3423"
             }
       })
 
