@@ -1,9 +1,10 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    connectionString: 'postgres://postgres:password@localhost/cmpt276project'
+    connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
     // connectionString: process.env.DATABASE_URL
 });
+
 const axios = require("axios");
 
 
@@ -146,7 +147,7 @@ exports.add_recipe_to_db_add_recipe_to_user = (req,res) => {
         }
     })
     .then((response1)=>{
-        var recipeInfo = response1.data;                        
+        var recipeInfo = response1.data;
         var insertRecipe = 'INSERT INTO recipes values($1,$2,$3,$4,$5,$6);';
         var cuisine;
         if(recipeInfo.cuisines.length == 0){
@@ -156,19 +157,19 @@ exports.add_recipe_to_db_add_recipe_to_user = (req,res) => {
         }
         pool.query(insertRecipe,[recipeInfo.id,recipeInfo.title,recipeInfo.dishTypes[0],cuisine,recipeInfo.vegan,recipeInfo.veryHealthy],(error,result) => {
             if(error){
-            } 
+            }
 
             var insertUserRecipe = 'INSERT INTO exists_in values ($1,$2, DEFAULT);';
             pool.query(insertUserRecipe,[username,recipeId],(error,resu) => {
-                if(error){              
+                if(error){
                     res.send({status:"failed"});
                 } else{
                     res.send({status:"passed"});
                 }
             })
 
-            
+
         })
 
-    })   
+    })
 }

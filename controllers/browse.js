@@ -6,6 +6,7 @@ var pool = new Pool({
     // connectionString: process.env.DATABASE_URL
 });
 
+
 const session = require('express-session');
 const fetch = require('node-fetch');
 
@@ -30,7 +31,8 @@ exports.browserecipesbyCuisine = (req,res) =>{
 
         .then(function (data){
           var results ={"reciperesults": data.results, "title": cuisine}
-        //   console.log(results)
+          console.log(data)
+          console.log(results)
           res.render('pages/browserecipes', results)
         })
 
@@ -40,7 +42,7 @@ exports.browserecipesbyCuisine = (req,res) =>{
         // var recipeQuery = "SELECT * FROM recipes WHERE cuisine = $1"
 
         // pool.query(recipeQuery, [recipe_id], (error, result) =>{
-        //     if (error){ 
+        //     if (error){
         //      res.send(error)
         //     };
         //     var data = {"rows": result.rows, "title": recipe_id}
@@ -74,7 +76,7 @@ exports.browserecipesbyType = (req,res) =>{
         if(type = "morning%20meal"){
             type = "Breakfast"
         }
-        
+
           var results ={"reciperesults": data.results, "title": type}
           res.render('pages/browserecipes', results)
         })
@@ -125,7 +127,7 @@ exports.browseingredients = (req,res) =>{
         var ingredientsQuery = `SELECT * FROM ingredients WHERE aisle = $1`
 
         pool.query(ingredientsQuery, [ingredient_id], (error, result) =>{
-            if (error){ 
+            if (error){
              res.send(error)
             };
 
@@ -159,7 +161,7 @@ exports.addrecipe = (req,res) =>{
         else{
             var recipe_vegan ='No'
         }
-        
+
         if(JSON.parse(JSON.stringify(req.body.data.veryHealthy)) == 'true'){
             var recipe_healthy = 'Yes'
         }
@@ -191,29 +193,8 @@ exports.addrecipe = (req,res) =>{
     }
 }
 
-// Adds a single recipe to Exists in table
-// exports.addUserRecipe = (req,res) => {
-//     if(req.session.user){
 
-//         var recipe_id = JSON.parse(JSON.stringify(req.body.data.id));
-
-//         var username = req.session.user.username;
-
-//         user_recipe_param = [username,recipe_id]
-
-//         var addUser_Recipe =  `INSERT INTO exists_in VALUES ($1, $2, DEFAULT);`
-        
-//         pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
-//             if (error){ return console.log("There was a duplicate key!")}
-
-//             res.send(resp);
-
-//         })
-//     }
-
-// }
-
-// Add to HAS table 
+// Add to HAS table
 exports.addingredients = (req,res) =>{
 
     if(req.session.user){
@@ -259,7 +240,7 @@ exports.addingredients = (req,res) =>{
 //         var healthy = JSON.parse(JSON.stringify(req.body.data.veryHealthy));
 //         // var numIngredients = JSON.parse(JSON.stringify(req.body.data.extendedIngredients.length));
 //         // console.log(numIngredients)
-        
+
 //         recipe_param = [recipe_id, recipe_name, type, cuisine, vegan, healthy]
 
 //         var addRecipe = 'INSERT INTO recipes VALUES ($1,$2,$3,$4,$5,$6);'
@@ -267,7 +248,7 @@ exports.addingredients = (req,res) =>{
 //         pool.query(addRecipe, recipe_param, (error, result) =>{
 
 
-            
+
 //             if(error){
 //                 return console.log("There was a duplicate key")
 //             }
@@ -341,7 +322,7 @@ exports.addingredients = (req,res) =>{
 
 //         var vegan = JSON.parse(JSON.stringify(req.body.data.vegan));
 //         var healthy = JSON.parse(JSON.stringify(req.body.data.veryHealthy));
-        
+
 //         recipe_param = [recipe_id, recipe_name, type, cuisine, vegan, healthy]
 
 //         console.log(recipe_param)

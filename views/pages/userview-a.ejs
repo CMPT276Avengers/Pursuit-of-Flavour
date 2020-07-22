@@ -29,15 +29,18 @@
       <div class="collapse navbar-collapse flex-column" id="navbarToggler">
         <ul class="navbar-nav ml-auto mt-1 mb-1">
             <form class="form-inline">
-              <input class="form-control mr-sm-2" style="width: 400px" type="search" placeholder="Search Recipes..." aria-label="Search">
-              <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+              <input id="searchbar" class="form-control mr-sm-2" style="width: 400px" type="text" placeholder="Search Recipes..." aria-label="Search" name="searchterm">
+              <button class="btn btn-outline-light my-2 my-sm-0" type="submit" formaction="search/searchrecipe" formmethod="GET">Search</button>
             </form>
         </ul>
 
         <!-- User buttons -->
         <ul class="navbar-nav flex-row ml-auto mt-1">
           <li class="nav-item mr-auto">
-            <button class="btn btn-danger my-2 my-sm-0" type="submit" formaction="/database" formmethod="GET">Admin</button>
+            <form>
+              <button class="btn btn-danger my-2 my-sm-0" type="submit" formaction="/database" formmethod="GET">Admin</button>
+            </form>
+            
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="/userview">Home<span class="sr-only">(current)</span></a>
@@ -160,8 +163,9 @@
           <div class="card">
             <img class="card-img-top" id="img1" src="" alt="">
             <div class="card-body">
-              <h4 class="card-title" id="title1"></h4>
+              <h5 class="card-title" id="title1"></h5>
               <a href="#" id="button1" class="btn btn-outline-secondary recipe-details-button" data-recipeId = >Details</a>
+              <button title="buttonadd1" onclick="add_rec(id)" style="background-color: darkolivegreen;" id = '' type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
             </div>
           </div>
         </div>
@@ -169,8 +173,9 @@
           <div class="card">
             <img class="card-img-top" id="img2" src="" alt="">
             <div class="card-body">
-              <h4 class="card-title" id="title2"></h4>
+              <h5 class="card-title" id="title2"></h5>
               <a href="#" id="button2" class="btn btn-outline-secondary recipe-details-button">Details</a>
+              <button title="buttonadd2" onclick="add_rec(id)" style="background-color: darkolivegreen;" id = '' type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
             </div>
           </div>
         </div>
@@ -178,8 +183,9 @@
           <div class="card">
             <img class="card-img-top" id="img3" src="" alt="">
             <div class="card-body">
-              <h4 class="card-title" id="title3"></h4>
+              <h5 class="card-title" id="title3"></h5>
               <a href="#" id="button3" class="btn btn-outline-secondary recipe-details-button">Details</a>
+              <button title="buttonadd3" onclick="add_rec(id)" style="background-color: darkolivegreen;" id = ''  type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
             </div>
           </div>
         </div>
@@ -187,8 +193,9 @@
           <div class="card">
             <img class="card-img-top" id="img4" src="" alt="">
             <div class="card-body">
-              <h4 class="card-title" id="title4"></h4>
+              <h5 class="card-title" id="title4"></h5>
               <a href="#" id="button4" class="btn btn-outline-secondary recipe-details-button">Details</a>
+              <button title="buttonadd4" onclick="add_rec(id)" style="background-color: darkolivegreen;" id = '' type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
             </div>
           </div>
         </div>
@@ -234,6 +241,9 @@
 
   <%- include('../partials/recipeDetails.ejs')%>
 
+  <%- include('../partials/ingredientDetails.ejs')%>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
@@ -254,12 +264,9 @@
       })
       .then(data => {
         for (var i=1; i<5; i++){
-
           var img = data.recipes[i-1].image;
           var title = data.recipes[i-1].title;
           var id = data.recipes[i-1].id;
-
-
           if (img) {
             $('#img'+i.toString()).attr('src', img);
             $('#title'+i.toString()).text(title);
@@ -268,8 +275,9 @@
             $('#img'+i.toString()).attr('alt', 'Image Not Found');
             $('#title'+i.toString()).text(title);
           }
-
           $('#button'+i).attr('data-recipeId',id);
+          $('button[title|="buttonadd'+i+'"]').attr('id',id);
+
         }
       }) 
       .catch(err => {
@@ -277,8 +285,9 @@
       });
     </script>
 
+  <script type="text/javascript" src='/browserecipes.js'></script>
+
+
   </body>
 
 </html>
-
-

@@ -1,13 +1,12 @@
 const { Pool } = require('pg');
 var pool = new Pool({
-    connectionString: 'postgres://postgres:password@localhost/cmpt276project'
 
-    // connectionString: process.env.DATABASE_URL
-});
+    connectionString: 'postgres://postgres:password@localhost/cmpt276project'
+})
 const session = require('express-session');
 
 exports.login = async (req,res) => {
-    try{    
+    try{
         const {username, password} = req.body;
 
         if(!username || !password){
@@ -53,24 +52,24 @@ exports.adduser = (req,res) => {
     var password = req.body.password;
     // parameter for the 'person' database
     person_parameters = [fname,lname,username,email, phone]
-    //parameter for the 'account' database 
+    //parameter for the 'account' database
     add_parameters = [user_type, password, username]
-  
+
     var personquery = `INSERT INTO person(fname,lname,username,email,phone) VALUES ($1,$2,$3,$4,$5);`;
-    var addquery = `INSERT INTO account(type,password,username) VALUES ($1,$2,$3);`; 
-    
-  
+    var addquery = `INSERT INTO account(type,password,username) VALUES ($1,$2,$3);`;
+
+
     pool.query(personquery, person_parameters,(error, resp)=>{
         if (error){ return res.send(error);}
-  
+
         // if the information is successfully added to the person database
         // add it other info to the account database
         pool.query(addquery, add_parameters,(error, resp)=>{
           if (error){ return res.send(error);}
-  
+
           res.redirect('/login');
-  
+
         });
-  
-    });      
+
+    });
 }

@@ -1,6 +1,4 @@
 
-
-
 $(document).ready(function(){
     // $('#recipeModal').modal({show:false});
     $('.recipe-details-button').on('click',function(){
