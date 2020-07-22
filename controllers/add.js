@@ -26,7 +26,7 @@ exports.adduser_recipe = (req,res) =>{
 }
 
 exports.deleteuser_recipe = (req,res) =>{
-    var recipe_id = req.body.recipe_id_delete;
+    var recipe_id = JSON.parse(JSON.stringify(req.body.id));
     var username = req.session.user.username;
 
     user_recipe_param = [username,recipe_id]
@@ -36,7 +36,7 @@ exports.deleteuser_recipe = (req,res) =>{
     pool.query(deleteUser_Recipe, user_recipe_param,(error, resp)=>{
         if (error){ return console.log(error);}
 
-        res.redirect('/my_recipe');
+        res.send(resp);
 
     })
 

@@ -26,7 +26,22 @@ exports.getMyIngredients = (req,res) => {
     else{
         res.redirect('/login');
     }
+}
 
+
+exports.compare_my_ingredients = (req,res) => {
+    var username = req.session.user.username;
+    var ingredientQuery = 'SELECT * FROM has WHERE username = $1';
+    pool.query(ingredientQuery,[username], (error,results) => {
+        if (error){
+            console.log(error);
+            res.send('401').redirect('/userview');
+        }
+        else{
+            res.send(results);
+
+        }
+    })
 }
 
 
