@@ -4,7 +4,6 @@
 function add_rec(id){
     var data = id;
 
-
     fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+data+"/information", {
           "method": "GET",
           "headers": {
@@ -61,14 +60,14 @@ function add_rec(id){
             response.json()
 
 
-            fetch("/browse/addUserRecipe", {
-                method: 'post',
-                headers: {'Content-Type': 'application/json'}, 
-                body: JSON.stringify({'data':data})
-            })
+            // fetch("/browse/addUserRecipe", {
+            //     method: 'post',
+            //     headers: {'Content-Type': 'application/json'}, 
+            //     body: JSON.stringify({'data':data})
+            // })
 
-            .then(function (response){
-                response.json()
+            // .then(function (response){
+            //     response.json()
 
 
 
@@ -92,10 +91,8 @@ function add_rec(id){
         }) 
         
 
-    })
-
-  }
-
+    }
+    
   $(document).ready(function () {
     $('#closemodal').click(function (){
         $("#mytable tr").remove()

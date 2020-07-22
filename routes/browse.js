@@ -13,7 +13,7 @@ router.post('/browserecipesbyVegan', browseController.browserecipesbyVegan)
 router.get('/browseingredients', browseController.browseingredients)
 
 router.post('/addrecipe', browseController.addrecipe)
-router.post('/addUserRecipe', browseController.addUserRecipe)
+// router.post('/addUserRecipe', browseController.addUserRecipe)
 
 router.post('/addingredients', browseController.addingredients)
 
