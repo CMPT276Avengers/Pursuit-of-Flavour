@@ -2,7 +2,7 @@
 
 
 $(document).ready(function(){
-    $('#recipeModal').modal({show:false});
+    // $('#recipeModal').modal({show:false});
     $('.recipe-details-button').on('click',function(){
         // console.log("clicked!!");
         $(".alert").hide();
@@ -10,7 +10,6 @@ $(document).ready(function(){
         // var recipeId = '166666';
         $.get("/recipes/details?recipeId="+recipeId, function(data){
 
-            console.log(data);
             //for title
             $('.modal-title').empty().append(data.recipeInfo.title);
 

@@ -174,35 +174,44 @@ exports.addrecipe = (req,res) =>{
 
 
         pool.query(add_Recipe, recipe_param,(error, resp)=>{
-            if (error){ return console.log("There was a duplicate key!")}
+            if (error){}
 
-            res.send(resp);
+            var username = req.session.user.username
+            var addUser_Recipe =  `INSERT INTO exists_in VALUES ($1, $2, DEFAULT);`
+            user_recipe_param = [username, recipe_id]
+
+            pool.query(addUser_Recipe, user_recipe_param, (error, resp) => {
+                if (error){ return console.log("There was a duplicate key!")}
+
+                res.send(resp)
+
+            })
 
         })
     }
 }
 
 // Adds a single recipe to Exists in table
-exports.addUserRecipe = (req,res) => {
-    if(req.session.user){
+// exports.addUserRecipe = (req,res) => {
+//     if(req.session.user){
 
-        var recipe_id = JSON.parse(JSON.stringify(req.body.data.id));
+//         var recipe_id = JSON.parse(JSON.stringify(req.body.data.id));
 
-        var username = req.session.user.username;
+//         var username = req.session.user.username;
 
-        user_recipe_param = [username,recipe_id]
+//         user_recipe_param = [username,recipe_id]
 
-        var addUser_Recipe =  `INSERT INTO exists_in VALUES ($1, $2, DEFAULT);`
+//         var addUser_Recipe =  `INSERT INTO exists_in VALUES ($1, $2, DEFAULT);`
         
-        pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
-            if (error){ return console.log("There was a duplicate key!")}
+//         pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
+//             if (error){ return console.log("There was a duplicate key!")}
 
-            res.send(resp);
+//             res.send(resp);
 
-        })
-    }
+//         })
+//     }
 
-}
+// }
 
 // Add to HAS table 
 exports.addingredients = (req,res) =>{
