@@ -41,7 +41,7 @@ function add_rec(id){
                         $('<td>').text(name),
                         $('<td>').append("<img src='"+ img + "' width='75' height ='75'></img>"),
                         $('<td>').text(aisle),
-                        $('<td>').append('<button>').addClass("btn btn-secondary").text("Buy")
+                        // $('<td>').append('<button>').addClass("btn btn-secondary").text("Buy")
                     );
 
                     $tbody.append($tr)
