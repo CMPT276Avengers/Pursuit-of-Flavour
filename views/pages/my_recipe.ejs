@@ -31,6 +31,9 @@
                     </div>
                     <div class="modal-body">
                         <p id="req_ingred"></p>
+                        <div class="addIngContent">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,6 +106,8 @@
       </form> -->
 
       <br>
+      <a href="/cart" class="btn btn-info btn-lg" style="position: relative; left: 12px;">Go To Cart</a>
+      <br>
       <br>
       <a href="/userview" class="btn btn-success btn-lg" style="position: relative; left: 12px;">Go Back Home</a>
       <div id="output"></div>
@@ -122,6 +127,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script type="text/javascript" src="recipeDetails.js"></script>
+
     <script>
 
     var my_ingredients;
@@ -130,7 +136,7 @@
 
     // Checks whether the user has the required ingridients or not 
     // and renders a modal based off it 
-    function check(my_ingredients,req_ingredients){
+    function check(my_ingredients,req_ingredients,id){
         my_ingredients_arr = [];
         req_ingredients_arr = [];
         delete_arr = [];
@@ -173,7 +179,7 @@
             }
 
         }
-
+        $('.addIngContent').empty();
         if(delete_arr.length == 0){
             mod_ingre.innerHTML = "You have all the Required Ingredients to make the Recipe!";
         }else{
@@ -183,6 +189,10 @@
                 mod_ingre.innerHTML = mod_ingre.innerHTML +`${delete_arr[c]} | `;
 
             }
+            $('.addIngContent').empty();
+            $('.addIngContent').append("<div>Would you like to add the above missing ingredients to your cart?</div><button type='button' class='addToCartButton btn btn-success' data-recipeId="+id+" data-dismiss='modal'>Yes</button><button type='button' class='btn btn-danger'  data-dismiss='modal'>No</button>")
+
+
         }
 
      }
@@ -220,7 +230,7 @@
             .then((data)=>{
                 // console.log(data.rows);
 
-                check(data.rows,req_ingredients);
+                check(data.rows,req_ingredients,id);
 
 
                 
@@ -266,6 +276,8 @@
 
 
     </script>
+
+<script type="text/javascript" src="cart.js"></script>
 
     </body>
 

@@ -1,8 +1,8 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    // connectionString: 'postgres://postgres:password@localhost/cmpt276project'
-    connectionString: process.env.DATABASE_URL
+    connectionString: 'postgres://postgres:password@localhost/cmpt276project'
+    // connectionString: process.env.DATABASE_URL
 })
 const session = require('express-session');
 
@@ -29,6 +29,10 @@ exports.login = async (req,res) => {
                     usertype: type
                 };
 
+                req.session.cart= {
+                    arr: []
+                }
+
                 res.status(200).redirect("/userview");
             }
         })
@@ -40,6 +44,7 @@ exports.login = async (req,res) => {
 
 exports.logout = (req,res) => {
     req.session.user = null;
+    req.session.cart.arr = [];
     res.status(200).redirect("/login");
 }
 

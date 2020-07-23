@@ -73,7 +73,7 @@ router.get('/make', (req,res)=>{
 
 router.get('/compare_my_ingredients',pageController.compare_my_ingredients);
 
-
+router.get('/cart',pageController.cart);
 
 
 
