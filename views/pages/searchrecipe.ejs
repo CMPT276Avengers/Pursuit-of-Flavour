@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset='utf-8'>
+      <title>Pusuit of Flavour</title>
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link rel='stylesheet' href='/stylesheets/browserecipes.css'>
+
+  </head>
+
+  <div class= "col text-center">
+    <a href = "/userview" type="button" class="btn btn-primary" style="background-color: darkolivegreen; top: 15px;right: 15px;position: fixed;"> Return Home</a>
+  </div>
+
+
+  <body>
+
+
+    <div class="modal fade" id="add_recipe" tabindex="-1" role="dialog" aria-labelledby="add_recipeTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="add_recipeTitle"><b>Ingredients Needed</b></h3>
+            <button id= "closemodal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          </div>
+          <div class="modal-body">
+
+            <p id="modalcontents"></p>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" id="topmodal" style="background-color: #5a6268; float: left ; bottom: 15px;left: 15px;">Back to Top</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <p class="h1" style="color: darkolivegreen;">Searched Recipe: <%= title %></p>
+    <br><br>
+
+    <div id="tablecontainer">
+      <table class="table table-bordered" >
+          <thead style="border-width: 3px;">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Recipe Name</th>
+              <th scope="col">Prep Time (Minutes)</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <% reciperesults.forEach(function(r) { %>
+            <tr style="border-width: 1px;">
+              <td>
+                <img class="recipeImg" src="https://spoonacular.com/recipeImages/<%= r.image %>" width="200" height="170"></td>
+              <td>
+
+                <br><b id="recipename"><%= r.title %></b>
+                <br>
+                <button data-recipeId = <%= r.id %> type="button" class="btn btn-primary recipe-details-button mrdb">Details</button>
+              </td>
+              <td><%= r.readyInMinutes %> </td>
+
+              <td>
+                <button onclick="add_rec(id)" style="background-color: darkolivegreen;" id = <%= r.id %> type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
+
+              </td>
+            </tr>
+            <% }); %>
+
+          </tbody>
+        </table>
+      </div>
+       <button class="btn btn-primary" id="top" style="background-color: darkolivegreen;bottom: 15px;left: 15px;">Back to Top</button>
+
+       <%- include('../partials/recipeDetails.ejs')%>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript" src='/browserecipes.js'></script>
+    <script type="text/javascript" src="/recipeDetails.js"></script>
+
+
+
+
+
+    </body>
+
+</html>

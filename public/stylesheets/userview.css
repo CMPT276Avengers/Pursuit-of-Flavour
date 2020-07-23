@@ -17,9 +17,9 @@ body{
     font-size: 50px;
 }
 
-.navbar input {
+/* .navbar input {
     ;
-}
+} */
 
 .nav-item {
     padding: 0px 10px;
@@ -40,7 +40,18 @@ body{
     margin-top: 100px;
     height: 100%;
     width: 250px;
+/* <<<<<<< HEAD
+    height: 50px;
+    display: block;
+    padding-top: 10px;
+    border:1px solid white;
+    border-top: 10px;
+    text-align: center;
+    /* vertical-align: center;
+    text-decoration: none; */
+
     position: fixed;
+
     background-color: darkolivegreen;
     color: white;
     top: 100;
@@ -77,6 +88,30 @@ body{
     color: darkolivegreen;
     background: white;
 }
+
+a:hover {
+	background-color: beige;
+	color:darkolivegreen;
+}
+
+
+button[title~="navbar"]{
+    background-color: beige;
+    color: darkolivegreen;
+}
+
+button[title~="navbar"]:hover {
+    background-color: silver;
+}
+
+/* #vegan {
+    background-color: darkolivegreen;
+    color: beige;
+}
+#vegan:hover {
+    background-color: beige;
+    color: darkolivegreen;
+} */
 
 .sidebar ul li a {
     padding: 10px;

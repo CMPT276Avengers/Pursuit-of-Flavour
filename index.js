@@ -6,12 +6,13 @@ const { resourceUsage } = require('process');
 const { Console } = require('console');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+var cors = require('cors');
 
 
 
 var app = express();
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'scripts')));
@@ -23,6 +24,8 @@ app.use(session({
   resave: false
 }))
 
+app.use(cors());
+
 
 //Defining path for page directing routes: when user requests /blah it will look into the routes pages file
 app.use('/',require('./routes/pages'));
@@ -31,10 +34,8 @@ app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth'));
 
 
-// Defining path for browse routes for
-app.use('/browserecipes', require('./routes/browse'));
-
-app.use('/browseingredients', require('./routes/browseingred'));
+// Defining path for browse routes for recipes and ingredients
+app.use('/browse', require('./routes/browse'));
 
 
 //Definining path for add routes /add/blah
@@ -42,6 +43,21 @@ app.use('/add',require('./routes/add'));
 
 //Defining path for admin routes
 app.use('/admin',require('./routes/admin'));
+
+app.use('/search',require('./routes/searchrecipe'));
+
+//Defining path for temperary recipe Details page
+// app.get('/testRecipeDetails', (req,res) => {
+//   res.render('pages/testRecipeDetails');
+// })
+
+//Defining path for temperary recipe Details page
+app.use('/recipes', require('./routes/recipes'));
+
+app.use('/ingredients', require('./routes/ingredients'));
+
+
+
 
 
 

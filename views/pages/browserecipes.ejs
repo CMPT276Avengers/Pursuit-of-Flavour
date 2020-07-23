@@ -3,49 +3,88 @@
   <head>
       <meta charset='utf-8'>
       <title>Pusuit of Flavour</title>
-      
+
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       <link rel='stylesheet' href='/stylesheets/browserecipes.css'>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   </head>
 
-
+  <div class= "col text-center">
+    <a href = "/userview" type="button" class="btn btn-primary" style="background-color: darkolivegreen; top: 15px;right: 15px;position: fixed;"> Return Home</a>
+  </div>
 
 
   <body>
 
+
+    <div class="modal fade" id="add_recipe" tabindex="-1" role="dialog" aria-labelledby="add_recipeTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="add_recipeTitle"><b>Ingredients Needed</b></h3>
+            <button id= "closemodal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+
+            <p id="modalcontents"></p>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" id="topmodal" style="background-color: #5a6268; float: left ; bottom: 15px;left: 15px;">Back to Top</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <!-- <div id="add_recipe" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+        <p>Some text in the Modal..</p>
+        <p>Some text in the Modal..</p>
+      </div>
+    </div>
+  </div> -->
+
+
     <p class="h1" style="color: darkolivegreen;">Recipes that are <%= title %></p>
     <br><br>
-    
+
     <div id="tablecontainer">
-      <table class="table table-bordered">
+      <table class="table table-bordered" >
           <thead style="border-width: 3px;">
             <tr>
-              <th scope="col">Recipe Id</th>
+              <th scope="col"></th>
               <th scope="col">Recipe Name</th>
-              <th scope="col">Meal Type</th>
-              <th scope="col">Cuisine Type</th>
-              <th scope="col">Vegan</th>
-              <th scope="col">Healthy</th>
+              <th scope="col">Prep Time (Minutes)</th>
+
             </tr>
           </thead>
           <tbody>
-            <% rows.forEach(function(r) { %> 
+            <% reciperesults.forEach(function(r) { %>
             <tr style="border-width: 1px;">
-              <td><%= r.recipe_id %></td>
-              <td><%= r.recipe_name %></td>
-              <td><%= r.type %></td>
-              <td><%= r.cuisine %></td>
-              <td><%= r.vegan %></td>
-              <td><%= r.healthy %></td>
               <td>
-                <form action="/browserecipes/addrecipe" method="POST">
-                  <fieldset>
-                    <input type="text" name = "recipe_id" placeholder="Recipe Id">
-                    <input type="submit" value= "ADD" style="background-color: darkolivegreen;"> 
-                  </fieldset>
-                </form>
+                <img class="recipeImg" src="https://spoonacular.com/recipeImages/<%= r.image %>" width="200" height="170"></td>
+              <td>
+                <!-- <b><em><%= r.title %></em></b> -->
+                <!-- <img src="https://spoonacular.com/recipeImages/<%= r.image %>" onclick="document.getElementById('modal01').style.display='block'" class="w3-hover-opacity" width="100" height="100">
+                <div id="modal01" class="w3-modal w3-animate-zoom" onclick="this.style.display='none'"> -->
+                  <!-- <b><em><%= r.title %></em></b>
+                  <img class="w3-modal-content" src="https://spoonacular.com/recipeImages/<%= r.image %>">
+                </div> -->
+                <br><b id="recipename"><%= r.title %></b>
+                <br>
+                <button data-recipeId = <%= r.id %> type="button" class="btn btn-primary recipe-details-button mrdb">Details</button>
+              </td>
+              <td><%= r.readyInMinutes %> </td>
+              <td>
+                <button onclick="add_rec(id)" style="background-color: darkolivegreen;" id = <%= r.id %> type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
+
               </td>
             </tr>
             <% }); %>
@@ -53,13 +92,18 @@
           </tbody>
         </table>
       </div>
+       <button class="btn btn-primary" id="top" style="background-color: darkolivegreen;bottom: 15px;left: 15px;">Back to Top</button>
 
-      <a href = "/userview" type="button" class="btn btn-primary"> Return Home</a>
+       <%- include('../partials/recipeDetails.ejs')%>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script type="text/javascript" src='/browserecipes.js'></script>
+    <script type="text/javascript" src="/recipeDetails.js"></script>
+
+
+
 
 
     </body>

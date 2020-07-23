@@ -1,26 +1,51 @@
 const { Pool } = require('pg');
 var pool = new Pool({
-    connectionString: 'postgres://postgres:root@localhost/project'
-    // connectionString: process.env.DATABASE_URL
+
+    // connectionString: 'postgres://postgres:password@localhost/cmpt276project' 
+    connectionString: process.env.DATABASE_URL
 });
+
 const session = require('express-session');
 
 exports.getMyIngredients = (req,res) => {
+    if(req.session.user){
+        var username = req.session.user.username;
+        var ingredientQuery = 'SELECT * FROM has WHERE has.username = $1 AND has.amount > 0';
+        pool.query(ingredientQuery,[username], (error,results) => {
+            if (error){
+                console.log(error);
+                res.send('401').redirect('/userview');
+            }
+            else{
+                var data = {
+                    ingredients: results.rows
+                };
+                res.render('pages/my_ingredients', data);
+
+            }
+        })
+    }
+    else{
+        res.redirect('/login');
+    }
+}
+
+
+exports.compare_my_ingredients = (req,res) => {
     var username = req.session.user.username;
-    var ingredientQuery = 'SELECT * FROM has,ingredients WHERE has.ingredient_id = ingredients.ingredient_id AND has.username = $1';
+    var ingredientQuery = 'SELECT * FROM has WHERE username = $1';
     pool.query(ingredientQuery,[username], (error,results) => {
         if (error){
             console.log(error);
             res.send('401').redirect('/userview');
         }
         else{
-            var data = {
-                ingredients: results.rows
-            };
-            res.render('pages/my_ingredients', data);
+            res.send(results);
+
         }
     })
 }
+
 
 exports.displayRecipes = (req,res)=>{
     var i = 0;
@@ -49,7 +74,7 @@ exports.displayRecipes = (req,res)=>{
                     res.render('pages/my_recipe', resp);
 
                 })
-       
+
             }
 
 
@@ -57,7 +82,7 @@ exports.displayRecipes = (req,res)=>{
         })
     }
     else{
-        res.render('pages/login')
+        res.redirect('/login')
     }
 
 
@@ -66,11 +91,12 @@ exports.displayRecipes = (req,res)=>{
 
 exports.getUserDatabase = (req,res)=> {
     if(req.session.user){
+        console.log("in route rn")
         var getUsersQuery=`SELECT * FROM person,account where person.username=account.username`;
         // we are trying to get rows from here
         pool.query(getUsersQuery, (error,result)=>{
-        if(error)
-            res.end(error); // means we are ending the error and sending it as a response
+        if(error){
+            res.end(error);}// means we are ending the error and sending it as a response
             // if there is no error:
             var results={'rows':result.rows} //result is an object //'rows' is a parameter
             // result.rows is an array that contains the rows in the database table

@@ -1,26 +1,26 @@
 const express = require('express');
-const browseController = require('../controllers/browserecipes');
+const browseController = require('../controllers/browse');
 const router = express.Router();
 
 
-router.get('/american', browseController.american)
+router.post('/browserecipesbyCuisine', browseController.browserecipesbyCuisine)
 
-router.get('/chinese', browseController.chinese)
+router.post('/browserecipesbyType', browseController.browserecipesbyType)
 
-router.get('/japanese', browseController.japanese)
+router.post('/browserecipesbyVegan', browseController.browserecipesbyVegan)
 
-router.get('/maincourse', browseController.maincourse)
 
-router.get('/breakfast', browseController.breakfast)
-
-router.get('/appetizer', browseController.appetizer)
-
-router.get('/dessert', browseController.dessert)
-
-router.get('/vegan', browseController.vegan)
-
-router.get('/healthy', browseController.healthy)
+router.get('/browseingredients', browseController.browseingredients)
 
 router.post('/addrecipe', browseController.addrecipe)
+// router.post('/addUserRecipe', browseController.addUserRecipe)
+
+router.post('/addingredients', browseController.addingredients)
+
+
+// router.post('/populaterecipesCuisine', browseController.populaterecipesCuisine)
+// router.post('/populaterecipesType', browseController.populaterecipesType)
+// router.post('/populaterecipesVegan', browseController.populaterecipesVegan)
+// router.post('/populateingredients', browseController.populateingredients)
 
 module.exports = router;

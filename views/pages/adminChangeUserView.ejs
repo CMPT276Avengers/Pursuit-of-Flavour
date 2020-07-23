@@ -5,7 +5,7 @@
     <title>DATABASE</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"> </script>
-    <link rel="stylesheet" href="./stylesheets/style.css">
+    <!-- <link rel="stylesheet" href="./stylesheets/style.css"> -->
       <script type="text.javascript"src="index.js"></script>
     <style>
     p{
@@ -29,7 +29,7 @@
     <option value="general" align="center">General User</option>
     <option value="admin" align="center">Admin User</option>
     </select>
-    <form class=""action="/adduser"method="post" id="first" >
+    <form class=""action="/admin/addUsers"method="post" id="first" >
       <a> First Name:<br></a><input value=""type="text"name="fname"placeholder="Enter First Name" class="form-control"><br><br>
       <a> Last Name: <br></a><input value=""type="text"name="lname"placeholder="Enter Last Name" class="form-control"><br><br>
       <a> Username:  <br></a><input value=""type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
@@ -45,7 +45,7 @@
     <div>
       <div class="form-inline">
         <h1  align="left"style="font-size:30px;background-color:#F5F5DC;position:float">Delete an existing user</h1>
-        <form class="" action= "/deleteuser" method="post" >
+        <form class="" action= "/admin/deleteUsers" method="post" >
         <a> Username:  <br></a><input type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
               <input id="last"type ="submit"class="btn btn-primary btn-lg"><br>
         </form>
@@ -54,7 +54,7 @@
     <div>
       <div class="form-inline">
         <h1  align="left"style="font-size:30px;background-color:#F5F5DC;position:float">View an existing user</h1>
-        <form class="" action= "/viewuser" method="post">
+        <form class="" action= "/admin/viewUsers" method="post">
         <a> Username:  <br></a><input type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
               <input id="last"type ="submit"class="btn btn-primary btn-lg"><br>
         </form>
@@ -68,6 +68,8 @@
 
     </nav>
 
+    <a href="/userview" class="btn btn-success btn-lg" style="position: relative; left: 12px;">Go Back Home</a>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </body>
 </html>

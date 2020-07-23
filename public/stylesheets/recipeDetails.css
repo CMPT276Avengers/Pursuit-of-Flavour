@@ -1,0 +1,13 @@
+.general-information{
+    border: 1px solid lightgrey;
+    border-radius: 5%;
+}
+
+.ingredients-container{
+    /* border: 1px solid lightgrey; */
+    border-radius: 5%;    
+}
+
+.finished{
+    background-color:lightgreen;
+}

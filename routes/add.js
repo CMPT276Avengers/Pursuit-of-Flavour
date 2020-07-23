@@ -11,5 +11,7 @@ router.post('/addIngredient', addController.addIngredient)
 
 router.post('/deleteIngredient', addController.deleteIngredient)
 
+router.post('/add_recipe_to_db_add_recipe_to_user', addController.add_recipe_to_db_add_recipe_to_user)
+
 
 module.exports = router;

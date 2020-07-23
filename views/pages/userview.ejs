@@ -6,7 +6,6 @@
       
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       <link rel='stylesheet' href='./stylesheets/userview.css'>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   </head>
 
@@ -29,12 +28,10 @@
       <!-- Search bar -->
       <div class="collapse navbar-collapse flex-column" id="navbarToggler">
         <ul class="navbar-nav ml-auto mt-1 mb-1">
-          <li class="nav-item">
             <form class="form-inline">
-              <input class="form-control mr-sm-2" style="width: 400px" type="search" placeholder="Search Recipes..." aria-label="Search">
-              <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+              <input id="searchbar" class="form-control mr-sm-2" style="width: 400px" type="text" placeholder="Search Recipes..." aria-label="Search" name="searchterm">
+              <button class="btn btn-outline-light my-2 my-sm-0" type="submit" formaction="search/searchrecipe" formmethod="GET">Search</button>
             </form>
-          </li>
         </ul>
 
         <!-- User buttons -->
@@ -60,6 +57,9 @@
           </li>
         </ul>
       </div>
+
+
+
     </nav>
 
     <!-- Sidebar -->
@@ -74,13 +74,25 @@
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Cuisine</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li class="nav-item"> 
-                        <a class="nav-link"  href="/browserecipes/american">American</a>
+                        <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                          <input type="hidden" value="american" name="cuisine">
+                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">American
+                          </button>
+                        </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/browserecipes/chinese">Chinese</a>
+                      <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                        <input type="hidden" value="chinese" name="cuisine">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Chinese
+                        </button>
+                      </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/browserecipes/japanese">Japanese</a>
+                      <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                        <input type="hidden" value="japanese" name="cuisine">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Japanese
+                        </button>
+                      </form>
                     </li>
                 </ul>
             </li>
@@ -88,24 +100,46 @@
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Type</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li class="nav-item">
-                        <a class="nav-link" href="/browserecipes/breakfast">Breakfast</a>
+                      <form action="/browse/browserecipesbyType" method="POST"> 
+                        <input type="hidden" value="morning%20meal" name="type">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Breakfast
+                        </button>
+                      </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/browserecipes/maincourse">Main Course</a>
+                      <form action="/browse/browserecipesbyType" method="POST"> 
+                        <input type="hidden" value="dinner" name="type">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dinner
+                        </button>
+                      </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/browserecipes/appetizer">Appetizer</a>
+                      <form action="/browse/browserecipesbyType" method="POST"> 
+                        <input type="hidden" value="appetizer" name="type">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Appetizer
+                        </button>
+                      </form>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/browserecipes/dessert">Dessert</a>
+                      <form action="/browse/browserecipesbyType" method="POST"> 
+                        <input type="hidden" value="dessert" name="type">
+                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dessert
+                        </button>
+                      </form>
                   </li>
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/browserecipes/vegan">Veg/Vegan</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/browserecipes/healthy">Low Calorie</a>
+              <a href="#dietSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Diet</a>
+              <ul class="collapse list-unstyled" id="dietSubmenu">
+                <li class="nav-item">
+                  <form action="/browse/browserecipesbyVegan" method="POST"> 
+                    <input type="hidden" value="vegan" name="diet">
+                    <button id= "vegan" title="navbar" class="btn btn-secondary" type="submit" style="width: 250px; height: 50px;">Vegan
+                    </button>
+                  </form>
+                </li>
+              </ul>
             </li>
         </ul>
     </div> 
@@ -114,7 +148,7 @@
     <!-- APIS -->
     <div class="container-fluid padding apis">
 
-    <!-- Recipe API -->
+        <!-- Recipe API -->
     <div class="recipe-api">
       <h3>Recommended Recipes</h3>
       <hr>
@@ -123,8 +157,9 @@
           <div class="card">
             <img class="card-img-top" id="img1" src="" alt="">
             <div class="card-body">
-              <h4 class="card-title" id="title1">Title</h4>
-              <a href="#" class="btn btn-outline-secondary">Details</a>
+              <h5 class="card-title" id="title1"></h5>
+              <a href="#" id="button1" class="btn btn-outline-secondary recipe-details-button" data-recipeId = >Details</a>
+              <button title="buttonadd1" onclick="add_rec(id)" style="background-color: darkolivegreen;" id = '' type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
             </div>
           </div>
         </div>
@@ -132,8 +167,9 @@
           <div class="card">
             <img class="card-img-top" id="img2" src="" alt="">
             <div class="card-body">
-              <h4 class="card-title" id="title2">Title</h4>
-              <a href="#" class="btn btn-outline-secondary">Details</a>
+              <h5 class="card-title" id="title2"></h5>
+              <a href="#" id="button2" class="btn btn-outline-secondary recipe-details-button">Details</a>
+              <button title="buttonadd2" onclick="add_rec(id)" style="background-color: darkolivegreen;" id = '' type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
             </div>
           </div>
         </div>
@@ -141,8 +177,9 @@
           <div class="card">
             <img class="card-img-top" id="img3" src="" alt="">
             <div class="card-body">
-              <h4 class="card-title" id="title3">Title</h4>
-              <a href="#" class="btn btn-outline-secondary">Details</a>
+              <h5 class="card-title" id="title3"></h5>
+              <a href="#" id="button3" class="btn btn-outline-secondary recipe-details-button">Details</a>
+              <button title="buttonadd3" onclick="add_rec(id)" style="background-color: darkolivegreen;" id = ''  type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
             </div>
           </div>
         </div>
@@ -150,8 +187,9 @@
           <div class="card">
             <img class="card-img-top" id="img4" src="" alt="">
             <div class="card-body">
-              <h4 class="card-title" id="title4">Title</h4>
-              <a href="#" class="btn btn-outline-secondary">Details</a>
+              <h5 class="card-title" id="title4"></h5>
+              <a href="#" id="button4" class="btn btn-outline-secondary recipe-details-button">Details</a>
+              <button title="buttonadd4" onclick="add_rec(id)" style="background-color: darkolivegreen;" id = '' type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>
             </div>
           </div>
         </div>
@@ -159,25 +197,60 @@
     </div>
         
       <div class="maps-api">
-        <h3>Stores Near Me</b> <br>
-        <hr>
-        <button>GOOGLE MAPS API</button>
+        <!-- MAPS API -->
+      <b style="font-size: x-large;">Grocery Stores Near Me</b> <br>
+      <div id="render_map"></div>
+    
+      <script>
+        ren_store = document.getElementById("render_map");
+        const on_succ = (position)=>{
+          console.log(position);
+          ren_store.innerHTML = `<iframe
+          width="600"
+          height="350"
+          frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDx6KEuTSZstpQ3w5TtqeCgC7E7KXT3Z3o&q=grocery+store+near+me/@${position.coords.latitude},${position.coords.longitude}" allowfullscreen>
+          </iframe>`
+          
+        };
+    
+        const on_error = (error)=>{
+          console.log(error);
+          ren_store.innerHTML = `<iframe
+          width="600"
+          height="350"
+          frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDx6KEuTSZstpQ3w5TtqeCgC7E7KXT3Z3o&q=grocery+store+in+vancouver+/@49.2578629,-123.1424164,13z/data=!3m1!4b1" allowfullscreen>
+          </iframe>`
+        };
+        
+        
+        navigator.geolocation.getCurrentPosition(on_succ,on_error);
+    
+      </script>
+      <!-- MAPS API finished -->
       </div>  
     </div>
   </div>
 
+  <%- include('../partials/recipeDetails.ejs')%>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <%- include('../partials/ingredientDetails.ejs')%>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script type="text/javascript" src='userview.js'></script>
+    <script type="text/javascript" src="recipeDetails.js"></script>
+
 
     <script>
       fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=4", {
         "method": "GET",
         "headers": {
         "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-        "x-rapidapi-key": "00b52d5f6dmsh0b593edd8c00e17p100848jsn6b6dadc41877"
+        "x-rapidapi-key": "bffc1f9da3msh5395e6eda5e41aep1fbc6fjsn5a9e415e3423"
         }
       })
       .then(response => {
@@ -187,6 +260,7 @@
         for (var i=1; i<5; i++){
           var img = data.recipes[i-1].image;
           var title = data.recipes[i-1].title;
+          var id = data.recipes[i-1].id;
           if (img) {
             $('#img'+i.toString()).attr('src', img);
             $('#title'+i.toString()).text(title);
@@ -195,12 +269,18 @@
             $('#img'+i.toString()).attr('alt', 'Image Not Found');
             $('#title'+i.toString()).text(title);
           }
+          $('#button'+i).attr('data-recipeId',id);
+          $('button[title|="buttonadd'+i+'"]').attr('id',id);
+
         }
       }) 
       .catch(err => {
         console.log(err);
       });
     </script>
+
+  <script type="text/javascript" src='/browserecipes.js'></script>
+
 
   </body>
 
