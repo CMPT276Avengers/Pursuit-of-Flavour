@@ -108,3 +108,36 @@ exports.getUserDatabase = (req,res)=> {
         res.redirect('/login');
     }
 }
+
+exports.cart = (req,res) => {
+    if(req.session.user){
+        var cart = req.session.cart.arr;
+        // console.log(cart);
+        res.render('pages/cart',{cart:cart});
+    } 
+    else{ 
+        res.redirect('/login');
+    }
+}   
+
+
+exports.profile = (req,res) => {
+    if(req.session.user){
+        var user = req.session.user.username;
+        var getUserInfoQuery=`SELECT * FROM person,account WHERE person.username = '${user}' AND account.username = '${user}'`;
+        pool.query(getUserInfoQuery, (error,results) => {
+            // console.log(results);
+            if(error) {
+                // console.log('error');
+                res.send('401').redirect('/userview');
+            }
+            else {
+                var info = {'rows':results.rows}
+                res.render('pages/profile', info);
+            }    
+        })
+    }
+    else{
+        res.redirect('/login');
+    }
+}

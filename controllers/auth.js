@@ -30,6 +30,10 @@ exports.login = async (req,res) => {
                     usertype: type
                 };
 
+                req.session.cart= {
+                    arr: []
+                }
+
                 res.status(200).redirect("/userview");
             }
         })
@@ -41,6 +45,7 @@ exports.login = async (req,res) => {
 
 exports.logout = (req,res) => {
     req.session.user = null;
+    req.session.cart.arr = [];
     res.status(200).redirect("/login");
 }
 
