@@ -75,8 +75,7 @@ router.get('/compare_my_ingredients',pageController.compare_my_ingredients);
 
 router.get('/cart',pageController.cart);
 
-
-
+router.get('/profile', pageController.profile);
 
 
 module.exports = router;

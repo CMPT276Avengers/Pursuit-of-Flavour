@@ -58,6 +58,7 @@ app.use('/ingredients', require('./routes/ingredients'));
 
 app.use('/cart',require('./routes/cart'));
 
+app.use('/profile', require('./routes/profile'));
 
 
 
