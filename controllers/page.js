@@ -1,8 +1,8 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-  connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
-  // connectionString: process.env.DATABASE_URL
+    // connectionString: 'postgres://postgres:password@localhost/cmpt276project'
+    connectionString: process.env.DATABASE_URL
 });
 
 const session = require('express-session');
@@ -102,6 +102,39 @@ exports.getUserDatabase = (req,res)=> {
             // result.rows is an array that contains the rows in the database table
                 res.render('pages/ad',results);//  we are sending the results to the db.ejs
          })
+    }
+    else{
+        res.redirect('/login');
+    }
+}
+
+exports.cart = (req,res) => {
+    if(req.session.user){
+        var cart = req.session.cart.arr;
+        // console.log(cart);
+        res.render('pages/cart',{cart:cart});
+    }
+    else{
+        res.redirect('/login');
+    }
+}
+
+
+exports.profile = (req,res) => {
+    if(req.session.user){
+        var user = req.session.user.username;
+        var getUserInfoQuery=`SELECT * FROM person,account WHERE person.username = '${user}' AND account.username = '${user}'`;
+        pool.query(getUserInfoQuery, (error,results) => {
+            // console.log(results);
+            if(error) {
+                // console.log('error');
+                res.send('401').redirect('/userview');
+            }
+            else {
+                var info = {'rows':results.rows}
+                res.render('pages/profile', info);
+            }
+        })
     }
     else{
         res.redirect('/login');

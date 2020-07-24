@@ -7,11 +7,20 @@ $(document).ready(function(){
             // console.log(data);
             $('.addIngredientBody').empty()
             var ingredients = data.ingredients;
+            console.log(ingredients);
+            var imageUrl;
             ingredients.forEach(element => {
-                if(!element.image.startsWith("http")){
-                    element.image = 'https://spoonacular.com/cdn/ingredients_100x100/'+element.image;
+                if(element.image == null){
+                    imageUrl = '';
                 }
-                $('.addIngredientBody').append("<tr class='ingredientsRow'><td><img src="+element.image+" style='height: 50px; width: 50px;'></td><td>"+element.ingredient_name+"</td><td>"+element.aisle+"</td><td>"+element.unit+"</td><td><input type='number' class='ingredientInput' data-ingredientId="+element.ingredient_id+" style='box-sizing: border-box; width: 100%;'' value='0' ></td><tr>")
+                else if(element.image.startsWith("http")){
+                    imageUrl = element.image;
+                    
+                }
+                else{
+                    imageUrl = 'https://spoonacular.com/cdn/ingredients_100x100/'+element.image;
+                }
+                $('.addIngredientBody').append("<tr class='ingredientsRow'><td><img src="+imageUrl+" style='height: 50px; width: 50px;'></td><td>"+element.ingredient_name+"</td><td>"+element.aisle+"</td><td>"+element.unit+"</td><td><input type='number' class='ingredientInput' data-ingredientId="+element.ingredient_id+" style='box-sizing: border-box; width: 100%;'' value='0' ></td><tr>")
             })
             
             $('#ingredientsModal').modal({show:true});

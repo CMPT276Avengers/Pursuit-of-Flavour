@@ -1,10 +1,9 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-  connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
-  // connectionString: process.env.DATABASE_URLproject'
+    // connectionString: 'postgres://postgres:password@localhost/cmpt276project'
 
-    // connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL
 });
 const session = require('express-session');
 

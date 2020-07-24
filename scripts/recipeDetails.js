@@ -20,7 +20,7 @@ $(document).ready(function(){
             } else {
                 $('.general-info-details').empty().append("<div style:'color: red;'>$$$</div>");
             }
-            $('.general-info-details').append("<div>"+data.recipeInfo.readyInMinutes+" min</div>");
+            $('.general-info-details').append("<div>"+data.recipeInfo.readyInMinutes+"</div>");
             $('.general-info-details').append("<div>"+data.recipeInfo.servings+"</div>");
             
             //section for additional info
