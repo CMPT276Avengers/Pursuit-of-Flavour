@@ -39,7 +39,7 @@ exports.login = (req,res) => {
 
 exports.logout = (req,res) => {
     req.session.user = null;
-    req.session.cart.arr = [];
+    req.session.cart = null;
     res.status(200).redirect("/login");
 }
 
@@ -61,14 +61,14 @@ exports.adduser = (req,res) => {
 
 
     pool.query(personquery, person_parameters,(error, resp)=>{
-        if (error){ return res.send(error);}
+        if (error){ return res.status(409).send(error);}
 
         // if the information is successfully added to the person database
         // add it other info to the account database
         pool.query(addquery, add_parameters,(error, resp)=>{
-          if (error){ return res.send(error);}
+          if (error){ return res.status(409).send(error);}
 
-          res.redirect('/login');
+          res.status(201).redirect('/login');
 
         });
 
