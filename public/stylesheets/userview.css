@@ -45,7 +45,7 @@ body{
     position: fixed;
 
     background-color: darkolivegreen;
-    color: white;
+    color: beige;
     top: 100;
     left: 0;
 }
@@ -67,7 +67,7 @@ body{
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: white;
+  color: beige;
   display: block;
 }
 
@@ -80,12 +80,6 @@ body{
     color: darkolivegreen;
     background: white;
 }
-
-/* a:hover {
-	background-color: beige;
-	color:darkolivegreen;
-} */
-
 
 button[title~="navbar"]{
     background-color: beige;

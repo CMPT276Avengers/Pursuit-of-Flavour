@@ -58,6 +58,7 @@ app.use('/ingredients', require('./routes/ingredients'));
 
 app.use('/cart',require('./routes/cart'));
 
+app.use('/profile', require('./routes/profile'));
 
 
 
@@ -65,4 +66,9 @@ app.use('/cart',require('./routes/cart'));
 
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+<<<<<<< HEAD
 module.exports = app;
+=======
+
+module.exports = app;
+>>>>>>> d1d683c0d842868da097844cfe6833c1e12ea7ac

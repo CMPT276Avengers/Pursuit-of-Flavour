@@ -1,8 +1,8 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    connectionString: 'postgres://postgres:root@localhost/cmpt276project'
-    // connectionString: process.env.DATABASE_URL
+    // connectionString: 'postgres://postgres:root@localhost/cmpt276project'
+    connectionString: process.env.DATABASE_URL
 });
 
 const session = require('express-session');
@@ -118,3 +118,25 @@ exports.cart = (req,res) => {
         res.redirect('/login');
     }
 }   
+
+
+exports.profile = (req,res) => {
+    if(req.session.user){
+        var user = req.session.user.username;
+        var getUserInfoQuery=`SELECT * FROM person,account WHERE person.username = '${user}' AND account.username = '${user}'`;
+        pool.query(getUserInfoQuery, (error,results) => {
+            // console.log(results);
+            if(error) {
+                // console.log('error');
+                res.send('401').redirect('/userview');
+            }
+            else {
+                var info = {'rows':results.rows}
+                res.render('pages/profile', info);
+            }    
+        })
+    }
+    else{
+        res.redirect('/login');
+    }
+}

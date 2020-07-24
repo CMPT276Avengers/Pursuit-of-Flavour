@@ -1,50 +1,45 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    connectionString: 'postgres://postgres:root@localhost/cmpt276project'
-    // connectionString: process.env.DATABASE_URL
+    // connectionString: 'postgres://postgres:root@localhost/cmpt276project'
+    connectionString: process.env.DATABASE_URL
 })
 const session = require('express-session');
 
-exports.login = async (req,res) => {
-    try{
-        const {username, password} = req.body;
+exports.login = (req,res) => {
+    const {username, password} = req.body;
 
-        if(!username || !password){
-            return res.status(400).render('pages/login', {message: 'Please provide an email/password'})
-        }
-
-        var selectUsername = 'SELECT * FROM account WHERE username = $1';
-        pool.query(selectUsername,[username], async(error,results) => {
-            if(results.rows.length == 0 || results.rows[0].password != password){
-                res.status(401).render('pages/login', {message: 'Email or Password is incorrect'});
-            }
-            else{
-                // console.log(results.rows[0]);
-                const usern = results.rows[0].username;
-                const type = results.rows[0].type;
-
-                req.session.user = {
-                    username: usern,
-                    usertype: type
-                };
-
-                req.session.cart= {
-                    arr: []
-                }
-
-                res.status(200).redirect("/userview");
-            }
-        })
-
-    } catch (error){
-        console.log(error);
+    if(!username || !password){
+        return res.status(400).render('pages/login', {message: 'Please provide an email/password'})
     }
+
+    var selectUsername = 'SELECT * FROM account WHERE username = $1';
+    pool.query(selectUsername,[username], async(error,results) => {
+        if(results.rows.length == 0 || results.rows[0].password != password){
+            res.status(401).render('pages/login', {message: 'Email or Password is incorrect'});
+        }
+        else{
+            // console.log(results.rows[0]);
+            const usern = results.rows[0].username;
+            const type = results.rows[0].type;
+
+            req.session.user = {
+                username: usern,
+                usertype: type
+            };
+
+            req.session.cart= {
+                arr: []
+            }
+
+            res.status(200).redirect("/userview");
+        }
+    })
 }
 
 exports.logout = (req,res) => {
     req.session.user = null;
-    req.session.cart.arr = [];
+    req.session.cart = null;
     res.status(200).redirect("/login");
 }
 
@@ -66,14 +61,14 @@ exports.adduser = (req,res) => {
 
 
     pool.query(personquery, person_parameters,(error, resp)=>{
-        if (error){ return res.send(error);}
+        if (error){ return res.status(409).send(error);}
 
         // if the information is successfully added to the person database
         // add it other info to the account database
         pool.query(addquery, add_parameters,(error, resp)=>{
-          if (error){ return res.send(error);}
+          if (error){ return res.status(409).send(error);}
 
-          res.redirect('/login');
+          res.status(201).redirect('/login');
 
         });
 
