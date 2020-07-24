@@ -65,3 +65,5 @@ app.use('/cart',require('./routes/cart'));
 
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+module.exports = app;
