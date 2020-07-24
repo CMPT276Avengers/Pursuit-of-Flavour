@@ -8,12 +8,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node test.js",
+    "test": "mocha --exit",
     "watch": "nodemon ./index.js"
   },
   "dependencies": {
     "async": "^3.2.0",
     "axios": "^0.19.2",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "convert-units": "^2.3.4",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",

@@ -24,7 +24,7 @@ app.use(session({
   resave: false
 }))
 
-app.use(cors());
+app.use("/",cors());
 
 
 //Defining path for page directing routes: when user requests /blah it will look into the routes pages file
@@ -65,3 +65,4 @@ app.use('/cart',require('./routes/cart'));
 
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+module.exports = app;

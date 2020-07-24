@@ -1,51 +1,51 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    // connectionString: 'postgres://postgres:password@localhost/cmpt276project'
-   connectionString: process.env.DATABASE_URL
+    connectionString: 'postgres://postgres:root@localhost/cmpt276project'
+//    connectionString: process.env.DATABASE_URL
 });
 
 const axios = require("axios");
 
 
-exports.adduser_recipe = (req,res) =>{
-    var recipe_id = req.body.recipe_id;
-    var username = req.session.user.username;
+// exports.adduser_recipe = (req,res) =>{
+//     var recipe_id = req.body.recipe_id;
+//     var username = req.session.user.username;
 
-    user_recipe_param = [username,recipe_id]
+//     user_recipe_param = [username,recipe_id]
 
-    var addUser_Recipe =  `INSERT INTO exists_in VALUES ($1, $2, DEFAULT);`
+//     var addUser_Recipe =  `INSERT INTO exists_in VALUES ($1, $2, DEFAULT);`
 
-    pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
-        if (error){ return console.log(error)}
+//     pool.query(addUser_Recipe, user_recipe_param,(error, resp)=>{
+//         if (error){ return console.log(error)}
 
-        res.redirect('/my_recipe');
+//         res.redirect('/my_recipe');
 
-    })
-
-
-}
-
-exports.deleteuser_recipe = (req,res) =>{
-
-    var recipe_id = JSON.parse(JSON.stringify(req.body.id));
-    // var recipe_id = req.body.recipeid
-    var username = req.session.user.username;
-
-    user_recipe_param = [username,recipe_id]
-
-    var deleteUser_Recipe =  `DELETE FROM exists_in WHERE username = $1 AND recipe_id = $2`
-
-    pool.query(deleteUser_Recipe, user_recipe_param,(error, resp)=>{
-        if (error){ return console.log(error);}
-
-        // res.send(resp)
-        res.redirect('/my_recipe');
-
-    })
+//     })
 
 
-}
+// }
+
+// exports.deleteuser_recipe = (req,res) =>{
+
+//     var recipe_id = JSON.parse(JSON.stringify(req.body.id));
+//     // var recipe_id = req.body.recipeid
+//     var username = req.session.user.username;
+
+//     user_recipe_param = [username,recipe_id]
+
+//     var deleteUser_Recipe =  `DELETE FROM exists_in WHERE username = $1 AND recipe_id = $2`
+
+//     pool.query(deleteUser_Recipe, user_recipe_param,(error, resp)=>{
+//         if (error){ return console.log(error);}
+
+//         // res.send(resp)
+//         res.redirect('/my_recipe');
+
+//     })
+
+
+// }
 
 exports.addIngredient = (req,res) => {
     const username = req.session.user.username;
@@ -81,7 +81,7 @@ exports.addIngredient = (req,res) => {
                         res.send('404').redirect('myingredients');
                     }
                     else{
-                        res.redirect('/myingredients');
+                        res.status(200).redirect('/myingredients');
                     }
                 })
             }
