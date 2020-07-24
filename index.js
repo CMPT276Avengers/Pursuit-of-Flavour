@@ -63,3 +63,5 @@ app.use('/ingredients', require('./routes/ingredients'));
 
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+module.exports =app;
