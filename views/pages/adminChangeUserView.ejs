@@ -25,17 +25,13 @@
 
     <h2  align="center"style="font-size:30px;background-color:#F5F5DC;position:float" >Add a new user</h2>
 
-    <select id="user_type" name="user_type" class="form-control"align="center">
-    <option value="general" align="center">General User</option>
-    <option value="admin" align="center">Admin User</option>
-    </select>
     <form class=""action="/admin/addUsers"method="post" id="first" >
       <a> First Name:<br></a><input value=""type="text"name="fname"placeholder="Enter First Name" class="form-control"><br><br>
       <a> Last Name: <br></a><input value=""type="text"name="lname"placeholder="Enter Last Name" class="form-control"><br><br>
       <a> Username:  <br></a><input value=""type="text"name="username"placeholder="Enter Username" class="form-control"><br><br>
       <a> email id:  <br></a><input value=""type="text"name="email"placeholder="Enter email" class="form-control"><br><br>
       <a> Phone:     <br></a><input value=""type="text"name="phone"placeholder="Enter phone" class="form-control"><br><br>
-      <a> Type:      <br></a><input value=""type="text"name="type"placeholder="Enter type" class="form-control"><br><br>
+      <a> Type:      <br></a><input value=""type="text"name="type"placeholder="Admin/Genereal" class="form-control"><br><br>
       <a> Password:  <br></a><input value=""type="text"name="password"placeholder="Enter password" class="form-control"><br><br>
 
       <input id="last"type ="submit"class="btn btn-primary btn-lg"><br>
@@ -59,14 +55,9 @@
               <input id="last"type ="submit"class="btn btn-primary btn-lg"><br>
         </form>
     </div>
-    <nav >
 
-            <li>
-                  <a class="nav-link" href="/database">View the data</a>
-            </li>
+    <a class="btn btn-success btn-lg" href="/database"style="position: relative; left: 12px;">View the changes</a>
 
-
-    </nav>
 
     <a href="/userview" class="btn btn-success btn-lg" style="position: relative; left: 12px;">Go Back Home</a>
 

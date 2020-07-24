@@ -47,7 +47,7 @@ exports.addIngredients = (req,res) => {
                 var oldAmount = resp.rows[0].amount;
                 var newAmount = parseInt(oldAmount,10) + parseInt(amt,10);
                 var update_user_ing =  'UPDATE has SET amount = $1 WHERE username=$2 and ingredient_id = $3';
-                
+
                 pool.query(update_user_ing,[newAmount,username,ing_id],(error,results) => {
                     if(error){
                         console.log("updating of ing failed!");
