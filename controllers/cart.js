@@ -1,14 +1,14 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    connectionString: 'postgres://postgres:root@localhost/cmpt276project'
+  connectionString: 'postgres://postgres:root@localhost/cmpt276project'
     // connectionString: process.env.DATABASE_URL
 })
 const session = require('express-session');
 
 exports.updateCart = (req,res) => {
     var updateInfo = req.body.data;
-    
+
     if(req.session.cart.arr.length == 0){
         req.session.cart.arr = updateInfo;
     } else{
@@ -26,7 +26,7 @@ exports.updateCart = (req,res) => {
 
     res.sendStatus(202);
 
-  
+
 
 }
 
