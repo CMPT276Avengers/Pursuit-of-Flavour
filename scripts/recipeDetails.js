@@ -1,10 +1,11 @@
 
+var recipeId
 $(document).ready(function(){
     // $('#recipeModal').modal({show:false});
     $('.recipe-details-button').on('click',function(){
         // console.log("clicked!!");
         $(".alert").hide();
-        var recipeId = $(this).attr("data-recipeId");
+        recipeId = $(this).attr("data-recipeId");
         // var recipeId = '166666';
         $.get("/recipes/details?recipeId="+recipeId, function(data){
 
@@ -78,7 +79,7 @@ $(document).ready(function(){
     });
 
     $('.save-recipe-button').on('click',function(){
-        var recipeId = $(this).attr("data-recipeId");
+        recipeId = $(this).attr("data-recipeId");
         $.post("/add/add_recipe_to_db_add_recipe_to_user",{recipeId: recipeId},function(data){
             if(data.status == "passed"){
                 $("#added-alert").fadeTo(2000, 500).slideUp(1000, function() {
@@ -95,3 +96,52 @@ $(document).ready(function(){
 
 });
 
+
+// Text to Speech function for Instructions
+function speech(){
+    
+    var instr = new SpeechSynthesisUtterance();
+    instr.rate = 1;
+    instr.pitch = 0.5;
+    
+    $.get("/recipes/speech?recipeId="+recipeId, function(data){
+
+        var textinput= ''
+
+        for(var i=0;i<data.length;i++){
+            for(var j=0;j<data[i].steps.length;j++){
+                textinput += data[i].steps[j].step+' ';
+            }
+        }
+  
+        console.log(textinput)
+  
+        instr.text = textinput
+
+        window.speechSynthesis.speak(instr);
+
+
+    // if(window.speechSynthesis.getVoices().length == 0) {
+    //     window.speechSynthesis.addEventListener('voiceschanged', function() {
+    //         voicesloaded();
+    //     });
+    // }
+    // else {
+    //     voicesloaded()
+    // }
+
+    // function voicesloaded(){
+    //     var available_voices = window.speechSynthesis.getVoices();
+    //     var english_voice;
+
+    //     for(var i=0; i<available_voices.length; i++) {
+    //     	if(available_voices[i].lang === 'en-US') {
+    //     		english_voice = available_voices[i];
+    //     		break;
+    //     	}
+    //     }
+    //     console.log(english_voice);
+
+
+    });
+};
