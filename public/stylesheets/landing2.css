@@ -24,7 +24,7 @@ html, body{
 }
 
 #home {
-    background: url(../images/landing/background.jpg) no-repeat center center fixed;
+    background: url(../images/landing/background_3.jpg) no-repeat center center fixed;
     display:table;
     height: 100%;
     position: relative;
@@ -36,6 +36,7 @@ html, body{
     display: table-cell;
     text-align: center;
     vertical-align: middle;
+    color: white;
 }
 
 .padding {
@@ -47,7 +48,7 @@ html, body{
 }
 
 #fixed{
-    background: url(../images/landing/background.jpg) no-repeat center center fixed;
+    background: url(../images/landing/background_4.jpg) no-repeat center center fixed;
     display: table;
     height: 30%;
     position: relative;
