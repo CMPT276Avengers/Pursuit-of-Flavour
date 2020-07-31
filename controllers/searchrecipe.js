@@ -14,16 +14,11 @@ exports.searchrecipe = (req,res) => {
   var searchterm=req.query.searchterm;
 //  console.log(searchterm);
 
-  // fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query="+searchterm+"&number=10&offset=0", {
-	// "method": "GET",
-	// "headers": {
-	// 	"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-	// 	"x-rapidapi-key": "bffc1f9da3msh5395e6eda5e41aep1fbc6fjsn5a9e415e3423"
-  fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/videos/search?query="+searchterm+"&minLength=0&maxLength=999&offset=0&number=10", {
+  fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query="+searchterm+"&number=10&offset=0", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-		"x-rapidapi-key": "eb6b72d2femsh344b2576d60571fp1b9852jsnff1bb549d0cf"
+		"x-rapidapi-key": "bffc1f9da3msh5395e6eda5e41aep1fbc6fjsn5a9e415e3423"
 	}
 })
 .then(function(response) {
@@ -31,9 +26,9 @@ exports.searchrecipe = (req,res) => {
 })
 
 .then(function (data){
-  var results ={"reciperesults": data.videos, "title": searchterm}
-  //  console.log(data)
-  //  console.log(results)
+  var results ={"reciperesults": data.results, "title": searchterm}
+    // console.log(data)
+    // console.log(results)
   res.render('pages/searchrecipe', results)
 
 

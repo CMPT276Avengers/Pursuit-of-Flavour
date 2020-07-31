@@ -46,6 +46,8 @@ app.use('/admin',require('./routes/admin'));
 
 app.use('/search',require('./routes/searchrecipe'));
 
+app.use('/searchrecipevideos',require('./routes/searchrecipevideos'));
+
 //Defining path for temperary recipe Details page
 // app.get('/testRecipeDetails', (req,res) => {
 //   res.render('pages/testRecipeDetails');

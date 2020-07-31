@@ -3,7 +3,7 @@
   <head>
       <meta charset='utf-8'>
       <title>Pusuit of Flavour</title>
-      
+
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       <link rel='stylesheet' href='./stylesheets/userview.css'>
 
@@ -33,6 +33,14 @@
               <button class="btn btn-outline-light my-2 my-sm-0" type="submit" formaction="search/searchrecipe" formmethod="GET">Search</button>
             </form>
         </ul>
+
+        <div class="collapse navbar-collapse flex-column" id="navbarToggler">
+          <ul class="navbar-nav ml-auto mt-1 mb-1">
+              <form class="form-inline">
+                <input id="searchbar" class="form-control mr-sm-2" style="width: 400px" type="text" placeholder="Search recipe videos on youtube..." aria-label="Search" name="searchvideo">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit" formaction="searchrecipevideos/searchrecipevideos" formmethod="GET">Search</button>
+              </form>
+          </ul>
 
         <!-- User buttons -->
         <ul class="navbar-nav flex-row ml-auto mt-1">
@@ -76,22 +84,22 @@
             <li class="nav-item">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Cuisine</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li class="nav-item"> 
-                        <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                    <li class="nav-item">
+                        <form action="/browse/browserecipesbyCuisine" method="POST">
                           <input type="hidden" value="american" name="cuisine">
                           <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">American
                           </button>
                         </form>
                     </li>
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                      <form action="/browse/browserecipesbyCuisine" method="POST">
                         <input type="hidden" value="chinese" name="cuisine">
                         <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Chinese
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                      <form action="/browse/browserecipesbyCuisine" method="POST">
                         <input type="hidden" value="japanese" name="cuisine">
                         <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Japanese
                         </button>
@@ -103,28 +111,28 @@
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Type</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyType" method="POST"> 
+                      <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="morning%20meal" name="type">
                         <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Breakfast
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyType" method="POST"> 
+                      <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="dinner" name="type">
                         <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dinner
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyType" method="POST"> 
+                      <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="appetizer" name="type">
                         <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Appetizer
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyType" method="POST"> 
+                      <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="dessert" name="type">
                         <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dessert
                         </button>
@@ -136,7 +144,7 @@
               <a href="#dietSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Diet</a>
               <ul class="collapse list-unstyled" id="dietSubmenu">
                 <li class="nav-item">
-                  <form action="/browse/browserecipesbyVegan" method="POST"> 
+                  <form action="/browse/browserecipesbyVegan" method="POST">
                     <input type="hidden" value="vegan" name="diet">
                     <button id= "vegan" title="navbar" class="btn btn-secondary" type="submit" style="width: 250px; height: 50px;">Vegan
                     </button>
@@ -145,7 +153,7 @@
               </ul>
             </li>
         </ul>
-    </div> 
+    </div>
 
 
     <!-- APIS -->
@@ -198,12 +206,12 @@
         </div>
       </div>
     </div>
-        
+
       <div class="maps-api">
         <!-- MAPS API -->
       <b style="font-size: x-large;">Grocery Stores Near Me</b> <br>
       <div id="render_map"></div>
-    
+
       <script>
         ren_store = document.getElementById("render_map");
         const on_succ = (position)=>{
@@ -214,9 +222,9 @@
           frameborder="0" style="border:0"
           src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDx6KEuTSZstpQ3w5TtqeCgC7E7KXT3Z3o&q=grocery+store+near+me/@${position.coords.latitude},${position.coords.longitude}&zoom=12&center=${position.coords.latitude},${position.coords.longitude}" allowfullscreen>
           </iframe>`
-          
+
         };
-    
+
         const on_error = (error)=>{
           console.log(error);
           ren_store.innerHTML = `<iframe
@@ -226,13 +234,13 @@
           src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDx6KEuTSZstpQ3w5TtqeCgC7E7KXT3Z3o&q=grocery+store+in+vancouver+/@49.2578629,-123.1424164,13z/data=!3m1!4b1&zoom=12" allowfullscreen>
           </iframe>`
         };
-        
-        
+
+
         navigator.geolocation.getCurrentPosition(on_succ,on_error);
-    
+
       </script>
       <!-- MAPS API finished -->
-      </div>  
+      </div>
     </div>
   </div>
 
@@ -276,7 +284,7 @@
           $('button[title|="buttonadd'+i+'"]').attr('id',id);
 
         }
-      }) 
+      })
       .catch(err => {
         console.log(err);
       });

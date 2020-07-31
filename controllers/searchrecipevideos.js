@@ -8,18 +8,12 @@ var pool = new Pool({
 const session = require('express-session');
 const fetch = require('node-fetch');
 
-exports.searchrecipe = (req,res) => {
+exports.searchrecipevideos = (req,res) => {
 
   if(req.session.user){
-  var searchterm=req.query.searchterm;
-//  console.log(searchterm);
-  //
-  // fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query="+searchterm+"&number=10&offset=0", {
-	// "method": "GET",
-	// "headers": {
-	// 	"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-	// 	"x-rapidapi-key": "bffc1f9da3msh5395e6eda5e41aep1fbc6fjsn5a9e415e3423"
-  fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/videos/search?query="+searchterm+"&excludeingredients=mustard&includeingredients=chicken&minLength=0&maxLength=999&offset=0&number=10", {
+  var searchvideo=req.query.searchvideo;
+
+  fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/videos/search?query="+searchvideo+"&excludeingredients=mustard&includeingredients=chicken&minLength=0&maxLength=999&offset=0&number=10", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -31,10 +25,10 @@ exports.searchrecipe = (req,res) => {
 })
 
 .then(function (data){
-  var results ={"reciperesults": data.videos, "title": searchterm}
+  var results ={"reciperesults": data.videos, "title": searchvideo}
   //  console.log(data)
   //  console.log(results)
-  res.render('pages/searchrecipe', results)
+  res.render('pages/searchrecipevideos', results)
 
 
 })
