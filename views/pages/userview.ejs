@@ -36,9 +36,6 @@
 
         <!-- User buttons -->
         <ul class="navbar-nav flex-row ml-auto mt-1">
-          <li class="nav-item active">
-            <a class="nav-link" href="/userview">Home<span class="sr-only">(current)</span></a>
-          </li>
           <li class="nav-item">
             <% if(username){%>
               <a class="nav-link" href="/profile"><%=username%></a>
@@ -79,21 +76,21 @@
                     <li class="nav-item"> 
                         <form action="/browse/browserecipesbyCuisine" method="POST"> 
                           <input type="hidden" value="american" name="cuisine">
-                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">American
+                          <button title="navbar" type="submit">American
                           </button>
                         </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyCuisine" method="POST"> 
                         <input type="hidden" value="chinese" name="cuisine">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Chinese
+                        <button title="navbar" type="submit">Chinese
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyCuisine" method="POST"> 
                         <input type="hidden" value="japanese" name="cuisine">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Japanese
+                        <button title="navbar" type="submit">Japanese
                         </button>
                       </form>
                     </li>
@@ -105,28 +102,28 @@
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST"> 
                         <input type="hidden" value="morning%20meal" name="type">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Breakfast
+                        <button title="navbar" type="submit">Breakfast
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST"> 
                         <input type="hidden" value="dinner" name="type">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dinner
+                        <button title="navbar" type="submit">Dinner
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST"> 
                         <input type="hidden" value="appetizer" name="type">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Appetizer
+                        <button title="navbar" type="submit">Appetizer
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST"> 
                         <input type="hidden" value="dessert" name="type">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dessert
+                        <button title="navbar" type="submit">Dessert
                         </button>
                       </form>
                   </li>
@@ -138,7 +135,7 @@
                 <li class="nav-item">
                   <form action="/browse/browserecipesbyVegan" method="POST"> 
                     <input type="hidden" value="vegan" name="diet">
-                    <button id= "vegan" title="navbar" class="btn btn-secondary" type="submit" style="width: 250px; height: 50px;">Vegan
+                    <button id= "vegan" title="navbar" type="submit">Vegan
                     </button>
                   </form>
                 </li>

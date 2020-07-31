@@ -6,9 +6,13 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	<link rel='stylesheet' href='./stylesheets/profile.css'>
+	<link rel='stylesheet' href='./stylesheets/navigation.css'>
 </head>
 
 <body>
+
+	<%- include('../partials/navigation.ejs')%>
+	<div class="content">
 	<div class="container-fluid">
 		<h3>My Profile</h3>
 		<hr>
@@ -34,39 +38,36 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="fname">First Name</label>
-					<input type="text" class="form-control" id="fname" name="fname" placeholder="First name" value="<%= r.fname %>">
+					<input type="text" class="form-control fields" id="fname" name="fname" placeholder="First name" value="<%= r.fname %>">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="lname">Last Name</label>
-					<input type="text" class="form-control" id="lname" name="lname" placeholder="Last name" value="<%= r.lname %>">
+					<input type="text" class="form-control fields" id="lname" name="lname" placeholder="Last name" value="<%= r.lname %>">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="text" class="form-control" id="email" name="email" placeholder="Email" value="<%= r.email %>">
+				<input type="text" class="form-control fields" id="email" name="email" placeholder="Email" value="<%= r.email %>">
 			</div>
 			<div class="form-group">
 				<label for="phone">Phone Number</label>
-				<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number" value="<%= r.phone %>">
+				<input type="text" class="form-control fields" id="phone" name="phone" placeholder="Phone number" value="<%= r.phone %>">
 			</div>
 			<div class="form-group">
 				<label for="phone">Password</label>
-				<input type="password" class="form-control" id="password" name="password" placeholder="Password" value="<%= r.password %>">
+				<input type="password" class="form-control fields" id="password" name="password" placeholder="Password" value="<%= r.password %>">
 			</div>
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-12">
 					<button type="submit" class="btn btn-success" formaction="profile/update" formmethod="POST">Update</button>
 				</div>
-				<div class="col-sm-12">
-					<a href="/userview" class="btn btn-outline-success">Go Back Home</a>
-			</div>
 
 			<% }); %>
 
 		</form>
-
+	</div>
 	</div>
 
 </body>
