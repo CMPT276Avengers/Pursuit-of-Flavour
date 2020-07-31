@@ -13,13 +13,13 @@ exports.searchrecipe = (req,res) => {
   if(req.session.user){
   var searchterm=req.query.searchterm;
 //  console.log(searchterm);
-
+  //
   // fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query="+searchterm+"&number=10&offset=0", {
 	// "method": "GET",
 	// "headers": {
 	// 	"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
 	// 	"x-rapidapi-key": "bffc1f9da3msh5395e6eda5e41aep1fbc6fjsn5a9e415e3423"
-  fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/videos/search?query="+searchterm+"&minLength=0&maxLength=999&offset=0&number=10", {
+  fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/videos/search?query="+searchterm+"&excludeingredients=mustard&includeingredients=chicken&minLength=0&maxLength=999&offset=0&number=10", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",

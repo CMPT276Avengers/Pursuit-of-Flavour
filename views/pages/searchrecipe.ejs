@@ -55,14 +55,15 @@
             <% reciperesults.forEach(function(r) { %>
             <tr style="border-width: 1px;">
               <td>
-                <img class="recipeImg" src="https://spoonacular.com/recipeImages/<%= r.image %>" width="200" height="170"></td>
+                <img class="recipeImg" src="<%= r.thumbnail %>" width="200" height="170"></td>
               <td>
 
                 <br><b id="recipename"><%= r.title %></b>
                 <br>
-                <button data-recipeId = <%= r.id %> type="button" class="btn btn-primary recipe-details-button mrdb">Details</button>
+                <button onclick="window.location.href='https://www.youtube.com/watch?v=<%= r.youTubeId %>';" type="button" class="btn btn-primary recipe-details-button mrdb">Video</button>
+
               </td>
-              <td><%= r.readyInMinutes %> </td>
+              <td><%= r.views %> </td>
 
               <td>
                 <button onclick="add_rec(id)" style="background-color: darkolivegreen;" id = <%= r.id %> type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_recipe">Add to My Recipes!</button>

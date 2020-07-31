@@ -17,7 +17,7 @@ exports.getRecipeDetails = (req,res) => {
         })
         .then((response1)=>{
               var recipeInformation = response1.data;
-     
+
 
               axios({
                 "method":"GET",
@@ -32,20 +32,20 @@ exports.getRecipeDetails = (req,res) => {
               .then((response2)=>{
                   var recipeInstructions = response2.data;
 
-    
+
                   res.send({recipeInfo: recipeInformation,recipeInstructions: recipeInstructions});
 
-    
+
                })
                .catch((error)=>{
                   console.log(error);
-                  res.send(404);
+                  res.sendStatus(404);
                 })
 
         })
         .catch((error)=>{
               console.log(error);
-              res.send(404);
+              res.sendStatus(404);
         })
 
 
