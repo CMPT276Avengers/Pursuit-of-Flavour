@@ -8,7 +8,7 @@ const session = require('express-session');
 
 exports.updateCart = (req,res) => {
     var updateInfo = req.body.data;
-    
+
     if(req.session.cart.arr.length == 0){
         req.session.cart.arr = updateInfo;
     } else{
@@ -26,7 +26,7 @@ exports.updateCart = (req,res) => {
 
     res.sendStatus(202);
 
-  
+
 
 }
 
