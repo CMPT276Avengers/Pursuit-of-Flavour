@@ -96,52 +96,107 @@ $(document).ready(function(){
 
 });
 
+// Set up for speech/text
+var step = 1;
+var textinput = []
 
-// Text to Speech function for Instructions
-function speech(){
-    
-    var instr = new SpeechSynthesisUtterance();
-    instr.rate = 1;
-    instr.pitch = 0.5;
-    
-    $.get("/recipes/speech?recipeId="+recipeId, function(data){
+// Speech recognition setup
+try {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+}
+catch(e) {
+    console.error(e);
+    $('.no-browser-support').show();
+    $('.app').hide();
+}
 
-        var textinput= ''
+recognition.onerror = function(event) {
+    if(event.error == 'no-speech') {
+    alert('No speech was detected. Try again.');  
+    };
+}
 
-        for(var i=0;i<data.length;i++){
-            for(var j=0;j<data[i].steps.length;j++){
-                textinput += data[i].steps[j].step+' ';
-            }
-        }
-  
+// recognition.onstart = function(){
+//     alert("Listening now")
+// }
+
+// recognition.onend = function(){
+//     alert("Stopped listening")
+// }
+
+// Transcribing speech
+recognition.onresult = function(event){
+    var command = event.results[0][0].transcript
+    console.log(command)
+
+    if(command == 'quit'){
+        step = 1
+        textinput = []
+        alert('Quitting speech recognition')
+        $('#speech-alert').hide()
+        return
+    }
+
+    if(command == 'next'){
+        console.log(textinput[step])
+        console.log(step)
+        var instr = new SpeechSynthesisUtterance();
+        instr.rate = 1;
+        instr.pitch = 1;
+        instr.volume = 1;
+        instr.text = textinput[step]
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(instr)
+        step++
+    }
+
+    if(step == textinput.length){
+        alert("You have finished")
+        step = 1
+        textinput = []
+        $('#speech-alert').hide()
+    }
+}
+
+
+// Event handler for speech/text 
+$(document)
+    .on('click', '#speak', function() { // brings up interface to interact
+        console.log("in event")
+        $('#speech-alert').show()
+    })
+
+    .on('click', '#startspeech', function() { // loads instructions into speechsynthesis to text -> speech
         console.log(textinput)
-  
-        instr.text = textinput
+        console.log(step)
+        $.get("/recipes/speech?recipeId="+recipeId, function(data){
 
-        window.speechSynthesis.speak(instr);
+            for(var i=0;i<data.length;i++){
+                for(var j=0;j<data[i].steps.length;j++){
+                    textinput.push(data[i].steps[j].step);
+                }
+            }
+
+            console.log(textinput);
+            var instr = new SpeechSynthesisUtterance();
+            instr.rate = 1;
+            instr.pitch = 1;
+            instr.volume = 1;
+            instr.text = textinput[0]
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(instr);
+        })
+    })
+
+    .on('click', '#record', function() { // starts recognizing voice
+        recognition.start()
+    })
+
+    .on('click', '#stopspeech', function() {
+        recognition.stop()
+    })
 
 
-    // if(window.speechSynthesis.getVoices().length == 0) {
-    //     window.speechSynthesis.addEventListener('voiceschanged', function() {
-    //         voicesloaded();
-    //     });
-    // }
-    // else {
-    //     voicesloaded()
-    // }
-
-    // function voicesloaded(){
-    //     var available_voices = window.speechSynthesis.getVoices();
-    //     var english_voice;
-
-    //     for(var i=0; i<available_voices.length; i++) {
-    //     	if(available_voices[i].lang === 'en-US') {
-    //     		english_voice = available_voices[i];
-    //     		break;
-    //     	}
-    //     }
-    //     console.log(english_voice);
 
 
-    });
-};

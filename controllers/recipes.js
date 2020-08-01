@@ -58,7 +58,7 @@ exports.texttoSpeech = (req,res) =>{
 
   var recipeId = req.query.recipeId;
 
-  fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+recipeId+"/analyzedInstructions?stepBreakdown=false", {
+  fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+recipeId+"/analyzedInstructions", {
     "method": "GET",
     "headers": {
         "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
