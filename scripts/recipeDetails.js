@@ -138,9 +138,17 @@ recognition.onresult = function(event){
         return
     }
 
+    if(command == 'repeat'){
+        var instr = new SpeechSynthesisUtterance();
+        instr.rate = 1;
+        instr.pitch = 1;
+        instr.volume = 1;
+        instr.text = textinput[step-1]
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(instr)
+    }
+
     if(command == 'next'){
-        console.log(textinput[step])
-        console.log(step)
         var instr = new SpeechSynthesisUtterance();
         instr.rate = 1;
         instr.pitch = 1;
