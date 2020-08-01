@@ -1,7 +1,8 @@
 
 
 table {
-    background-color: white;
+    outline: darkslategrey;
+    background-color: beige;
     max-width: 60%;
     width: 50%;
     margin-left: auto;
