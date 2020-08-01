@@ -6,16 +6,13 @@
 
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       <link rel='stylesheet' href='/stylesheets/browserecipes.css'>
+      <link rel='stylesheet' href='/stylesheets/navigation.css'>
 
   </head>
 
-  <div class= "col text-center">
-    <a href = "/userview" type="button" class="btn btn-primary" style="background-color: darkolivegreen; top: 15px;right: 15px;position: fixed;"> Return Home</a>
-  </div>
-
 
   <body>
-
+    <%- include('../partials/navigation.ejs')%>
 
     <div class="modal fade" id="add_recipe" tabindex="-1" role="dialog" aria-labelledby="add_recipeTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -37,9 +34,9 @@
       </div>
     </div>
 
-
-    <p class="h1" style="color: darkolivegreen;">Searched Recipe: <%= title %></p>
-    <br><br>
+    <div class="content">
+    <h3>Searched Recipe: <%= title %></h3>
+    <hr>
 
     <div id="tablecontainer">
       <table class="table table-bordered" >
@@ -73,8 +70,10 @@
 
           </tbody>
         </table>
+        <button class="btn btn-primary" id="top" style="background-color: darkolivegreen;bottom: 15px;left: 15px;">Back to Top</button>
       </div>
-       <button class="btn btn-primary" id="top" style="background-color: darkolivegreen;bottom: 15px;left: 15px;">Back to Top</button>
+       
+     </div>
 
        <%- include('../partials/recipeDetails.ejs')%>
 

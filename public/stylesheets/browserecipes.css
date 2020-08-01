@@ -1,7 +1,4 @@
 
-body {
-    background-color: gainsboro;
-}
 
 table {
     background-color: white;
@@ -11,6 +8,13 @@ table {
     margin-right: auto;
 
 }
+
+.content h3 {
+	text-transform: capitalize;
+	color: darkslategrey;
+}
+
+
 
 #tablecontainer{
     margin: auto;
