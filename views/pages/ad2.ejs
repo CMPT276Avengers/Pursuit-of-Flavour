@@ -4,67 +4,25 @@
 <head>
   <meta charset="utf-8">
   <title>DATABASE</title>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"> </script>
   <link rel="stylesheet" href="./stylesheets/style.css">
-    <script type="text.javascript"src="index.js"></script>
-  <style>
-  p{
-    text-transform:capitalize;
-    font-family:'Times New Roman',Times,serif;
-  }#tableContainer{
-    padding-top: 10px;
-}
-
-table{
-  width: 300px;
-  margin: 0 auto;
-  font-family: Tahoma, Geneva, sans-serif;
-    text-align: center;
-    padding: auto;
-    padding-top: 100px;
-}
-th {
-  background-color: #F5F5DC;
-  color: black;
-}
-tr:nth-child(even) {background-color: #f2f2f2;}
-table, th, td{
-    border: 1px solid grey;
-    padding: 20px;
-}
-a:link {
-  color: red;
-
-}
-a:visited {
-  color: green;
-}
-a:hover {
-  color: hotpink;
-}
-a:active {
-  color: blue;
-}
-body{
-  background-color: gainsboro;
-  font-family: Calibri, sans-serif;
-}
-</style>
+  <script type="text.javascript"src="index.js"></script>
+  <link rel='stylesheet' href='/stylesheets/navigation.css'>
 
 
 </head>
 <body>
-  <header>
-        <h1 align="center"style="font-size:30px;background-color:#F5F5DC;position:float">The Changes Were Successful!</h1>
-  </header>
-  <nav >
+  <%- include('../partials/navigation.ejs')%>
+  
 
+  <div class="content">
+  <div class="container-fluid">
+    <h1 align="center">The Changes Were Successful!</h1>
+    <nav align="center">
+      <a class="btn btn-success" href="/admin/viewUpdateUsers">Make more changes in the data</a>
 
-              <a class="btn btn-success btn-lg" style="position: relative; left: 12px;" href="/admin/viewUpdateUsers">Make more changes in the data</a>
-
-                <a class="btn btn-success btn-lg" style="position: relative; left: 12px;" href="/database">View the data</a>
-
-            <a href="/userview" class="btn btn-success btn-lg" style="position: relative; left: 12px;">Go Back Home</a>
-    
-  </nav>
+      <a class="btn btn-success" href="/database">View the data</a>
+    </nav>
+  </div>
+  </div>

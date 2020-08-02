@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/navigation.css'>
 
 </head>
 
-    <body>
+<body>
+    <%- include('../partials/navigation.ejs')%>
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel='stylesheet' href='./stylesheets/userview.css'>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <div class="content">
+    <p class="h1" style="text-align: center;">You have no recipes, browse new recipes to get started!</p>
+    </div>
 
-        <br>
-        <p class="h1" style="text-align: center;">You have no Recipes! Browse New Recipes to get Started!</p>
+</body>
 
-        <br>
-        <br>
-        <a href="/userview" class="btn btn-success btn-lg" style="position: relative; left: 12px;">Go Back Home</a>
-    </body>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 

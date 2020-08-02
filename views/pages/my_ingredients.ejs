@@ -9,11 +9,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" type="text/css" href="/stylesheets/myingredients.css">
-
+  <link rel='stylesheet' href='./stylesheets/navigation.css'>
 
 </head>
 
 <body>
+    <%- include('../partials/navigation.ejs')%>
     <!-- Beginning of modal-->
     <div class="modal fade" id="ingredientsModal" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -65,7 +66,9 @@
     </div>
     <!--End of modal-->
 
-
+    <div class="content">
+        <h2>My Ingredients</h2>
+        <hr>
     <div class="container mb-3 mt-3">
         <table class="table table-striped table-bordered mydatatable" style="width:100%">
             <thead>
@@ -119,9 +122,10 @@
                 <% } %>
             </tbody>
         </table>
+        <button type="button" id="open-ingredient-modal" class="btn btn-success">Add Ingredients!</button>
     </div>
 
-    <button type="button" id="open-ingredient-modal" class="btn btn-success">Add Ingredients!</button>
+    <!-- <button type="button" id="open-ingredient-modal" class="btn btn-success">Add Ingredients!</button> -->
 
     <!-- <form action="/add/addIngredient" method="POST">
         <div class="form-row" style="padding-bottom: 120px;">
@@ -147,9 +151,7 @@
 
     <br>
     <br>
-
-    <a href="/userview" class="btn btn-success btn-lg" style="position: relative; left: 12px;">Go Back Home</a>
-
+</div>
 
 
 

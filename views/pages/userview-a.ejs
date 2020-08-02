@@ -5,7 +5,8 @@
       <title>Pusuit of Flavour</title>
 
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-      <link rel='stylesheet' href='./stylesheets/userview.css'>
+      <link rel='stylesheet' href='/stylesheets/userview.css'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   </head>
 
@@ -14,7 +15,7 @@
     <!-- Navigation bar -->
 
     <!-- Logo -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
       <a class="navbar-brand" href="/userview">
         <img src="../../images/userview/logosmall.png" width="75" height="75" class="d-inline-block align-top" alt="Logo">
         <span>Pursuit of Flavour</span>
@@ -29,19 +30,14 @@
       <div class="collapse navbar-collapse flex-column" id="navbarToggler">
         <ul class="navbar-nav ml-auto mt-1 mb-1">
             <form class="form-inline">
-              <input id="searchbar" class="form-control mr-sm-2" style="width: 400px" type="text" placeholder="Search Recipes..." aria-label="Search" name="searchterm">
-              <button class="btn btn-outline-light my-2 my-sm-0" type="submit" formaction="search/searchrecipe" formmethod="GET">Search</button>
+              <input id="searchbar" class="form-control" type="text" placeholder="Search Recipes..." aria-label="Search" name="searchterm">
+              <button class="btn btn-outline-light mr-2" type="submit" formaction="search/searchrecipe" formmethod="GET"><i class="fa fa-search"></i></button>
+
+              <input id="searchbar" class="form-control" type="text" placeholder="Search Recipe Videos..." aria-label="Search" name="searchvideo">
+              <button class="btn btn-outline-light " type="submit" formaction="searchrecipevideos/searchrecipevideos" formmethod="GET"><i class="fa fa-search"></i></button>  
+                 
             </form>
         </ul>
-
-        <div class="collapse navbar-collapse flex-column" id="navbarToggler">
-          <ul class="navbar-nav ml-auto mt-1 mb-1">
-              <form class="form-inline">
-                <input id="searchbar" class="form-control mr-sm-2" style="width: 400px" type="text" placeholder="Search recipe videos on youtube..." aria-label="Search" name="searchvideo">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit" formaction="searchrecipevideos/searchrecipevideos" formmethod="GET">Search</button>
-              </form>
-          </ul>
-
         <!-- User buttons -->
         <ul class="navbar-nav flex-row ml-auto mt-1">
           <li class="nav-item mr-auto">
@@ -49,9 +45,6 @@
               <button class="btn btn-danger my-2 my-sm-0" type="submit" formaction="/database" formmethod="GET">Admin</button>
             </form>
 
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/userview">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <% if(username){%>
@@ -67,16 +60,15 @@
           <li class="nav-item">
             <a href='/cart' class="nav-link" id="cart">My Cart</a>
           </li>
+          <li class="nav-item">
+            <a href="/message/message" class="nav-link">Live Chat</a>
+          </li>
           <li class="nav-item logout">
             <form class="in-line" action="/auth/logout" method="POST">
               <button class="btn btn-outline-danger my-2 my-sm-0" id="logout" type="submit" >Logout</button>
             </form>
           </li>
-          <li class="nav-item logout">
-            <form class="in-line" action="/message/message" method="GET">
-              <button class="btn btn-outline-danger my-2 my-sm-0" id="logout" type="submit" >Live Chat</button>
-            </form>
-          </li>
+          
         </ul>
       </div>
 
@@ -98,21 +90,21 @@
                     <li class="nav-item">
                         <form action="/browse/browserecipesbyCuisine" method="POST">
                           <input type="hidden" value="american" name="cuisine">
-                          <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">American
+                          <button title="navbar" type="submit">American
                           </button>
                         </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyCuisine" method="POST">
                         <input type="hidden" value="chinese" name="cuisine">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Chinese
+                        <button title="navbar" type="submit">Chinese
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyCuisine" method="POST">
                         <input type="hidden" value="japanese" name="cuisine">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Japanese
+                        <button title="navbar" type="submit">Japanese
                         </button>
                       </form>
                     </li>
@@ -124,28 +116,28 @@
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="morning%20meal" name="type">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Breakfast
+                        <button title="navbar" type="submit">Breakfast
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="dinner" name="type">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dinner
+                        <button title="navbar" type="submit">Dinner
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="appetizer" name="type">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Appetizer
+                        <button title="navbar" type="submit">Appetizer
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="dessert" name="type">
-                        <button class="btn btn-secondary" title="navbar" type="submit" style="width: 250px;">Dessert
+                        <button title="navbar" type="submit">Dessert
                         </button>
                       </form>
                   </li>
@@ -157,7 +149,7 @@
                 <li class="nav-item">
                   <form action="/browse/browserecipesbyVegan" method="POST">
                     <input type="hidden" value="vegan" name="diet">
-                    <button id= "vegan" title="navbar" class="btn btn-secondary" type="submit" style="width: 250px; height: 50px;">Vegan
+                    <button id= "vegan" title="navbar" type="submit">Vegan
                     </button>
                   </form>
                 </li>
@@ -219,8 +211,10 @@
     </div>
 
       <div class="maps-api">
+      <br><br>
         <!-- MAPS API -->
-      <b style="font-size: x-large;">Grocery Stores Near Me</b> <br>
+      <h3>Grocery Stores Near Me</h3>
+      <hr>
       <div id="render_map"></div>
 
       <script>
