@@ -1,24 +1,32 @@
-<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
       <a class="navbar-brand" href="/userview">
         <img src="../../images/userview/logosmall.png" width="75" height="75" class="d-inline-block align-top" alt="Logo">
         <span>Pursuit of Flavour</span>
       </a>
 
+      <!-- Toggler -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
+      <!-- Search bar -->
       <div class="collapse navbar-collapse flex-column" id="navbarToggler">
         <ul class="navbar-nav ml-auto mt-1 mb-1">
             <form class="form-inline">
-              <input id="searchbar" class="form-control mr-sm-2" style="width: 400px" type="text" placeholder="Search Recipes..." aria-label="Search" name="searchterm">
-              <button class="btn btn-outline-light my-2 my-sm-0" type="submit" formaction="search/searchrecipe" formmethod="GET">Search</button>
+              <input id="searchbar" class="form-control" type="text" placeholder="Search Recipes..." aria-label="Search" name="searchterm">
+              <button class="btn btn-outline-light mr-2" type="submit" formaction="search/searchrecipe" formmethod="GET"><i class="fa fa-search"></i></button>
+
+              <input id="searchbar" class="form-control" type="text" placeholder="Search Recipe Videos..." aria-label="Search" name="searchvideo">
+              <button class="btn btn-outline-light " type="submit" formaction="searchrecipevideos/searchrecipevideos" formmethod="GET"><i class="fa fa-search"></i></button>  
+                 
             </form>
         </ul>
-
+        <!-- User buttons -->
         <ul class="navbar-nav flex-row ml-auto mt-1">
           <li class="nav-item">
-          
+
               <a class="nav-link" href="/profile">My Profile</a>
 
           </li>
@@ -31,13 +39,20 @@
           <li class="nav-item">
             <a href='/cart' class="nav-link" id="cart">My Cart</a>
           </li>
+          <li class="nav-item">
+            <a href="/message/message" class="nav-link">Live Chat</a>
+          </li>
           <li class="nav-item logout">
             <form class="in-line" action="/auth/logout" method="POST">
               <button class="btn btn-outline-danger my-2 my-sm-0" id="logout" type="submit" >Logout</button>
             </form>
           </li>
+          
         </ul>
       </div>
+
+
+
     </nav>
 
     <!-- Sidebar -->
@@ -50,22 +65,22 @@
             <li class="nav-item">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Cuisine</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li class="nav-item"> 
-                        <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                    <li class="nav-item">
+                        <form action="/browse/browserecipesbyCuisine" method="POST">
                           <input type="hidden" value="american" name="cuisine">
                           <button title="navbar" type="submit">American
                           </button>
                         </form>
                     </li>
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                      <form action="/browse/browserecipesbyCuisine" method="POST">
                         <input type="hidden" value="chinese" name="cuisine">
                         <button title="navbar" type="submit">Chinese
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyCuisine" method="POST"> 
+                      <form action="/browse/browserecipesbyCuisine" method="POST">
                         <input type="hidden" value="japanese" name="cuisine">
                         <button title="navbar" type="submit">Japanese
                         </button>
@@ -77,28 +92,28 @@
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Type</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyType" method="POST"> 
+                      <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="morning%20meal" name="type">
                         <button title="navbar" type="submit">Breakfast
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyType" method="POST"> 
+                      <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="dinner" name="type">
                         <button title="navbar" type="submit">Dinner
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyType" method="POST"> 
+                      <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="appetizer" name="type">
                         <button title="navbar" type="submit">Appetizer
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
-                      <form action="/browse/browserecipesbyType" method="POST"> 
+                      <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="dessert" name="type">
                         <button title="navbar" type="submit">Dessert
                         </button>
@@ -110,7 +125,7 @@
               <a href="#dietSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Diet</a>
               <ul class="collapse list-unstyled" id="dietSubmenu">
                 <li class="nav-item">
-                  <form action="/browse/browserecipesbyVegan" method="POST"> 
+                  <form action="/browse/browserecipesbyVegan" method="POST">
                     <input type="hidden" value="vegan" name="diet">
                     <button id= "vegan" title="navbar" type="submit">Vegan
                     </button>
@@ -119,4 +134,4 @@
               </ul>
             </li>
         </ul>
-    </div> 
+    </div>

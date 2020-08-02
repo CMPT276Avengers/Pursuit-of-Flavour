@@ -18,9 +18,13 @@ body{
     line-height: 75px;
 }
 
-/* .navbar input {
-    ;
-} */
+ #searchbar {
+    width: 250px;
+} 
+
+.navbar-nav {
+  height: 75%;
+}
 
 .nav-item {
     padding: 0px 10px;
