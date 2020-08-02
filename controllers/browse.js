@@ -208,6 +208,7 @@ exports.addingredients = (req,res) =>{
         var aisle = JSON.parse(JSON.stringify(req.body.data.aisle));
 
         user_recipe_param = [username,ingre_id,amount, unit,ingre_name,image,aisle];
+        console.log(user_recipe_param)
 
         var addUser_Recipe =  `INSERT INTO has VALUES ($1, $2, $3, $4, $5, $6, $7);`
 

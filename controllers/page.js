@@ -113,11 +113,11 @@ exports.cart = (req,res) => {
         var cart = req.session.cart.arr;
         // console.log(cart);
         res.render('pages/cart',{cart:cart});
-    } 
-    else{ 
+    }
+    else{
         res.redirect('/login');
     }
-}   
+}
 
 
 exports.profile = (req,res) => {
@@ -133,7 +133,7 @@ exports.profile = (req,res) => {
             else {
                 var info = {'rows':results.rows}
                 res.render('pages/profile', info);
-            }    
+            }
         })
     }
     else{

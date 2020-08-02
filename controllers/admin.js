@@ -50,6 +50,9 @@ exports.addUsers=(req,res)=>{
     var adduser = `INSERT INTO person VALUES ('${fname}','${lname}','${username}','${email}','${phone}')`;
     var addaccount=`INSERT INTO account VALUES ('${type}','${password}','${username}')`;
     pool.query(adduser,(error,result)=>{
+      us=[];
+      ob={'f':fname,'l':lname,'u':username,'e':email,'p':phone,'t':type,'p':password};
+      us.push(ob);
     if (error){
       console.log(error);
       throw error;
@@ -60,6 +63,7 @@ exports.addUsers=(req,res)=>{
         throw error;
         }
         else{
+
         console.log("success");
 
        }

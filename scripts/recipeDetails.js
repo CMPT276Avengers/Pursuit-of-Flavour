@@ -1,10 +1,11 @@
 
+var recipeId
 $(document).ready(function(){
     // $('#recipeModal').modal({show:false});
     $('.recipe-details-button').on('click',function(){
         // console.log("clicked!!");
         $(".alert").hide();
-        var recipeId = $(this).attr("data-recipeId");
+        recipeId = $(this).attr("data-recipeId");
         // var recipeId = '166666';
         $.get("/recipes/details?recipeId="+recipeId, function(data){
 
@@ -78,7 +79,7 @@ $(document).ready(function(){
     });
 
     $('.save-recipe-button').on('click',function(){
-        var recipeId = $(this).attr("data-recipeId");
+        recipeId = $(this).attr("data-recipeId");
         $.post("/add/add_recipe_to_db_add_recipe_to_user",{recipeId: recipeId},function(data){
             if(data.status == "passed"){
                 $("#added-alert").fadeTo(2000, 500).slideUp(1000, function() {
@@ -94,4 +95,116 @@ $(document).ready(function(){
 
 
 });
+
+// Set up for speech/text
+var step = 1;
+var textinput = []
+
+// Speech recognition setup
+try {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+}
+catch(e) {
+    console.error(e);
+    $('.no-browser-support').show();
+    $('.app').hide();
+}
+
+recognition.onerror = function(event) {
+    if(event.error == 'no-speech') {
+    alert('No speech was detected. Try again.');  
+    };
+}
+
+// recognition.onstart = function(){
+//     alert("Listening now")
+// }
+
+// recognition.onend = function(){
+//     alert("Stopped listening")
+// }
+
+// Transcribing speech
+recognition.onresult = function(event){
+    var command = event.results[0][0].transcript
+    console.log(command)
+
+    if(command == 'quit'){
+        step = 1
+        textinput = []
+        alert('Quitting speech recognition')
+        $('#speech-alert').hide()
+        return
+    }
+
+    if(command == 'repeat'){
+        var instr = new SpeechSynthesisUtterance();
+        instr.rate = 1;
+        instr.pitch = 1;
+        instr.volume = 1;
+        instr.text = textinput[step-1]
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(instr)
+    }
+
+    if(command == 'next'){
+        var instr = new SpeechSynthesisUtterance();
+        instr.rate = 1;
+        instr.pitch = 1;
+        instr.volume = 1;
+        instr.text = textinput[step]
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(instr)
+        step++
+    }
+
+    if(step == textinput.length){
+        alert("You have finished")
+        step = 1
+        textinput = []
+        $('#speech-alert').hide()
+    }
+}
+
+
+// Event handler for speech/text 
+$(document)
+    .on('click', '#speak', function() { // brings up interface to interact
+        console.log("in event")
+        $('#speech-alert').show()
+    })
+
+    .on('click', '#startspeech', function() { // loads instructions into speechsynthesis to text -> speech
+        console.log(textinput)
+        console.log(step)
+        $.get("/recipes/speech?recipeId="+recipeId, function(data){
+
+            for(var i=0;i<data.length;i++){
+                for(var j=0;j<data[i].steps.length;j++){
+                    textinput.push(data[i].steps[j].step);
+                }
+            }
+
+            console.log(textinput);
+            var instr = new SpeechSynthesisUtterance();
+            instr.rate = 1;
+            instr.pitch = 1;
+            instr.volume = 1;
+            instr.text = textinput[0]
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(instr);
+        })
+    })
+
+    .on('click', '#record', function() { // starts recognizing voice
+        recognition.start()
+    })
+
+    .on('click', '#stopspeech', function() {
+        recognition.stop()
+    })
+
+
+
 
