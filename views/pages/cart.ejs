@@ -37,13 +37,14 @@
                             </div>
 
                             <div>
-                                <input type="text" size="4" value = '1'>
+                                <input class='ingredientInput' type="text" data-ingredientid = <%=elem.id%> size="4" value = <%=elem.amount%>>
+                                <b><%=elem.unit%></b>
                                 <button type="button" class="btn btn-danger deleteCartBtn" data-ingId=<%=elem.id%>>Remove</button>
                             </div>
                         </li>
                     <%})%>
                 </ul>
-                <button class="btn btn-success"> CHECKOUT</button>
+                <button class="btn btn-success" id="cartCheckOutBtn"> CHECKOUT</button>
                 
             </div>
         </div>

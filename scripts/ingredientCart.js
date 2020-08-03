@@ -41,7 +41,7 @@ $(document).ready(function(){
             }
         })
 
-        console.log(allIngredients);
+        // console.log(allIngredients);
         
         test(allIngredients)
 

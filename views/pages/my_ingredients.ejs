@@ -98,7 +98,16 @@
                     <% ingredients.forEach(function(r) { %>
                         <tr>
                             <td>
-                                <%if(r.image.startsWith("http")){%>
+                                <%
+                                var img
+                                if(r.image == null){
+                                    img = ''
+                                }
+                                else{
+                                    img = r.image
+                                }
+                                %>
+                                <%if(img.startsWith("http")){%>
                                     <img src="<%= r.image %>">
                                     
                                 <% } else {%>

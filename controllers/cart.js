@@ -45,7 +45,7 @@ exports.getUserIng = (req,res) => {
 }
 
 exports.deleteFromCart = (req,res) => {
-    console.log("in route")
+    // console.log("in route")
     var currentCart = req.session.cart.arr;
     var removeItem = req.body.data;
     currentCart.forEach((elem,index) => {
@@ -56,4 +56,10 @@ exports.deleteFromCart = (req,res) => {
     req.session.cart.arr = currentCart;
 
     res.sendStatus("202")
+}
+
+exports.checkOutCart = (req,res) => {
+    req.session.cart.arr = [];
+    res.sendStatus("202");
+
 }
