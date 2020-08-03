@@ -127,38 +127,41 @@
     <script>
 
 
-    function imagerecognition(){
+     function imagerecognition(){
         console.log('clicked')
-        // $.get("/ingredients/labelImage", function(data){
+        $.get("/ingredients/labelImage", function(data){
+            
+            var img_ingredients = []
+            // console.log(data)
+            // console.log(Object.keys(data))
+            img_ingredients = Object.keys(data);
+            console.log(img_ingredients)
+            // img_amounts = Object.values(data.amounts);
+            increase(img_ingredients, data)
 
-        //     console.log(data.ingredients)
+        }) 
 
-        // }) 
-        fetch('/ingredients/labelImage',{
-            "method":"GET",
-            "headers": {
-                "Content-Type": "application/json"
-                
-            }
-            })
-            .then(response => {
-                    // console.log(response);
-                    return response.json();
-                })
-            .then((data)=>{
-                console.log(data);
+    }
 
+    function increase(ingr, dict){
+        console.log("in function increase", ingr)
+        
+        let eachIngre = ingr.map(item => fetch('/ingredients/imgAddIngredients',{
+                method:"post",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({'ingredient':item, 'amount':dict})
+                }))
 
-
-                
-                
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(404)
-            });
-
-
+                Promise.all(eachIngre).then(function (response) {
+                        console.log("updated");
+                        location.reload()
+                    })
+                    
+                // .catch(err => {
+                //     console.log(err);
+                //     res.status(404)
+                // });
+       
     }
 
     </script>

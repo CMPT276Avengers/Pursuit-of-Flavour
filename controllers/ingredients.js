@@ -8,6 +8,7 @@ const session = require('express-session');
 // Imports the Google Cloud client library
 const vision = require('@google-cloud/vision');
 const fs = require('fs');
+var async = require('async');
 
 
 exports.getMyIngredients = (req,res) => {
@@ -73,38 +74,103 @@ async function ingred_rec() {
     const projectId = 'braided-grammar-285323'
     const keyFilename = './credentials/ingredientrecognition.json'
   
+    var ingre_array = []
     // Creates a client
     const client = new vision.ImageAnnotatorClient({projectId, keyFilename});
 
-    var ingredient_arr = []
-  
+    const fileName = `./public/images/ingredients/testingre.jpg`;
     const request = {
-        image: {content: fs.readFileSync('./public/images/test-google-img/wakeup_cat.jpg')},
-      };
-      
-      const [result] = await client.objectLocalization(request);
-      const objects = result.localizedOSbjectAnnotations;
-      objects.forEach(object => {
-        ingredient_arr.push(object.name)
+    image: {content: fs.readFileSync(fileName)},
+    };
+
+    const [result] = await client.objectLocalization(request);
+    const objects = result.localizedObjectAnnotations;
+    objects.forEach(object => {
         console.log(`Name: ${object.name}`);
-      });
+        ingre_array.push(object.name)
+    });
 
-      console.log("this is the array", ingredient_arr)
-      return ingredient_arr
+    // ingre_array = [...new Set(ingre_array)]
+    var ingre_array = ingre_array.map(word => word.toLowerCase());
+    ingre_array.sort()
 
-      
+    var duplicates = {};
+    ingre_array.forEach(function(item){ 
+        duplicates[item] = (duplicates[item] || 0)+1; 
+    });
 
+    return duplicates;
   }
 
 
 // Ingredient detection 
-exports.labelImage = (req,res) => {
-    // console.log("in image route")
-    // var ingre = ingred_rec()
+exports.labelImage = async (req,res) => {
+    var duplicates = await ingred_rec()
+    console.log(duplicates)
 
+    // findIngre = 'SELECT * FROM has WHERE username = $1 and name = $2;'
 
+    // pool.query(findIngre, [username, numIngre[0]], (error,results) =>{
+    //     if(error){
+    //         console.log("failed!");
+    //         res.status(404)
+    //     }
+    //     else{
+    //         if(results.rows.length == 0){
+    //             alert("This ingredient is not in your list!")
+    //         }
 
-    res.send(ingred_rec());
+    //         else{
+    //             var amount = results.rows[0].
+    //         }
+
+   var data = {amounts: duplicates}
+            res.send(data.amounts);
+        // }
+    // })
     
     
+}
+
+exports.imgAddIngredients = (req,res) =>{
+    console.log("working in db")
+    var username = req.session.user.username;
+    var ingre_name = JSON.parse(JSON.stringify(req.body.ingredient));
+    console.log(ingre_name)
+
+    var ingre_amount = JSON.parse(JSON.stringify(req.body.amount[ingre_name]));
+    console.log(ingre_amount)
+
+    findIngre = 'SELECT * FROM has WHERE username = $1 AND ingredient_name LIKE $2;'
+
+    pool.query(findIngre, [username, ingre_name + '%'], (error,results) =>{
+        if(error){
+            console.log("failed!");
+            console.log(error)
+            res.status(404)
+        }
+        else{
+            if(results.rows.length == 0){
+                console.log("This ingredient is not in your list!")
+                res.sendStatus(200)
+            }
+
+            else{
+                var amount = results.rows[0].amount
+                amount +=ingre_amount
+
+                var increasequery = 'UPDATE has SET amount = $1 WHERE username = $2 AND ingredient_name LIKE $3;'
+
+                pool.query(increasequery, [amount, username, ingre_name + '%'], (error,results) => {
+                    if(error){
+                        console.log("failed!");
+                        res.sendStatus(404)
+                    }
+                    else{
+                        res.sendStatus(200)
+                    }
+                })
+            }
+        }
+    })
 }
