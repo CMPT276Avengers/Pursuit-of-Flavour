@@ -68,28 +68,43 @@ exports.addIngredients = (req,res) => {
 }
 
 // Cloud vision API call
-async function quickstart() {
-    console.log("in quickstart function")
+async function ingred_rec() {
+    // console.log("in quickstart function")
     const projectId = 'braided-grammar-285323'
-    const keyFilename = '/home/tingting/Documents/CMPT276/cmpt276project/Pursuit-of-Flavour/credentials/ingredientrecognition.json'
+    const keyFilename = './credentials/ingredientrecognition.json'
   
     // Creates a client
     const client = new vision.ImageAnnotatorClient({projectId, keyFilename});
-  
-    // Performs label detection on the image file
-    const [result] = await client.labelDetection('https://www.kindpng.com/picc/m/67-670151_basket-of-apple-png-free-download-apples-in.png');
-    const labels = result.labelAnnotations;
-    console.log('Labels:');
-    labels.forEach(label => console.log(label.description));
 
-    return labels
+    var ingredient_arr = []
+  
+    const request = {
+        image: {content: fs.readFileSync('./public/images/test-google-img/wakeup_cat.jpg')},
+      };
+      
+      const [result] = await client.objectLocalization(request);
+      const objects = result.localizedOSbjectAnnotations;
+      objects.forEach(object => {
+        ingredient_arr.push(object.name)
+        console.log(`Name: ${object.name}`);
+      });
+
+      console.log("this is the array", ingredient_arr)
+      return ingredient_arr
+
+      
 
   }
 
 
 // Ingredient detection 
 exports.labelImage = (req,res) => {
-    console.log("in image route")
-    res.send(quickstart());
+    // console.log("in image route")
+    // var ingre = ingred_rec()
+
+
+
+    res.send(ingred_rec());
+    
     
 }
