@@ -5,6 +5,9 @@ var pool = new Pool({
     // connectionString: process.env.DATABASE_URL
 });
 const session = require('express-session');
+// Imports the Google Cloud client library
+const vision = require('@google-cloud/vision');
+const fs = require('fs');
 
 
 exports.getMyIngredients = (req,res) => {
@@ -62,4 +65,31 @@ exports.addIngredients = (req,res) => {
         })
 
     }
+}
+
+// Cloud vision API call
+async function quickstart() {
+    console.log("in quickstart function")
+    const projectId = 'braided-grammar-285323'
+    const keyFilename = '/home/tingting/Documents/CMPT276/cmpt276project/Pursuit-of-Flavour/credentials/ingredientrecognition.json'
+  
+    // Creates a client
+    const client = new vision.ImageAnnotatorClient({projectId, keyFilename});
+  
+    // Performs label detection on the image file
+    const [result] = await client.labelDetection('https://www.kindpng.com/picc/m/67-670151_basket-of-apple-png-free-download-apples-in.png');
+    const labels = result.labelAnnotations;
+    console.log('Labels:');
+    labels.forEach(label => console.log(label.description));
+
+    return labels
+
+  }
+
+
+// Ingredient detection 
+exports.labelImage = (req,res) => {
+    console.log("in image route")
+    res.send(quickstart());
+    
 }

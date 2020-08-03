@@ -122,6 +122,21 @@
     </div>
 
     <button type="button" id="open-ingredient-modal" class="btn btn-success">Add Ingredients!</button>
+    <button class="btn btn-primary" id="imagerecognition" onclick="imagerecognition()">Image Recognition!</button>
+
+    <script>
+
+
+    function imagerecognition(){
+        console.log('clicked')
+        $.get("/ingredients/labelImage", function(data){
+
+            console.log(data)
+
+        }) 
+    }
+
+    </script>
 
     <!-- <form action="/add/addIngredient" method="POST">
         <div class="form-row" style="padding-bottom: 120px;">
