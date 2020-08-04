@@ -12,5 +12,6 @@ var pool = new Pool({
 
 exports.message = (req, res)=> {
   console.log("in route now");
-  	res.render("pages/message.ejs");
+  	var type = req.session.user.usertype;
+  	res.render("pages/message.ejs", {type:type});
 };

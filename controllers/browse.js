@@ -15,6 +15,7 @@ exports.browserecipesbyCuisine = (req,res) =>{
 
     if(req.session.user){
         var cuisine = req.body.cuisine
+        var user = req.session.user.username
         // console.log("browse recipes")
 
         // var recipearrayID =[]
@@ -31,10 +32,14 @@ exports.browserecipesbyCuisine = (req,res) =>{
         })
 
         .then(function (data){
-          var results ={"reciperesults": data.results, "title": cuisine}
-          console.log(data)
-          console.log(results)
-          res.render('pages/browserecipes', results)
+          var account = `SELECT * FROM account WHERE account.username = '${user}'`;
+          pool.query(account, (error, result)=>{
+            if (error){ console.log("error")}          
+            var results ={"rows": result.rows, "reciperesults": data.results, "title": cuisine}
+          // console.log(data)
+          // console.log(results)
+            res.render('pages/browserecipes', results)
+          })
         })
 
 
@@ -59,6 +64,7 @@ exports.browserecipesbyType = (req,res) =>{
 
     if(req.session.user){
         var type = req.body.type
+        var user = req.session.user.username;
 
 
         fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?type="+type+"&number=5&instructionsRequired=true&query=", {
@@ -78,8 +84,15 @@ exports.browserecipesbyType = (req,res) =>{
             type = "Breakfast"
         }
 
-          var results ={"reciperesults": data.results, "title": type}
-          res.render('pages/browserecipes', results)
+          // var results ={"reciperesults": data.results, "title": type}
+
+          var account = `SELECT * FROM account WHERE account.username = '${user}'`;
+          pool.query(account, (error, result)=>{
+            if (error){ console.log("error")}
+            results = {"rows": result.rows, "reciperesults": data.results, "title": type}
+            res.render('pages/browserecipes', results);
+          })
+          // res.render('pages/browserecipes', results)
         })
 
     }
@@ -93,6 +106,7 @@ exports.browserecipesbyVegan = (req,res) =>{
 
     if(req.session.user){
         var diet = req.body.diet
+        var user = req.session.user.username
 
         // var recipearrayID =[]
 
@@ -108,11 +122,16 @@ exports.browserecipesbyVegan = (req,res) =>{
         })
 
         .then(function (data){
-          var results ={"reciperesults": data.results, "title": diet}
-          res.render('pages/browserecipes', results)
+          var account = `SELECT * FROM account WHERE account.username = '${user}'`;
+          pool.query(account, (error, result)=>{
+            if (error){ console.log("error")}
+            results = {"rows": result.rows, "reciperesults": data.results, "title": diet}
+            res.render('pages/browserecipes', results);
+          })
+          // res.render('pages/browserecipes', results)
         })
-
     }
+
 
     else{
         res.render('pages/login');

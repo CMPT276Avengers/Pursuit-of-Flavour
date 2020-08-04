@@ -7,7 +7,13 @@
 </head>
 
 <body>
-    <%- include('../partials/navigation.ejs')%>
+	<% rows.forEach(function(r) { %>
+		<% if (r.type == "general") { %> 
+			<%- include('../partials/navigation.ejs') %>
+		<% } if (r.type == "admin") { %>
+			<%- include('../partials/navigation-a.ejs') %>
+		<% } %>
+	<% }); %>
 
     <div class="content">
     <p class="h1" style="text-align: center;">You have no recipes, browse new recipes to get started!</p>

@@ -19,8 +19,12 @@ body{
 }
 
  #searchbar {
-    width: 250px;
+    width: 185px;
 } 
+
+.ub {
+  padding-top: 30px;
+}
 
 .navbar-nav {
   height: 75%;
@@ -84,7 +88,7 @@ body{
     background: beige;
 }
 
-.sidebar button {
+.sidebarbtn {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 16px;
@@ -95,7 +99,7 @@ body{
   border: none;
 }
 
-.sidebar button:hover {
+.sidebarbtn:hover {
     text-decoration: none;
     transition: all 0.3s;
     color: darkolivegreen;

@@ -25,7 +25,8 @@ exports.searchrecipevideos = (req,res) => {
 })
 
 .then(function (data){
-  var results ={"reciperesults": data.videos, "title": searchvideo}
+  var type = req.session.user.usertype;
+  var results ={"type": type, "reciperesults": data.videos, "title": searchvideo}
   //  console.log(data)
   //  console.log(results)
   res.render('pages/searchrecipevideos', results)
