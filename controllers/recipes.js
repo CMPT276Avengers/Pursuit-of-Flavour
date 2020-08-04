@@ -1,6 +1,11 @@
 const session = require('express-session');
 const axios = require("axios");
 const fetch = require('node-fetch');
+const { Pool } = require('pg');
+var pool = new Pool({
+    connectionString: 'postgres://postgres:root@localhost/cmpt276project'
+    // connectionString: process.env.DATABASE_URL
+})
 
 exports.getRecipeDetails = (req,res) => {
 
@@ -81,3 +86,32 @@ exports.texttoSpeech = (req,res) =>{
   });
 
 };
+
+exports.makeRecipe = (req,res) => {
+  var username = req.session.user.username;
+  var ing_id = req.body.data.id;
+  var amt = req.body.data.amount;
+
+  var getIngAmount = 'SELECT * FROM has WHERE username = $1 and ingredient_id = $2';
+  pool.query(getIngAmount,[username,ing_id],(error,resp) => {
+    if(error){
+      console.log("ing not found!");
+    } else{
+      var oldAmount = resp.rows[0].amount;
+      var newAmount = parseFloat(oldAmount,10) - parseFloat(amt,10);
+      var update_user_ing =  'UPDATE has SET amount = $1 WHERE username=$2 and ingredient_id = $3';
+
+      pool.query(update_user_ing,[newAmount,username,ing_id],(error,results) => {
+          if(error){
+              console.log("updating of ing failed!");
+              res.sendStatus(404)
+          }
+          else{
+              res.sendStatus(202);
+          }
+      })
+    }
+  })
+  
+
+}

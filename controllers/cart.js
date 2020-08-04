@@ -8,10 +8,15 @@ const session = require('express-session');
 
 exports.updateCart = (req,res) => {
     var updateInfo = req.body.data;
+    // console.log(updateInfo)
 
-    if(req.session.cart.arr.length == 0){
+    if(updateInfo == undefined){
+        req.session.cart.arr = req.session.cart.arr;
+    }
+    else if(req.session.cart.arr.length == 0){
         req.session.cart.arr = updateInfo;
-    } else{
+    } 
+    else{
         var curCartId = [];
         req.session.cart.arr.forEach(elem => {
             curCartId.push(elem.id);
@@ -20,7 +25,11 @@ exports.updateCart = (req,res) => {
         updateInfo.forEach(elem => {
             if(!curCartId.includes(elem.id)){
                 req.session.cart.arr.push(elem);
-            }
+                // curCartId.push(elem.id)
+            } 
+            // else{
+            //     req.session.cart.arr[curCartId.indexOf(elem.id)].amount += elem.amount;
+            // }
         })
     }
 

@@ -4,6 +4,7 @@ const recipeController = require('../controllers/recipes');
 
 router.get('/details', recipeController.getRecipeDetails);
 router.get('/speech', recipeController.texttoSpeech);
+router.post('/makeRecipe', recipeController.makeRecipe);
 
 
 

@@ -80,23 +80,6 @@
         </div>
 
 
-        <!-- <br>
-        <br>
-        <p class="h1" style="text-align: center;">Delete A Recipe</p>
-
-        <form action="/add/deleteuser_recipe" method="POST"> -->
-          <!-- These parameters are for the person database -->
-          <!-- <div class="form-row" style="padding-bottom: 120px;">
-              <div class="form-group col-md-10">
-                <label for="recipe_id_delete">ID of the Recipe</label>
-                <input type="text" class="form-control" name="recipe_id_delete" id="recipe_id_delete" placeholder="ID of the recipe">
-              </div>
-          </div>
-
-          <input style="background-color: red; position: relative; left: 15px; top: 20px;" type="submit" class="btn btn-primary btn-lg" name = "sub" value="Delete a Recipe!">
-
-
-      </form> -->
       <div id="output"></div>
       <a href="" id = "sourceLink"></a>
   </div>
@@ -168,7 +151,9 @@
         }
         $('.addIngContent').empty();
         if(delete_arr.length == 0){
+            $('.addIngContent').empty();
             mod_ingre.innerHTML = "You have all the Required Ingredients to make the Recipe!";
+            $('.addIngContent').append("<div>Would you like to make the recipe?</div>Your ingredients will be updated after you make this recipe<div></div><button type='button' class='makeRecipeButton btn btn-success' data-recipeId="+id+" data-dismiss='modal'>Yes</button><button type='button' class='btn btn-danger'  data-dismiss='modal'>No</button>")
         }else{
             mod_ingre.innerHTML = `You are missing the following Ingredients:
              `;
@@ -178,8 +163,6 @@
             }
             $('.addIngContent').empty();
             $('.addIngContent').append("<div>Would you like to add the above missing ingredients to your cart?</div><button type='button' class='addToCartButton btn btn-success' data-recipeId="+id+" data-dismiss='modal'>Yes</button><button type='button' class='btn btn-danger'  data-dismiss='modal'>No</button>")
-
-
         }
 
      }
@@ -264,7 +247,8 @@
 
     </script>
 
-<script type="text/javascript" src="cart.js"></script>
+    <script type="text/javascript" src="cart.js"></script>
+    <script type="text/javascript" src="makeRecipe.js"></script>
 
     </body>
 

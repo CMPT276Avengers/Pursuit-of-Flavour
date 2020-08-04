@@ -17,7 +17,7 @@ $(document).ready(function(){
             return response.json();
         })
         .then(function(data) {
-            reqIngs = data.extendedIngredients;
+            var reqIngs = data.extendedIngredients;
             // console.log(reqIngs)
             var haveIngId = [];
             var haveIngAmount = [];
@@ -45,13 +45,13 @@ $(document).ready(function(){
                     }
                 }
 
-                console.log(missingIng)
+                // console.log(missingIng)
 
                 $.post('/cart/updateCart',{
                     data: missingIng
                 },function(){
                     console.log("success");
-
+                    alert("Your cart has been updated!")
                     $.get('/cart');
                 })
             })
@@ -103,10 +103,10 @@ async function test(allIngredients){
     }))
 
     Promise.all(addIngredientRequests).then(function(res){
-        console.log("ok");
+        // console.log("ok");
         $.post("/cart/checkOutCart",function(data,status){
-            console.log("finish!!")
             location.reload();
+            alert("Checkout successful, your ingredients have been updated!")
         })
     })
 }
