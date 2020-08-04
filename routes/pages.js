@@ -77,5 +77,7 @@ router.get('/cart',pageController.cart);
 
 router.get('/profile', pageController.profile);
 
+router.get('/upload_image', pageController.upload_image);
+
 
 module.exports = router;
