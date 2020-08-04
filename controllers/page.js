@@ -160,8 +160,10 @@ exports.profile = (req,res) => {
 exports.upload_image = (req,res) => {
     if(req.session.user){
         var msg = "";
+        var type = req.session.user.usertype;
+        var data = {type:type, msg:msg}
         // console.log(cart);
-        res.render('pages/upload_image',{msg: msg});
+        res.render('pages/upload_image',data);
     }
     else{
         res.redirect('/login');
