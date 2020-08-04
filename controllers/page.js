@@ -60,11 +60,8 @@ exports.displayRecipes = (req,res)=>{
             if (error){ return console.log(error);}
             // var results = {'rows':result.rows}
             if(resp.rows.length == 0){
-                var account = `SELECT * FROM account WHERE account.username = '${username}';`
-                pool.query(account, (error, resp)=>{
-                    if (error) {return console.log(error);}
-                    res.render('pages/add_new_recipe', resp);
-                })
+                var type = req.session.user.usertype
+                res.render('pages/add_new_recipe', {type:type});
                 
             }else{
 

@@ -26,26 +26,26 @@ const axios = require("axios");
 
 // }
 
-// exports.deleteuser_recipe = (req,res) =>{
+exports.deleteuser_recipe = (req,res) =>{
 
-//     var recipe_id = JSON.parse(JSON.stringify(req.body.id));
-//     // var recipe_id = req.body.recipeid
-//     var username = req.session.user.username;
+    var recipe_id = JSON.parse(JSON.stringify(req.body.id));
+    // var recipe_id = req.body.recipeid
+    var username = req.session.user.username;
 
-//     user_recipe_param = [username,recipe_id]
+    user_recipe_param = [username,recipe_id]
 
-//     var deleteUser_Recipe =  `DELETE FROM exists_in WHERE username = $1 AND recipe_id = $2`
+    var deleteUser_Recipe =  `DELETE FROM exists_in WHERE username = $1 AND recipe_id = $2`
 
-//     pool.query(deleteUser_Recipe, user_recipe_param,(error, resp)=>{
-//         if (error){ return console.log(error);}
+    pool.query(deleteUser_Recipe, user_recipe_param,(error, resp)=>{
+        if (error){ return console.log(error);}
 
-//         // res.send(resp)
-//         res.redirect('/my_recipe');
+        // res.send(resp)
+        res.redirect('/my_recipe');
 
-//     })
+    })
 
 
-// }
+}
 
 exports.addIngredient = (req,res) => {
     const username = req.session.user.username;
