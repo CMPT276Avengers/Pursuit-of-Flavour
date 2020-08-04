@@ -121,50 +121,8 @@
         </table>
     </div>
 
-    <button type="button" id="open-ingredient-modal" class="btn btn-success">Add Ingredients!</button>
-    <button class="btn btn-primary" id="imagerecognition" onclick="imagerecognition()">Image Recognition!</button>
-
-    <script>
-
-
-     function imagerecognition(){
-        console.log('clicked')
-        $.get("/ingredients/labelImage", function(data){
-            
-            var img_ingredients = []
-            // console.log(data)
-            // console.log(Object.keys(data))
-            img_ingredients = Object.keys(data);
-            console.log(img_ingredients)
-            // img_amounts = Object.values(data.amounts);
-            increase(img_ingredients, data)
-
-        }) 
-
-    }
-
-    function increase(ingr, dict){
-        console.log("in function increase", ingr)
-        
-        let eachIngre = ingr.map(item => fetch('/ingredients/imgAddIngredients',{
-                method:"post",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({'ingredient':item, 'amount':dict})
-                }))
-
-                Promise.all(eachIngre).then(function (response) {
-                        console.log("updated");
-                        location.reload()
-                    })
-                    
-                // .catch(err => {
-                //     console.log(err);
-                //     res.status(404)
-                // });
-       
-    }
-
-    </script>
+    <button type="button" id="open-ingredient-modal" class="btn btn-success btn-lg">Add Ingredients!</button>
+    <a href="/upload_image" class="btn btn-primary btn-lg" style="position: relative; left: 12px;">Upload Image</a>
 
     <!-- <form action="/add/addIngredient" method="POST">
         <div class="form-row" style="padding-bottom: 120px;">

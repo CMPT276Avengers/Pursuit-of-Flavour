@@ -9,6 +9,13 @@ const session = require('express-session');
 const vision = require('@google-cloud/vision');
 const fs = require('fs');
 var async = require('async');
+const multer = require('multer');
+const ejs = require('ejs');
+const path = require('path');
+
+
+var file = {}
+
 
 
 exports.getMyIngredients = (req,res) => {
@@ -68,17 +75,109 @@ exports.addIngredients = (req,res) => {
     }
 }
 
+// Set storage 
+
+const storage = multer.diskStorage({
+    destination: './public/images/ingredients/',
+    filename: function(req, file, cb){
+        console.log(Date.now())
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+//intialize upload 
+
+const upload = multer({
+    storage: storage,
+    fileFilter: function(req, file, cb){
+        checkFileType(file, cb);
+    }
+}). single('ingredient_image');
+
+// Check File Type 
+
+function checkFileType(file, cb){
+    // Allowed file extension 
+    const filetypes = /jpeg|jpg|png|gif/;
+    const extnames = filetypes.test(path.extname(file.originalname).toLowerCase());
+    // Check mime 
+    const mimetype = filetypes.test(file.mimetype);
+
+    if(mimetype && extnames){
+        return cb(null,true);
+
+    } else{
+        cb("Error: images only!");
+    }
+
+}
+
+
+exports.fileUpload = (req,res) => {
+        file = {}
+
+        upload(req, res, (err)=>{
+            if(err){
+            console.log(err);
+            res.render("pages/upload_image",  {msg: err});
+            // res.render('pages/my_ingredients');
+
+
+            }else{
+                if(req.file == undefined){
+                console.log('No file selected')
+                // res.redirect('/pages/my_ingredients')
+                res.render("pages/upload_image", {msg: 'No file selected! Please select a valid image file!'});
+                }else{
+                    console.log('Success')
+                     file = req.file
+                    // ingred_rec()
+                    // console.log("this is file", file)
+                    // res.redirect('/')
+                    res.render("pages/upload_image", {msg: 'Uploaded image successfully!',
+                    ingre: `../images/ingredients/${req.file.filename}`});
+                }
+
+            }
+
+        });
+
+
+
+    }
+
+
+
+    // let ingredientImg = req.files.ingredient_image;
+
+    // ingredientImg.mv('./public/images/ingredients/ingredientImg.jpg', function(err){
+    //     if (err) {return res.status(500).send(err)};
+  
+    //     res.sendStatus(200)
+
+
+    // })
+
+
+
+
+
 // Cloud vision API call
 async function ingred_rec() {
     // console.log("in quickstart function")
     const projectId = 'braided-grammar-285323'
     const keyFilename = './credentials/ingredientrecognition.json'
+    console.log("this is file inside google visoin", file)
   
     var ingre_array = []
     // Creates a client
     const client = new vision.ImageAnnotatorClient({projectId, keyFilename});
 
-    const fileName = `./public/images/ingredients/testingre.jpg`;
+    // var imageFile = fs.readFileSync(file.path)
+    
+
+
+    const fileName = file.path;
     const request = {
     image: {content: fs.readFileSync(fileName)},
     };
@@ -100,6 +199,7 @@ async function ingred_rec() {
     });
 
     return duplicates;
+    // console.log(duplicates)
   }
 
 
@@ -147,11 +247,19 @@ exports.imgAddIngredients = (req,res) =>{
         if(error){
             console.log("failed!");
             console.log(error)
+            fs.unlink(file.path, function(err){
+                if(err){console.log("file already deleted")};
+                console.log("file deleted")
+            })
             res.status(404)
         }
         else{
             if(results.rows.length == 0){
                 console.log("This ingredient is not in your list!")
+                fs.unlink(file.path, function(err){
+                    if(err){console.log("file already deleted")};
+                    console.log("file deleted")
+                })
                 res.sendStatus(200)
             }
 
@@ -164,9 +272,17 @@ exports.imgAddIngredients = (req,res) =>{
                 pool.query(increasequery, [amount, username, ingre_name + '%'], (error,results) => {
                     if(error){
                         console.log("failed!");
+                        fs.unlink(file.path, function(err){
+                            if(err){console.log("file already deleted")};
+                            console.log("file deleted")
+                        })
                         res.sendStatus(404)
                     }
                     else{
+                        fs.unlink(file.path, function(err){
+                            if(err){console.log("file already deleted")};
+                            console.log("file deleted")
+                        })
                         res.sendStatus(200)
                     }
                 })

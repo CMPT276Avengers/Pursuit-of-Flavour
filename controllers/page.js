@@ -140,3 +140,16 @@ exports.profile = (req,res) => {
         res.redirect('/login');
     }
 }
+
+exports.upload_image = (req,res) => {
+    if(req.session.user){
+        var msg = "";
+        // console.log(cart);
+        res.render('pages/upload_image',{msg: msg});
+    }
+    else{
+        res.redirect('/login');
+    }
+
+
+}
