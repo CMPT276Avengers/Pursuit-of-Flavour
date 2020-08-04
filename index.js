@@ -61,6 +61,8 @@ app.use('/cart',require('./routes/cart'));
 
 app.use('/profile', require('./routes/profile'));
 
+app.use('/comment', require('./routes/comment'));
+
 
 
 

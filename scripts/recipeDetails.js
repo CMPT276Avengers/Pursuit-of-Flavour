@@ -73,6 +73,12 @@ $(document).ready(function(){
             //prepare add recipe button
             $('.save-recipe-button').attr('data-recipeId',data.recipeInfo.id)
 
+            //add id to comment button
+            $('.submitComment').attr('data-recipeId',data.recipeInfo.id)
+
+            //clear comment box
+            $('#commentBox').val('');
+
             
             $('#recipeModal').modal({show:true});
         })
@@ -92,6 +98,8 @@ $(document).ready(function(){
             }
         })
     })
+
+    
 
 
 });
