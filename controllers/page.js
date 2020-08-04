@@ -7,18 +7,20 @@ var pool = new Pool({
 
 const session = require('express-session');
 
+// My Ingredients Page
 exports.getMyIngredients = (req,res) => {
     if(req.session.user){
         var username = req.session.user.username;
-        var ingredientQuery = 'SELECT * FROM has WHERE has.username = $1 AND has.amount > 0';
+        var ingredientQuery = `SELECT * FROM has WHERE has.username = $1 AND has.amount > 0`;
         pool.query(ingredientQuery,[username], (error,results) => {
             if (error){
                 console.log(error);
                 res.send('401').redirect('/userview');
             }
             else{
+                var type = req.session.user.usertype;
                 var data = {
-                    ingredients: results.rows
+                    ingredients: results.rows, type: type
                 };
                 res.render('pages/my_ingredients', data);
 
@@ -46,7 +48,7 @@ exports.compare_my_ingredients = (req,res) => {
     })
 }
 
-
+// My Recipe Page
 exports.displayRecipes = (req,res)=>{
     var i = 0;
     var rec_id = []
@@ -58,7 +60,9 @@ exports.displayRecipes = (req,res)=>{
             if (error){ return console.log(error);}
             // var results = {'rows':result.rows}
             if(resp.rows.length == 0){
-                res.render('pages/add_new_recipe');
+                var type = req.session.user.usertype
+                res.render('pages/add_new_recipe', {type:type});
+                
             }else{
 
                 for(i = 0; i < resp.rows.length; i++){
@@ -71,7 +75,11 @@ exports.displayRecipes = (req,res)=>{
                 pool.query(getRecipe, (error,resp)=>{
                     if (error){ return console.log(error);}
 
-                    res.render('pages/my_recipe', resp);
+                        var type = req.session.user.usertype;
+                        results = {'rows':resp.rows, 'type':type}
+                        res.render('pages/my_recipe', results);
+
+                    // res.render('pages/my_recipe', resp);
 
                 })
 
@@ -111,8 +119,16 @@ exports.getUserDatabase = (req,res)=> {
 exports.cart = (req,res) => {
     if(req.session.user){
         var cart = req.session.cart.arr;
+        var type = req.session.user.usertype;
+        // var user = req.session.user.username;
+        // var account = `SELECT * FROM account WHERE account.username = '${user}';`
+        // pool.query(account, (error, result)=>{
+        //     if (error) { console.log("error")}
+            results = {"cart":cart, "type":type}
+            res.render('pages/cart', results)
+        // })
         // console.log(cart);
-        res.render('pages/cart',{cart:cart});
+        // res.render('pages/cart',{cart:cart});
     }
     else{
         res.redirect('/login');

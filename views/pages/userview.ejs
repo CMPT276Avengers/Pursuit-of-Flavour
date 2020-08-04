@@ -26,24 +26,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Search bar -->
-      <div class="collapse navbar-collapse flex-column" id="navbarToggler">
-        <ul class="navbar-nav ml-auto mt-1 mb-1">
-            <form class="form-inline">
-              <input id="searchbar" class="form-control" type="text" placeholder="Search Recipes..." aria-label="Search" name="searchterm">
-              <button class="btn btn-outline-light mr-2" type="submit" formaction="search/searchrecipe" formmethod="GET"><i class="fa fa-search"></i></button>
+      <div class="collapse navbar-collapse" id="navbarToggler">
 
-              <input id="searchbar" class="form-control" type="text" placeholder="Search Recipe Videos..." aria-label="Search" name="searchvideo">
-              <button class="btn btn-outline-light " type="submit" formaction="searchrecipevideos/searchrecipevideos" formmethod="GET"><i class="fa fa-search"></i></button>  
-                 
-            </form>
-        </ul>
         <!-- User buttons -->
-        <ul class="navbar-nav flex-row ml-auto mt-1">
+        <ul class="navbar-nav flex-row ml-auto mt-1 ub">
           <li class="nav-item">
-            <% if(username){%>
-              <a class="nav-link" href="/profile"><%=username%></a>
-            <% } %>
+              <a class="nav-link" href="/profile">My Profile</a>
           </li>
           <li class="nav-item">
             <a href='/my_recipe' class="nav-link" id="recipes">My Recipes</a>
@@ -79,26 +67,40 @@
         <hr>
         <ul class="list-unstyled components">
             <li class="nav-item">
+              <form class="form-inline">
+                <input id="searchbar" class="form-control" type="text" placeholder="Search Recipes..." aria-label="Search" name="searchterm">
+                <button id="searchbtn" class="btn btn-outline-light" type="submit" formaction="search/searchrecipe" formmethod="GET"><i class="fa fa-search"></i></button>
+              </form>
+            </li>
+            <br>
+            <li class="nav-item">
+              <form class="form-inline">
+                <input id="searchbar" class="form-control" type="text" placeholder="Search Videos..." aria-label="Search" name="searchvideo">
+                <button id="searchbtn" class="btn btn-outline-light " type="submit" formaction="searchrecipevideos/searchrecipevideos" formmethod="GET"><i class="fa fa-search"></i></button>
+              </form>
+            </li>
+            <br>
+            <li class="nav-item">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">Cuisine</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li class="nav-item">
                         <form action="/browse/browserecipesbyCuisine" method="POST">
                           <input type="hidden" value="american" name="cuisine">
-                          <button title="navbar" type="submit">American
+                          <button class="sidebarbtn" title="navbar" type="submit">American
                           </button>
                         </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyCuisine" method="POST">
                         <input type="hidden" value="chinese" name="cuisine">
-                        <button title="navbar" type="submit">Chinese
+                        <button class="sidebarbtn" title="navbar" type="submit">Chinese
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyCuisine" method="POST">
                         <input type="hidden" value="japanese" name="cuisine">
-                        <button title="navbar" type="submit">Japanese
+                        <button class="sidebarbtn" title="navbar" type="submit">Japanese
                         </button>
                       </form>
                     </li>
@@ -110,28 +112,28 @@
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="morning%20meal" name="type">
-                        <button title="navbar" type="submit">Breakfast
+                        <button class="sidebarbtn" title="navbar" type="submit">Breakfast
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="dinner" name="type">
-                        <button title="navbar" type="submit">Dinner
+                        <button class="sidebarbtn" title="navbar" type="submit">Dinner
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="appetizer" name="type">
-                        <button title="navbar" type="submit">Appetizer
+                        <button class="sidebarbtn" title="navbar" type="submit">Appetizer
                         </button>
                       </form>
                     </li>
                     <li class="nav-item">
                       <form action="/browse/browserecipesbyType" method="POST">
                         <input type="hidden" value="dessert" name="type">
-                        <button title="navbar" type="submit">Dessert
+                        <button class="sidebarbtn" title="navbar" type="submit">Dessert
                         </button>
                       </form>
                   </li>
@@ -143,7 +145,7 @@
                 <li class="nav-item">
                   <form action="/browse/browserecipesbyVegan" method="POST">
                     <input type="hidden" value="vegan" name="diet">
-                    <button id= "vegan" title="navbar" type="submit">Vegan
+                    <button class="sidebarbtn" id= "vegan" title="navbar" type="submit">Vegan
                     </button>
                   </form>
                 </li>

@@ -55,6 +55,7 @@ router.get('/userview', (req,res) => {
     }
 })
 
+// my recipe page
 router.get('/my_recipe', pageController.displayRecipes);
 
 router.get('/myingredients', pageController.getMyIngredients);

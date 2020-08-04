@@ -10,10 +10,13 @@
 </head>
 
 <body>
-
-	<%- include('../partials/navigation.ejs') %>
-
-
+	<% rows.forEach(function(r) { %>
+		<% if (r.type == "general") { %> 
+			<%- include('../partials/navigation.ejs') %>
+		<% } if (r.type == "admin") { %>
+			<%- include('../partials/navigation-a.ejs') %>
+		<% } %>
+	<% }); %>
 	<div class="content">
 	<div class="container-fluid">
 		<h2>My Profile</h2>

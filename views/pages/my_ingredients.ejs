@@ -14,7 +14,13 @@
 </head>
 
 <body>
-    <%- include('../partials/navigation.ejs')%>
+
+        <% if (type == "general") { %> 
+            <%- include('../partials/navigation.ejs') %>
+        <% } if (type == "admin") { %>
+            <%- include('../partials/navigation-a.ejs') %>
+        <% } %>
+
     <!-- Beginning of modal-->
     <div class="modal fade" id="ingredientsModal" role="dialog">
         <div class="modal-dialog modal-lg">

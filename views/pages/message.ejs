@@ -11,7 +11,11 @@
 
 </head>
 <body>
-	<%- include('../partials/navigation.ejs') %>
+    <% if (type == "general") { %> 
+        <%- include('../partials/navigation.ejs') %>
+    <% } if (type == "admin") { %>
+        <%- include('../partials/navigation-a.ejs') %>
+    <% } %> 
 	<div class="content">
 	<div class="container-fluid">
 	<div id="container">

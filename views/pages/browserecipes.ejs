@@ -14,8 +14,13 @@
 
 
   <body>
-
-    <%- include('../partials/navigation.ejs')%>
+  <% rows.forEach(function(r) { %>
+    <% if (r.type == "general") { %> 
+      <%- include('../partials/navigation.ejs') %>
+    <% } if (r.type == "admin") { %>
+      <%- include('../partials/navigation-a.ejs') %>
+    <% } %>
+  <% }); %>
     <div class="modal fade" id="add_recipe" tabindex="-1" role="dialog" aria-labelledby="add_recipeTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
