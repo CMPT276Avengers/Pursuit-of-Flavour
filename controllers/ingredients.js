@@ -147,16 +147,15 @@ exports.fileUpload = (req,res) => {
     }
 
 
+exports.fileDelete = (req,res) => {
+    console.log("inside delete file")
+    fs.unlink(file.path, function(err){
+        if(err){console.log("file already deleted")};
+        res.render("pages/upload_image", {msg: 'File Deleted Successfully'});
+    })
 
-    // let ingredientImg = req.files.ingredient_image;
 
-    // ingredientImg.mv('./public/images/ingredients/ingredientImg.jpg', function(err){
-    //     if (err) {return res.status(500).send(err)};
-  
-    //     res.sendStatus(200)
-
-
-    // })
+}
 
 
 

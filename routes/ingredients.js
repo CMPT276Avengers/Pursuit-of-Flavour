@@ -7,5 +7,6 @@ router.post('/addIngredients',ingredientController.addIngredients);
 router.get('/labelImage', ingredientController.labelImage)
 router.post('/imgAddIngredients', ingredientController.imgAddIngredients)
 router.post('/fileUpload', ingredientController.fileUpload)
+router.post('/fileDelete', ingredientController.fileDelete)
 
 module.exports = router;

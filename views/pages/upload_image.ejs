@@ -25,8 +25,17 @@
     <br>
     <br>
     <button class="btn btn-primary btn-lg" id="imagerecognition" onclick="imagerecognition()">Image Recognition!</button>
+    <br>
+    <br>
+    <form ref='uploadForm' id='uploadForm' action='/ingredients/fileDelete' method='post' encType="multipart/form-data"> 
+    <input class="btn btn-danger btn-lg" type='submit' value='Delete the File' />
+    </form>
 
     <script>
+
+    // function delete_handle(){
+    //     location.reload()
+    // }
 
 
      function imagerecognition(){
@@ -68,8 +77,10 @@
 
     </script>
 
-
+    <br>
+    <br>
     <a href="/userview" class="btn btn-success btn-lg" style="position: relative; left: 12px;">Go Back Home</a>
+
 
 
 
