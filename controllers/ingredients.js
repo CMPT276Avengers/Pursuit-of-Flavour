@@ -115,11 +115,11 @@ function checkFileType(file, cb){
 
 exports.fileUpload = (req,res) => {
         file = {}
-
+        var type = req.session.user.usertype;
         upload(req, res, (err)=>{
             if(err){
             console.log(err);
-            res.render("pages/upload_image",  {msg: err});
+            res.render("pages/upload_image",  {type:type, msg: err});
             // res.render('pages/my_ingredients');
 
 
@@ -127,14 +127,14 @@ exports.fileUpload = (req,res) => {
                 if(req.file == undefined){
                 console.log('No file selected')
                 // res.redirect('/pages/my_ingredients')
-                res.render("pages/upload_image", {msg: 'No file selected! Please select a valid image file!'});
+                res.render("pages/upload_image", {type:type, msg: 'No file selected! Please select a valid image file!'});
                 }else{
                     console.log('Success')
                      file = req.file
                     // ingred_rec()
                     // console.log("this is file", file)
                     // res.redirect('/')
-                    res.render("pages/upload_image", {msg: 'Uploaded image successfully!',
+                    res.render("pages/upload_image", {type:type, msg: 'Uploaded image successfully!',
                     ingre: `../images/ingredients/${req.file.filename}`});
                 }
 
@@ -149,9 +149,10 @@ exports.fileUpload = (req,res) => {
 
 exports.fileDelete = (req,res) => {
     console.log("inside delete file")
+    var type = req.session.user.usertype;
     fs.unlink(file.path, function(err){
         if(err){console.log("file already deleted")};
-        res.render("pages/upload_image", {msg: 'File Deleted Successfully'});
+        res.render("pages/upload_image", {type:type, msg: 'File Deleted Successfully'});
     })
 
 
