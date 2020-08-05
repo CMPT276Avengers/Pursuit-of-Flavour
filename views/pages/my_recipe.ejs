@@ -113,58 +113,86 @@
     // Checks whether the user has the required ingridients or not 
     // and renders a modal based off it 
     function check(my_ingredients,req_ingredients,id){
+        my_ingredients_id = [];
+        my_ingredients_amt = [];
+
+        missing_ing_names = [];
+
+        req_ingredients_id = [];
+        req_ingredients_amt = [];
         my_ingredients_arr = [];
         req_ingredients_arr = [];
         delete_arr = [];
 
         if(my_ingredients.length == 0){
-        mod_ingre.innerHTML = "You have no Ingredients!";
-        return 0;
+            mod_ingre.innerHTML = "You have no Ingredients!";
+            return 0;
+        }
+
+        if(req_ingredients.length == 0){
+            mod_ingre.innerHTML = "This is a bad recipe, try another one!";
+            return 0;
         }
 
         for(var i = 0; i < my_ingredients.length; i++){
-            if(my_ingredients[i].amount > 0){
-                my_ingredients_arr[i] = my_ingredients[i].ingredient_name;
+            my_ingredients_id[i] = my_ingredients[i].ingredient_id;
+            my_ingredients_amt[i] = my_ingredients[i].amount;
+        }
+
+        var counter = 0;
+
+        req_ingredients.forEach(element => {
+            if(!my_ingredients_id.includes(element.id) || my_ingredients_amt[my_ingredients_id.indexOf(element.id)] < element.amount){
+                missing_ing_names[counter] = element.name;
+                counter += 1;
             }
-
-        }
-
-
-        for(var j = 0; j < req_ingredients.length; j++)
-        {
-            req_ingredients_arr[j] = req_ingredients[j].name;
-        }
+        });
 
 
-        var toggle  = 0;
-        for(var a = 0; a < req_ingredients_arr.length; a++){
-            var temp_req_ing = req_ingredients_arr[a]
-            toggle = 0;
-            for(var b = 0; b < my_ingredients_arr.length; b++){
 
-                if(temp_req_ing == my_ingredients_arr[b]){
-                    toggle +=1;
-                    break;
+        // for(var i = 0; i < my_ingredients.length; i++){
+        //     if(my_ingredients[i].amount > 0){
+        //         my_ingredients_arr[i] = my_ingredients[i].ingredient_name;
+        //     }
+
+        // }
+
+
+        // for(var j = 0; j < req_ingredients.length; j++)
+        // {
+        //     req_ingredients_arr[j] = req_ingredients[j].name;
+        // }
+
+
+        // var toggle  = 0;
+        // for(var a = 0; a < req_ingredients_arr.length; a++){
+        //     var temp_req_ing = req_ingredients_arr[a]
+        //     toggle = 0;
+        //     for(var b = 0; b < my_ingredients_arr.length; b++){
+
+        //         if(temp_req_ing == my_ingredients_arr[b]){
+        //             toggle +=1;
+        //             break;
                     
-                }
+        //         }
 
 
-            }
-            if(toggle == 0){
-                delete_arr.push(temp_req_ing);   
-            }
+        //     }
+        //     if(toggle == 0){
+        //         delete_arr.push(temp_req_ing);   
+        //     }
 
-        }
+        // }
         $('.addIngContent').empty();
-        if(delete_arr.length == 0){
+        if(missing_ing_names.length == 0){
             $('.addIngContent').empty();
             mod_ingre.innerHTML = "You have all the Required Ingredients to make the Recipe!";
             $('.addIngContent').append("<div>Would you like to make the recipe?</div>Your ingredients will be updated after you make this recipe<div></div><button type='button' class='makeRecipeButton btn btn-success' data-recipeId="+id+" data-dismiss='modal'>Yes</button><button type='button' class='btn btn-danger'  data-dismiss='modal'>No</button>")
         }else{
             mod_ingre.innerHTML = `You are missing the following Ingredients:
              `;
-            for(var c = 0; c < delete_arr.length; c++){
-                mod_ingre.innerHTML = mod_ingre.innerHTML +`${delete_arr[c]} | `;
+            for(var c = 0; c < missing_ing_names.length; c++){
+                mod_ingre.innerHTML = mod_ingre.innerHTML +`${missing_ing_names[c]} , `;
 
             }
             $('.addIngContent').empty();
@@ -203,10 +231,10 @@
                     // console.log(response);
                     return response.json();
                 })
-            .then((data)=>{
+            .then((datas)=>{
                 // console.log(data.rows);
 
-                check(data.rows,req_ingredients,id);
+                check(datas.rows,req_ingredients,id);
 
 
                 

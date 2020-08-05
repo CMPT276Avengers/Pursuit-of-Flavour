@@ -1,8 +1,8 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-  connectionString: 'postgres://postgres:root@localhost/cmpt276project'
-  // connectionString: process.env.DATABASE_URL
+  // connectionString: 'postgres://postgres:root@localhost/cmpt276project'
+  connectionString: process.env.DATABASE_URL
 
     // connectionString: process.env.DATABASE_URL
 });
@@ -80,7 +80,7 @@ exports.browserecipesbyType = (req,res) =>{
 
         .then(function (data){
 
-        if(type = "morning%20meal"){
+        if(type == "morning%20meal"){
             type = "Breakfast"
         }
 

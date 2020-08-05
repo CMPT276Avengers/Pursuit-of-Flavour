@@ -1,8 +1,8 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    connectionString: 'postgres://postgres:root@localhost/cmpt276project'
-    // connectionString: process.env.DATABASE_URL
+    // connectionString: 'postgres://postgres:root@localhost/cmpt276project'
+    connectionString: process.env.DATABASE_URL
 });
 
 const session = require('express-session');
@@ -170,4 +170,14 @@ exports.upload_image = (req,res) => {
     }
 
 
+}
+
+exports.faq = (req, res) => {
+    if(req.session.user){
+        var type = req.session.user.usertype;
+        res.render('pages/faq', {type:type});
+    }
+    else {
+        res.redirect('/login');
+    }
 }

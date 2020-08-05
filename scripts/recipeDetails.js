@@ -76,6 +76,8 @@ $(document).ready(function(){
             //add id to comment button
             $('.submitComment').attr('data-recipeId',data.recipeInfo.id)
 
+            //add id to show comment button
+            $('.showComments').attr('data-recipeId',data.recipeInfo.id)
             //clear comment box
             $('#commentBox').val('');
 
@@ -98,6 +100,39 @@ $(document).ready(function(){
             }
         })
     })
+
+    $('.showComments').on('click',getcomments)
+
+    $('.submitComment').on('click',function(){
+        var context = $('#commentBox').val();
+        // console.log(context);
+
+        data = {
+            recipeId : $(this).attr('data-recipeId'),
+            context : context
+        }
+
+        $.post('/comment/postComment',{data:data},function(data){
+            alert("Message posted!")
+            $('#commentBox').val('');
+            getcomments();
+        })
+        //clear after submitting
+        // $('#commentBox').val('');
+
+    })
+
+    function getcomments(){
+        $('.commentSection').empty()
+        var recipeId = $('.submitComment').attr('data-recipeId');
+        // console.log(recipeId);
+        $.get("/comment/getRecipeComments?recipeId="+recipeId,function(data){
+            // console.log("finished");
+            data.forEach(element => {
+                $('.commentSection').append('<div class="card card-body"><div class="font-weight-bold">'+element.username+' '+element.time+'</div><div>'+element.context+'</div></div>')
+            });
+        })
+    }
 
     
 

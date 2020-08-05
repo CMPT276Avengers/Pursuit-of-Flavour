@@ -5,8 +5,8 @@ const pageController = require('../controllers/page');
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    connectionString: 'postgres://postgres:root@localhost/cmpt276project'
-    // connectionString: process.env.DATABASE_URL
+    // connectionString: 'postgres://postgres:root@localhost/cmpt276project'
+    connectionString: process.env.DATABASE_URL
 });
 
 
@@ -79,6 +79,8 @@ router.get('/cart',pageController.cart);
 router.get('/profile', pageController.profile);
 
 router.get('/upload_image', pageController.upload_image);
+
+router.get('/faq', pageController.faq);
 
 
 module.exports = router;
