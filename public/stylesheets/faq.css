@@ -1,0 +1,10 @@
+.content button {
+	display: block;
+	width: 100%;
+	text-align: left;
+	color: darkslategrey;
+}
+
+.card-body {
+	color: darkslategrey;
+}
