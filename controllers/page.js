@@ -171,3 +171,13 @@ exports.upload_image = (req,res) => {
 
 
 }
+
+exports.faq = (req, res) => {
+    if(req.session.user){
+        var type = req.session.user.usertype;
+        res.render('pages/faq', {type:type});
+    }
+    else {
+        res.redirect('/login');
+    }
+}

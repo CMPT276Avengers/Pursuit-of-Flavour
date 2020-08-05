@@ -80,5 +80,7 @@ router.get('/profile', pageController.profile);
 
 router.get('/upload_image', pageController.upload_image);
 
+router.get('/faq', pageController.faq);
+
 
 module.exports = router;

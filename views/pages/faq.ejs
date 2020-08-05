@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/navigation.css'>
+    <link rel='stylesheet' href='/stylesheets/faq.css'>
+	<title></title>
+</head>
+
+<body>
+	<% if (type == "general") { %> 
+        <%- include('../partials/navigation.ejs') %>
+    <% } if (type == "admin") { %>
+        <%- include('../partials/navigation-a.ejs') %>
+    <% } %>    
+
+    <div class="content">
+    	<div class="container-fluid">
+    		<h2>Customer Support</h2>
+    		<hr>
+
+    		<h3>What is Pursuit of Flavour?</h3>
+    		<p>
+    			Pursuit of Flavour is an augmented cooking application which aims to encourage more poeple to cook by giving you easy-to-use features allowing for a more effortlesss and enjoyable cooking experience. Our application allows you to browse recipes with ease through many methods to find exactly what the user wants, even recipe videos. We help you track your ingredients as you make recipes or buy groceries and allow you to add to what ingredients you have by either image recognition or manually select certain ingredients. When making recipes, you can choose to have our speech recognition feature read the instructions to you so you no longer have to struggle finding which step you're on. Our live chat feature allows you to interact with other users on the application while you are browsing recipes or cooking up meals.
+    		</p>
+
+    		<br>
+
+    		<h3>Frequently Asked Questions</h3>
+    		<div class="accordion" id="accordionExample">
+			  <div class="card">
+			    <div class="card-header" id="headingOne">
+			      <h2 class="mb-0">
+			        <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+			          How do I get started?
+			        </button>
+			      </h2>
+			    </div>
+
+			    <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
+			      <div class="card-body">
+			        To get started, you can begin by browsing for recipes through a variety of methods. You could choose a recipe from the recommended recipes found on our homepage, browse for recipes categorically, or even search for a specific recipe you are looking for. Once you've found something you like, you can add the recipe to your account which will save the recipe into your "My Recipes" page. If you want to start making the recipes, simply hit "Make" which will either notify you if you are missing any ingredients or verify if you actually want to begin making the recipe. Your ingredients will be automatically subtracted for you once you verify you're making the recipe. You can then click on "Details" which brings you to the recipe instructions.
+			      </div>
+			    </div>
+			  </div>
+			  <div class="card">
+			    <div class="card-header" id="headingTwo">
+			      <h2 class="mb-0">
+			        <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			          How do I get the speech recognition feature to read me the instructions?
+			        </button>
+			      </h2>
+			    </div>
+			    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
+			      <div class="card-body">
+			        To have the speech recognition feature read you instructions, you'll have to be in the "Details" of a recipe. If you scroll down, you'll see a sound icon, click on it. When you are ready, click on the "Start Instructions" button to hear the first instruction. When you are finished a step, click "Record" and say 'next' to proceed to the next step. If you want to quit at any time, click "Record" and say 'quit'. Hit "Stop" when you are finished speaking.
+			      </div>
+			    </div>
+			  </div>
+			  <div class="card">
+			    <div class="card-header" id="headingThree">
+			      <h2 class="mb-0">
+			        <button class="btn  collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			          How do I use the image recognition feature to add ingredients?
+			        </button>
+			      </h2>
+			    </div>
+			    <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
+			      <div class="card-body">
+			        To add ingredients using the image recognition feature, you'll have to go into the "My Ingredients" page and click on "Upload Image" found at the bottom of the page. You will then have to choose an image file of the ingredient you're trying to add and hit "Upload" once you've done so. If you want to use the image recognition feature on the image, hit "Image Recognition" which will then add the ingredients in the image into your ingredients. If for whatever reason you don't want to use that image, simply hit "Delete the File" to remove the image.
+			      </div>
+			    </div>
+			  </div>
+			  <div class="card">
+			    <div class="card-header" id="headingThree">
+			      <h2 class="mb-0">
+			        <button class="btn  collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+			          How can I change my user information?
+			        </button>
+			      </h2>
+			    </div>
+			    <div id="collapseFour" class="collapse" aria-labelledby="headingFour">
+			      <div class="card-body">
+			        To change your user information, you will have to go to the "My Profile" page. You can then edit your first name, last name, email address, phone number, and password (your username and user type cannot be changed). Once you're satisfied with the changes, simply hit "Update" and your changes will be made into our database.
+			    </div>
+			  </div>			  
+			</div>
+			<br>
+
+	    	</div>
+	    </div>
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
