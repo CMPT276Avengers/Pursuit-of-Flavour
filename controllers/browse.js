@@ -90,7 +90,6 @@ exports.browserecipesbyType = (req,res) =>{
           pool.query(account, (error, result)=>{
             if (error){ console.log("error")}
             results = {"rows": result.rows, "reciperesults": data.results, "title": type}
-            console.log(results.title)
             res.render('pages/browserecipes', results);
           })
           // res.render('pages/browserecipes', results)
