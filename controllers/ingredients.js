@@ -135,7 +135,8 @@ exports.fileUpload = (req,res) => {
                     // console.log("this is file", file)
                     // res.redirect('/')
                     res.render("pages/upload_image", {msg: 'Uploaded image successfully!',
-                    ingre: `../images/ingredients/${req.file.filename}`});
+                    ingre: `../images/ingredients/${req.file.filename}`,
+                type:req.session.user.usertype});
                 }
 
             }
