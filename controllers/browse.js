@@ -80,7 +80,7 @@ exports.browserecipesbyType = (req,res) =>{
 
         .then(function (data){
 
-        if(type = "morning%20meal"){
+        if(type == "morning%20meal"){
             type = "Breakfast"
         }
 
@@ -90,6 +90,7 @@ exports.browserecipesbyType = (req,res) =>{
           pool.query(account, (error, result)=>{
             if (error){ console.log("error")}
             results = {"rows": result.rows, "reciperesults": data.results, "title": type}
+            console.log(results.title)
             res.render('pages/browserecipes', results);
           })
           // res.render('pages/browserecipes', results)
