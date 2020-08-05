@@ -1,8 +1,8 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    // connectionString: 'postgres://postgres:root@localhost/cmpt276project'
-    connectionString: process.env.DATABASE_URL
+    connectionString: 'postgres://postgres:root@localhost/cmpt276project'
+    // connectionString: process.env.DATABASE_URL
 });
 const session = require('express-session');
 // Imports the Google Cloud client library
@@ -150,6 +150,9 @@ exports.fileUpload = (req,res) => {
 exports.fileDelete = (req,res) => {
     console.log("inside delete file")
     var type = req.session.user.usertype;
+    if(Object.keys(file).length === 0){
+        res.render("pages/upload_image", {type:type, msg: 'No File Detected. Please upload a file before deleting!'});
+      }
     fs.unlink(file.path, function(err){
         if(err){console.log("file already deleted")};
         res.render("pages/upload_image", {type:type, msg: 'File Deleted Successfully'});
