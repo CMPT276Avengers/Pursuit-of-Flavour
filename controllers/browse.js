@@ -80,7 +80,7 @@ exports.browserecipesbyType = (req,res) =>{
 
         .then(function (data){
 
-        if(type = "morning%20meal"){
+        if(type == "morning%20meal"){
             type = "Breakfast"
         }
 
