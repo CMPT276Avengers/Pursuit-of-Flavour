@@ -21,6 +21,7 @@ describe('Search', function() {
         .end(function(error,res){
             const result = res.statusCode
             expect(result).to.equal(200)
+            res.body.should.be.an('object')
             expect(res).to.have.header('content-type', 'text/html; charset=utf-8'); 
             done();
         })

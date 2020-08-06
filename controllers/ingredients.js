@@ -232,60 +232,64 @@ exports.labelImage = async (req,res) => {
 }
 
 exports.imgAddIngredients = (req,res) =>{
-    console.log("working in db")
-    var username = req.session.user.username;
-    var ingre_name = JSON.parse(JSON.stringify(req.body.ingredient));
-    // console.log(ingre_name)
+    if(req.session.user){
+        var username = req.session.user.username;
+        var ingre_name = JSON.parse(JSON.stringify(req.body.ingredient));
+        // console.log(ingre_name)
 
-    var ingre_amount = JSON.parse(JSON.stringify(req.body.amount[ingre_name]));
-    // console.log(ingre_amount)
+        var ingre_amount = JSON.parse(JSON.stringify(req.body.amount[ingre_name]));
+        // console.log(ingre_amount)
 
-    findIngre = 'SELECT * FROM has WHERE username = $1 AND ingredient_name LIKE $2;'
+        findIngre = 'SELECT * FROM has WHERE username = $1 AND ingredient_name LIKE $2;'
 
-    pool.query(findIngre, [username, ingre_name + '%'], (error,results) =>{
-        if(error){
-            console.log("failed!");
-            console.log(error)
-            fs.unlink(file.path, function(err){
-                if(err){console.log("file already deleted")};
-                console.log("file deleted")
-            })
-            res.status(404)
-        }
-        else{
-            if(results.rows.length == 0){
-                console.log("This ingredient is not in your list!")
+        pool.query(findIngre, [username, ingre_name + '%'], (error,results) =>{
+            if(error){
+                console.log("failed!");
+                console.log(error)
                 fs.unlink(file.path, function(err){
                     if(err){console.log("file already deleted")};
                     console.log("file deleted")
                 })
-                res.sendStatus(200)
+                res.status(404)
             }
-
             else{
-                var amount = results.rows[0].amount
-                amount +=ingre_amount
+                if(results.rows.length == 0){
+                    console.log("This ingredient is not in your list!")
+                    fs.unlink(file.path, function(err){
+                        if(err){console.log("file already deleted")};
+                        console.log("file deleted")
+                    })
+                    res.sendStatus(200)
+                }
 
-                var increasequery = 'UPDATE has SET amount = $1 WHERE username = $2 AND ingredient_name LIKE $3;'
+                else{
+                    var amount = results.rows[0].amount
+                    amount +=ingre_amount
 
-                pool.query(increasequery, [amount, username, ingre_name + '%'], (error,results) => {
-                    if(error){
-                        console.log("failed!");
-                        fs.unlink(file.path, function(err){
-                            if(err){console.log("file already deleted")};
-                            console.log("file deleted")
-                        })
-                        res.sendStatus(404)
-                    }
-                    else{
-                        fs.unlink(file.path, function(err){
-                            if(err){console.log("file already deleted")};
-                            console.log("file deleted")
-                        })
-                        res.sendStatus(200)
-                    }
-                })
+                    var increasequery = 'UPDATE has SET amount = $1 WHERE username = $2 AND ingredient_name LIKE $3;'
+
+                    pool.query(increasequery, [amount, username, ingre_name + '%'], (error,results) => {
+                        if(error){
+                            console.log("failed!");
+                            fs.unlink(file.path, function(err){
+                                if(err){console.log("file already deleted")};
+                                console.log("file deleted")
+                            })
+                            res.sendStatus(404)
+                        }
+                        else{
+                            fs.unlink(file.path, function(err){
+                                if(err){console.log("file already deleted")};
+                                console.log("file deleted")
+                            })
+                            res.sendStatus(200)
+                        }
+                    })
+                }
             }
-        }
-    })
+        })
+    }
+    else{
+        res.redirect('/login')
+    }
 }
