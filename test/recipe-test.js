@@ -23,3 +23,19 @@ describe('Recipe details', function() {
     })
 
 });
+
+describe('Make Recipe', function() {
+    it('should provide correct status if given correct request structure for make recipe route', function(done){
+        chai.request(server).post('/recipes/makeRecipe').send({id:"js1",amount:"amt1"})
+        .end(function(error,res){
+            res.should.have.status(202);
+        })
+    })
+
+    it('should provide 404 status if given bad request structure for make recipe route', function(done){
+        chai.request(server).post('/recipes/makeRecipe').send({})
+        .end(function(error,res){
+            res.should.have.status(404);
+        })
+    })
+})
