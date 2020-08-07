@@ -24,20 +24,22 @@ exports.update = (req, res) => {
 	// console.log(person_param);
 	// console.log(acc_param);
 
+
+
     var personQuery = `UPDATE person SET fname=$1, lname=$2, username=$3, email=$4, phone=$5 WHERE username=$6`;
     var accQuery = `UPDATE account SET type=$1, username=$2, password=$3 WHERE username=$4`;
 
-
-
     pool.query(personQuery, person_param, (error, result) =>{
-    	if (error) { res.send(error);}
-    	console.log("inserting person query");
+    	if (error) { 
+            res.status('401').redirect('/userview');
+        }
 
     	pool.query(accQuery, acc_param, (error, result) =>{
-    		if (error) { res.send(error);}
-
-    		console.log("before redirecting");
-    		res.redirect('/profile');
+    		if (error) { 
+                res.status('401').redirect('/userview');
+            }
+            
+    		res.status('200').redirect('/profile');
     	})
     })
 }
