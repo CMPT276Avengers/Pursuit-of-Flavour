@@ -2,6 +2,9 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../index')
 var expect = require('chai').expect
+const fs = require('fs');
+const cheerio = require('cheerio')
+const assert = require('assert').strict;
 
 
 
@@ -28,6 +31,59 @@ describe('get ingredients', function() {
     
 });
 
+
+
+describe ('File Upload', async =>{
+    it('should upload a valid image file to the public/images/ingredients folder', async () => {
+          const response = await chai.request(server)
+            .post('/ingredients/fileUpload')
+            // .set('Content-Type', 'application/x-www-form-urlencoded')
+            .field('Content-Type', 'multipart/form-data')
+            // .attach('ingredient_image', fs.readFileSync('./public/images/ingredients/testingre.jpg'))
+            .attach('ingredient_image',
+              fs.readFileSync('./public/images/ingredients/testingre.jpg'),
+              'testingre.jpg');
+            //   console.log(response)
+          expect(response.body).to.be.an('object')
+        
+          
+        },  
+);
+
+});
+
+// This test checks whether perfoming the delete file
+//action perfoms the desired result 
+//the logic and syntax use used is the same 
+//as the route /ingredients/fileDelete 
+// except in fileDelete we specify the 
+//file that needs to be deleted 
+describe('File Delete', function(){
+
+    it('creates a temporary text file tests create/write access to FS', function(done){
+        // setup
+        var newFile = new Date().getTime() +".txt";
+
+        fs.writeFile(newFile, "hello!", function (err) {
+            if (err) {console.log(err)};
+            // console.log("Created file: "+newFile);
+
+            // This is to test if the function is working properly 
+            // All tests have passed 
+            fs.unlink(newFile, function(error){
+                if(error){console.log("file already deleted")};
+                console.log('file deleted')
+                done();
+    
+            });
+
+        });
+
+
+    })
+
+
+});
 
 // describe('Add ingredients', function() {
 //     before(function() {
