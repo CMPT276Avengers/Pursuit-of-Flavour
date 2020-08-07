@@ -3,8 +3,8 @@ const axios = require("axios");
 const fetch = require('node-fetch');
 const { Pool } = require('pg');
 var pool = new Pool({
-    // connectionString: 'postgres://postgres:root@localhost/cmpt276project'
-    connectionString: process.env.DATABASE_URL
+  connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
+// connectionString: process.env.DATABASE_URL
 })
 
 exports.getRecipeDetails = (req,res) => {
@@ -112,6 +112,6 @@ exports.makeRecipe = (req,res) => {
       })
     }
   })
-  
+
 
 }

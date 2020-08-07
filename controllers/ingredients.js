@@ -1,8 +1,8 @@
 const { Pool } = require('pg');
 var pool = new Pool({
 
-    // connectionString: 'postgres://postgres:root@localhost/cmpt276project'
-    connectionString: process.env.DATABASE_URL
+  connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
+// connectionString: process.env.DATABASE_URL
 });
 const session = require('express-session');
 // Imports the Google Cloud client library
@@ -75,7 +75,7 @@ exports.addIngredients = (req,res) => {
     }
 }
 
-// Set storage 
+// Set storage
 
 const storage = multer.diskStorage({
     destination: './public/images/ingredients/',
@@ -85,7 +85,7 @@ const storage = multer.diskStorage({
     }
 });
 
-//intialize upload 
+//intialize upload
 
 const upload = multer({
     storage: storage,
@@ -94,13 +94,13 @@ const upload = multer({
     }
 }). single('ingredient_image');
 
-// Check File Type 
+// Check File Type
 
 function checkFileType(file, cb){
-    // Allowed file extension 
+    // Allowed file extension
     const filetypes = /jpeg|jpg|png/;
     const extnames = filetypes.test(path.extname(file.originalname).toLowerCase());
-    // Check mime 
+    // Check mime
     const mimetype = filetypes.test(file.mimetype);
 
     if(mimetype && extnames){
@@ -171,13 +171,13 @@ async function ingred_rec() {
     const projectId = 'braided-grammar-285323'
     const keyFilename = './credentials/ingredientrecognition.json'
     // console.log("this is file inside google visoin", file)
-  
+
     var ingre_array = []
     // Creates a client
     const client = new vision.ImageAnnotatorClient({projectId, keyFilename});
 
     // var imageFile = fs.readFileSync(file.path)
-    
+
 
 
     const fileName = file.path;
@@ -197,8 +197,8 @@ async function ingred_rec() {
     ingre_array.sort()
 
     var duplicates = {};
-    ingre_array.forEach(function(item){ 
-        duplicates[item] = (duplicates[item] || 0)+1; 
+    ingre_array.forEach(function(item){
+        duplicates[item] = (duplicates[item] || 0)+1;
     });
 
     return duplicates;
@@ -206,7 +206,7 @@ async function ingred_rec() {
   }
 
 
-// Ingredient detection 
+// Ingredient detection
 exports.labelImage = async (req,res) => {
     var duplicates = await ingred_rec()
     // console.log(duplicates)
@@ -231,8 +231,8 @@ exports.labelImage = async (req,res) => {
             res.send(data.amounts);
         // }
     // })
-    
-    
+
+
 }
 
 exports.imgAddIngredients = (req,res) =>{

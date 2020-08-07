@@ -1,8 +1,7 @@
 const { Pool } = require('pg');
 var pool = new Pool({
-
-    // connectionString: 'postgres://postgres:root@localhost/cmpt276project'
-    connectionString: process.env.DATABASE_URL
+  connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
+// connectionString: process.env.DATABASE_URL
 });
 
 const session = require('express-session');
@@ -62,7 +61,7 @@ exports.displayRecipes = (req,res)=>{
             if(resp.rows.length == 0){
                 var type = req.session.user.usertype
                 res.render('pages/add_new_recipe', {type:type});
-                
+
             }else{
 
                 for(i = 0; i < resp.rows.length; i++){

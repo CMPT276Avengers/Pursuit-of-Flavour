@@ -9,24 +9,25 @@ chai.use(chaiHttp); //to mkae http calls/requests
 var should = chai.should(); // should function is assertions
 
 
-describe('Search', function() {
+describe('Livechat', function() {
+  //test searching for recipe videos
     before(function() {
-        this.timeout(10000) // 10 second timeout for setup
+        this.timeout(10000) // 10 second timeout
       })
       function checkdb (done) {
                       pool.getConnection(done);
                     };
 
-    it('should return recipes by search', function(done){
+    it('should work with strings', function(done){
 
-        chai.request(server).get('/search/searchrecipe')
+        chai.request(server).get('/message/message')
         .end(function(error,res){
-            const result = res.statusCode
-            expect(result).to.equal(200)
-             res.body.should.be.a('object')
-            expect(res).to.have.header('content-type', 'text/html; charset=utf-8');
-            done();
+           res.body.should.be.a('object')
+          expect(res).to.have.header('content-type', 'text/html; charset=utf-8');
+          done();
         })
     })
+
+
 
 });

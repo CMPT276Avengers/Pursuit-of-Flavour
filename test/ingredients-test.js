@@ -22,7 +22,7 @@ describe('get ingredients', function() {
         })
     })
 
-    
+
 });
 
 
@@ -30,7 +30,7 @@ describe('get ingredients', function() {
 //     before(function() {
 //         this.timeout(10000) // 10 second timeout for setup
 //       })
-  
+
 
 
 //     it('should add ingredients', function(done){
@@ -43,5 +43,5 @@ describe('get ingredients', function() {
 //         })
 //     })
 
-    
+
 // });
