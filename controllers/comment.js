@@ -12,7 +12,7 @@ exports.getRecipeComments = (req,res) => {
     pool.query(query,[recipeId],(error,results) => {
         res.send(results.rows);
     })
-}  
+}
 
 exports.postComment = (req,res) => {
     var username = req.session.user.username;

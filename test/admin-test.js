@@ -27,21 +27,21 @@ describe('deleteuser', function() {
 
 
     })
-    
+
 
     it('Should delete users unsuccessfully because no username provided', function(done){
 
         chai.request(server).post('/admin/deleteUsers').send({ })
         .end(function(error,res){
             res.should.have.status(401);
-            expect(res).to.have.header('content-type', 'text/html; charset=utf-8'); 
+            expect(res).to.have.header('content-type', 'text/html; charset=utf-8');
             done();
         })
 
-        
+
     })
 
-    
+
 });
 
 describe('Adduser', function(){
@@ -67,11 +67,11 @@ describe('Adduser', function(){
         chai.request(server).post('/admin/deleteUsers').send({ })
         .end(function(error,res){
             res.should.have.status(401);
-            expect(res).to.have.header('content-type', 'text/html; charset=utf-8'); 
+            expect(res).to.have.header('content-type', 'text/html; charset=utf-8');
             done();
         })
 
-        
+
     })
 
 })

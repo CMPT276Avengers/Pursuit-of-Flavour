@@ -62,7 +62,7 @@ exports.displayRecipes = (req,res)=>{
             if(resp.rows.length == 0){
                 var type = req.session.user.usertype
                 res.render('pages/add_new_recipe', {type:type});
-                
+
             }else{
 
                 for(i = 0; i < resp.rows.length; i++){

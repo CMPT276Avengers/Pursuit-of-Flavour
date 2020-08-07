@@ -13,7 +13,7 @@ describe('Search', function() {
     before(function() {
         this.timeout(10000) // 10 second timeout for setup
       })
-  
+
 
     it('should return recipes by search', function(done){
 
@@ -26,5 +26,5 @@ describe('Search', function() {
             done();
         })
     })
-    
+
 });

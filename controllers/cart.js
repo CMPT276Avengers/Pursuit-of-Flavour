@@ -15,7 +15,7 @@ exports.updateCart = (req,res) => {
     }
     else if(req.session.cart.arr.length == 0){
         req.session.cart.arr = updateInfo;
-    } 
+    }
     else{
         var curCartId = [];
         req.session.cart.arr.forEach(elem => {
@@ -26,7 +26,7 @@ exports.updateCart = (req,res) => {
             if(!curCartId.includes(elem.id)){
                 req.session.cart.arr.push(elem);
                 // curCartId.push(elem.id)
-            } 
+            }
             // else{
             //     req.session.cart.arr[curCartId.indexOf(elem.id)].amount += elem.amount;
             // }

@@ -33,7 +33,7 @@ exports.browserecipesbyCuisine = (req,res) =>{
         .then(function (data){
           var account = `SELECT * FROM account WHERE account.username = '${user}'`;
           pool.query(account, (error, result)=>{
-            if (error){ console.log("error")}          
+            if (error){ console.log("error")}
             var results ={"rows": result.rows, "reciperesults": data.results, "title": cuisine}
           // console.log(data)
           // console.log(results)
