@@ -14,9 +14,6 @@ describe('Searchrecipevideos', function() {
     before(function() {
         this.timeout(10000) // 10 second timeout
       })
-      function checkdb (done) {
-                      pool.getConnection(done);
-                    };
 
     it('should return recipe videos by research on GET request for /searchrecipevideos', function(done){
 

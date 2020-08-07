@@ -9,14 +9,12 @@ chai.use(chaiHttp); //to mkae http calls/requests
 var should = chai.should(); // should function is assertions
 
 
-describe('Livechat', function() {
+describe('Livechat ', function() {
   //test searching for recipe videos
     before(function() {
         this.timeout(10000) // 10 second timeout
       })
-      function checkdb (done) {
-                      pool.getConnection(done);
-                    };
+
 
     it('should work with strings', function(done){
 

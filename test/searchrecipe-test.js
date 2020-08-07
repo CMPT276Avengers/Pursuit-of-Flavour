@@ -13,9 +13,7 @@ describe('Search', function() {
     before(function() {
         this.timeout(10000) // 10 second timeout for setup
       })
-      function checkdb (done) {
-                      pool.getConnection(done);
-                    };
+
 
     it('should return recipes by search', function(done){
 

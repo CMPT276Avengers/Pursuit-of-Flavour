@@ -6,8 +6,8 @@ const io = require('socket.io').listen(http);
 const { Pool } = require('pg');
 var pool = new Pool({
 
-  connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
-// connectionString: process.env.DATABASE_URL
+  //connectionString: 'postgres://postgres:9789@localhost/cmpt276project'
+connectionString: process.env.DATABASE_URL
 });
 
 exports.message = (req, res)=> {
