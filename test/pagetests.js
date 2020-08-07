@@ -62,3 +62,16 @@ done();
   })
 })
 })
+
+
+
+describe('profile', function(){
+  it('should display profile successfully', function(done){
+    chai.request(server).get('/profile').send({}).end(function(error, res){
+      should.not.exist(error);
+      should.exist(res);
+      res.body.should.be.an('object');
+      done();
+    })
+  })
+})
