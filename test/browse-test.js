@@ -9,6 +9,7 @@ chai.use(chaiHttp); //to mkae http calls/requests
 var should = chai.should(); // should function is assertions
 
 
+
 describe('Browse', function() {
     before(function() {
         this.timeout(10000) // 10 second timeout for setup
@@ -17,10 +18,13 @@ describe('Browse', function() {
 
     it('should browse recipes by Cuisine on POST request for browserecipesbyCuisine', function(done){
 
-        chai.request(server).post('/browse/browserecipesbyCuisine').send({'cuisine':'American'})
+        chai.request(server).post('/browse/browserecipesbyCuisine').send({cuisine:'American', username:'ttl'})
         .end(function(error,res){
+
+            function checkdb (done) {
+                pool.getConnection(done);
+              };
             res.should.have.status(200);
-            // res.body.title.should.equal('American');
             expect(res).to.have.header('content-type', 'text/html; charset=utf-8'); 
             done();
         })
