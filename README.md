@@ -2,7 +2,7 @@
 # Pursuit-of-Flavour
 Personalized Cooking app made for you!
 
-Overview:
+## Overview:
 
 With the surge of food delivery apps and the abundance of restaurants, it is evident that the younger generation has lost confidence in the kitchen. According to a survey conducted by Morgan Stanely, approximately 53% of millennials are eating out at restaurants as compared to 43% of baby boomers. If this trend continues, the unsustainable habit of constantly eating out will definitely have a negative financial and physical impact on current and future generations. Currently, this problem is arguably not only unsolved, but further deepened by the way our society values productivity, capitalism and marketing. As more and more restaurants and new businesses emerge, less and less home-cooked meals are made.
 
