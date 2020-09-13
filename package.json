@@ -33,7 +33,7 @@
     "mocha": "^8.0.1",
     "module_name": "^1.0.0",
     "multer": "^1.4.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pg": "^8.2.1",
