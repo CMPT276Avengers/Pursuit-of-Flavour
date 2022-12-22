@@ -29,7 +29,7 @@
     "express-session": "^1.17.1",
     "express-validator": "^6.6.0",
     "hbs": "^4.1.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mocha": "^8.0.1",
     "module_name": "^1.0.0",
     "multer": "^1.4.2",
